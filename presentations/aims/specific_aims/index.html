@@ -1,0 +1,346 @@
+<!--
+slidedeck: A modification of the Google IO 2012 HTML5 slide template
+URL: https://github.com/rmcgibbo/slidedeck
+
+Based on https://github.com/francescolaffi/elastic-google-io-slides, and
+ultimately:
+
+Google IO 2012 HTML5 Slide Template
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Specific Aims</title>
+  <meta charset="utf-8">
+  <!--<meta http-equiv="X-UA-Compatible" content="chrome=1">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--This one seems to work all the time, but really small on ipad-->
+  <meta name="viewport" content="initial-scale=0.1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <link rel="stylesheet" media="all" type="text/css" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/custom.css">
+<!--   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css"> -->
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides", src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.min.js"></script>
+  <script type="text/javascript" src="scripts/jsmol/JSmol.min.js"></script>
+  <script type="text/javascript">
+    var Info = {
+        color: "#E8F4FF",
+        height: 400,
+        width: 450,
+        jarFile: "/home/bas/Git/bas-rustenburg/ace/presentations/aims/specific_aims/scripts/jsmol/java/JmolApplet.jar",
+        isSigned: false,
+        jarPath: "/home/bas/Git/bas-rustenburg/ace/presentations/aims/specific_aims/scripts/jsmol/java",
+        j2sPath: "/home/bas/Git/bas-rustenburg/ace/presentations/aims/specific_aims/scripts/jsmol/j2s",
+        serverURL: "file:///home/bas/Git/bas-rustenburg/ace/presentations/aims/specific_aims/scripts/jsmol/php/jsmol.php",
+        use: "HTML5
+    };
+
+  </script>
+
+  <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Neucha);
+      @import url(https://fonts.googleapis.com/css?family=Raleway:400,800,400italic);
+      
+      body { font-family: 'Neucha', Arial, sans-serif;  }
+      h1, h2, h3, h4, h5, h6, p, body {
+        font-family: 'Neucha', Arial, sans-serif;
+        font-weight: normal;
+      }
+
+      h1, h4 {
+          font-weight: bold;
+      }
+      
+  </style>
+
+
+
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+<slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+
+    <h1> Specific Aims</h1>
+    <h2> Admission to candidacy exam (ACE)</h2>
+    <h6></h6>
+    <p> Bas Rustenburg</p>
+
+
+  </hgroup>
+</slide>
+
+
+<slide  >
+  
+    <hgroup>
+      <h2></h2>
+      <h3></h3>
+      <h4></h4>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aims</h2>
+      <h3></h3>
+      <h4></h4>
+    </hgroup>
+    <article ><h2>The binding of charged ligands</h2>
+<ul class="build">
+<li>Host-guest model systems  </li>
+<li>Corrections to free energy calculations  </li>
+<li>Bayesian approach to calorimetry experiments</li>
+</ul>
+<h2>Protonation state effects on binding</h2>
+<ul class="build">
+<li>Small molecule pKa predictions  </li>
+<li>Protein pKa predictions with MCCE  </li>
+<li>Fluorescence and ITC experiments on kinase domains  </li>
+</ul>
+<h2>Weak association and multiple binding</h2>
+<ul class="build">
+<li>Human serum albumin as a model system  </li>
+<li>Free energy calculations with semigrand canonical ensemble formalism  </li>
+<li>Bayesian selection of theoretical binding models from experimental data</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="img-top-center" >
+  
+    <hgroup>
+      <h2>Aim 1</h2>
+      <h3>The binding of charged ligands</h3>
+      <h4></h4>
+    </hgroup>
+    <article ><p><img src="images/charged.svg" alt="Drawing" style="width: 78%;"/></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aim 1</h2>
+      <h3>The binding of charged ligands</h3>
+      <h4>Corrections to free energy calculations</h4>
+    </hgroup>
+    <article ><p>A number of different corrections have been suggested.</p>
+<h4>Mathemathical corrections</h4>
+<ul>
+<li>
+<p><b>Rocklin et al.</b>
+  J. Chem. Phys. 139, 184103 (2013);
+  http://dx.doi.org/10.1063/1.4826261</p>
+</li>
+<li>
+<p><b>Reif and Oostenbrink</b>
+  Journal of Computational Chemistry 2014, 35, 227–243
+  http://dx.doi.org/10.1002/jcc.23490</p>
+</li>
+</ul>
+<h4>Creating/destroying salt pairs</h4>
+<ul>
+<li>Are corrections necessary?</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aim 1</h2>
+      <h3>The binding of charged ligands</h3>
+      <h4>Host-Guest systems as model systems</h4>
+    </hgroup>
+    <article ><p>provide a way to study binding interactions without the issues like:</p>
+<table>
+    <td>
+        <ul>
+            <li> Expressing and purifying a protein</li>
+            <li> Obtaining high concentration necessary for ITC experiments </li>
+            <li> Timescale needed for molecular dynamics</li>
+        </ul>
+    </td>
+    <td>
+        <script type="text/javascript">
+            jmolApplet0 = Jmol.getApplet("jmolApplet", Info);
+            Jmol.script(jmolApplet,"background white; load molecules/cb7.sdf; spin on;")
+        </script>
+
+    </td>
+</table>
+
+<p>Cucurbit-[7]-uril, a host molecule that binds cationic guests.</p></article>
+ 
+</slide>
+
+<slide class="img-top-center" >
+  
+    <hgroup>
+      <h2>Aim 2</h2>
+      <h3>Protonation state effects on binding</h3>
+      <h4></h4>
+    </hgroup>
+    <article ><p><img src="images/imatinib_pKa.png" alt="Drawing" style="width: 80%;"/></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aim 2</h2>
+      <h3>Protonation state effects on binding</h3>
+      <h4>Why is it important to consider protonation states?</h4>
+    </hgroup>
+    <article ><ul>
+<li>
+<p>Proteins and small molecules can sample mixtures of different protonation states</p>
+</li>
+<li>
+<p>These states all contribute to the binding affinity, possibly contributing several kcal / mol</p>
+</li>
+</ul>
+<h4>Why is it a problem?</h4>
+<ul>
+<li>We do not know in which proteins this occurs, and in which it does not!</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aim 2</h2>
+      <h3>How can we take the pKa into account?</h3>
+      <h4>Computationally survey</h4>
+    </hgroup>
+    <article ><h4>Small molecules</h4>
+<ul>
+<li>Using tools such as schrodingers Epik, Jaguar</li>
+</ul>
+<h4>Proteins</h4>
+<ul>
+<li>Tools such as PROPKA</li>
+<li>MCCE2 (Gunner et al.)</li>
+</ul>
+<h4>And then perform free energy calculations</h4>
+<ul>
+<li>Constant-pH simulations using the obtained pKa data</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aim 2</h2>
+      <h3>How can we take the pKa into account?</h3>
+      <h4>Experimentally</h4>
+    </hgroup>
+    <article ><h4>Measure binding affinity using</h4>
+<ul>
+<li>
+<p>Fluorescence assays for kinase domains</p>
+</li>
+<li>
+<p>Isothermal titration calorimetry experiments</p>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aim 3</h2>
+      <h3>Weak association and multiple binding</h3>
+      <h4></h4>
+    </hgroup>
+    <article ><p>[replace this by an image]</p></article>
+ 
+</slide>
+
+<slide class="img-top-center" >
+  
+    <hgroup>
+      <h2>Aim 3</h2>
+      <h3>Weak association and multiple binding</h3>
+      <h4>Bayesian modelling of ITC</h4>
+    </hgroup>
+    <article ><p>We can describe binding of multiple ligands</p>
+<h5>The heats of binding as a function of concentration</h5>
+<p><img src="images/heats.svg" alt="Drawing" style="width: 78%;"/></p>
+<h5>The posterior</h5>
+<p><img src="images/mb_posterior.svg" alt="Drawing" style="width: 78%;"/></p></article>
+ 
+</slide>
+
+<slide class="thank-you-slide" >
+  
+    <hgroup>
+      <h2></h2>
+      <h3></h3>
+      <h4></h4>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <!-- <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside> -->
+  <article class="flexbox vleft auto-fadein">
+    <h2></h2>
+    <p></p>
+  </article>
+  <p data-config-contact class="auto-fadein"></p>
+  </p>
+</slide>
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
