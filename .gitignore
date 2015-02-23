@@ -1,3 +1,6 @@
+## Useless leftover files
+attic
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -107,3 +110,4 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+jmol-14.2.12_2015.02.11
