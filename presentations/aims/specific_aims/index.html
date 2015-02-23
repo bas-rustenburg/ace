@@ -33,12 +33,13 @@ URL: https://code.google.com/p/io-2012-slides
         color: "#E8F4FF",
         height: 400,
         width: 450,
-        jarFile: "/home/bas/Git/bas-rustenburg/ace/presentations/aims/specific_aims/scripts/jsmol/java/JmolApplet.jar",
+        jarFile: "scripts/jsmol/java/JmolApplet.jar",
         isSigned: false,
-        jarPath: "/home/bas/Git/bas-rustenburg/ace/presentations/aims/specific_aims/scripts/jsmol/java",
-        j2sPath: "/home/bas/Git/bas-rustenburg/ace/presentations/aims/specific_aims/scripts/jsmol/j2s",
-        serverURL: "file:///home/bas/Git/bas-rustenburg/ace/presentations/aims/specific_aims/scripts/jsmol/php/jsmol.php",
-        use: "HTML5
+        jarPath: "scripts/jsmol/java",
+        j2sPath: "scripts/jsmol/j2s",
+        serverURL: "http:/localhost:8000/scripts/jsmol/php/jsmol.php",
+        use: "HTML5",
+        memoryLimit: "512M"
     };
 
   </script>
@@ -187,10 +188,11 @@ URL: https://code.google.com/p/io-2012-slides
         </ul>
     </td>
     <td>
-        <script type="text/javascript">
-            jmolApplet0 = Jmol.getApplet("jmolApplet", Info);
-            Jmol.script(jmolApplet,"background white; load molecules/cb7.sdf; spin on;")
-        </script>
+
+    <script type="text/javascript">
+            jmolApplet1 = Jmol.getApplet("jmolApplet1", Info);
+            Jmol.script(jmolApplet1,"background white; load molecules/cb7.sdf; spin on;")
+    </script>
 
     </td>
 </table>
@@ -239,17 +241,17 @@ URL: https://code.google.com/p/io-2012-slides
       <h3>How can we take the pKa into account?</h3>
       <h4>Computationally survey</h4>
     </hgroup>
-    <article ><h4>Small molecules</h4>
-<ul>
+    <article ><ul>
+
+<h4>Small molecules</h4>
 <li>Using tools such as schrodingers Epik, Jaguar</li>
-</ul>
+
 <h4>Proteins</h4>
-<ul>
 <li>Tools such as PROPKA</li>
 <li>MCCE2 (Gunner et al.)</li>
-</ul>
+
 <h4>And then perform free energy calculations</h4>
-<ul>
+
 <li>Constant-pH simulations using the obtained pKa data</li>
 </ul></article>
  
@@ -274,14 +276,33 @@ URL: https://code.google.com/p/io-2012-slides
  
 </slide>
 
-<slide  >
+<slide class="img-top-center" >
   
     <hgroup>
       <h2>Aim 3</h2>
       <h3>Weak association and multiple binding</h3>
       <h4></h4>
     </hgroup>
-    <article ><p>[replace this by an image]</p></article>
+    <article ><script type="text/javascript">
+    var Info = {
+        color: "#E8F4FF",
+        height: 600,
+        width: 1200,
+        jarFile: "scripts/jsmol/java/JmolApplet.jar",
+        isSigned: false,
+        jarPath: "scripts/jsmol/java",
+        j2sPath: "scripts/jsmol/j2s",
+        serverURL: "http:/localhost:8000/scripts/jsmol/php/jsmol.php",
+        use: "HTML5"
+    };
+</script>
+
+<script type="text/javascript">
+            jmolApplet1 = Jmol.getApplet("jmolApplet", Info);
+            Jmol.script(jmolApplet1,"background white; load molecules/2BXM.pdb; select all; cartoon only; color cartoon group; select ligand; wireframe 0.5; spacefill 23%; select all;")
+</script>
+
+<footer class="source"> Indomethacin bound to HSA (pdb: 2BXM) </footer></article>
  
 </slide>
 
@@ -294,28 +315,70 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article ><p>We can describe binding of multiple ligands</p>
 <h5>The heats of binding as a function of concentration</h5>
-<p><img src="images/heats.svg" alt="Drawing" style="width: 78%;"/></p>
+<p><img src="images/heats.svg" alt="Drawing" style="width: 58%;"/></p>
 <h5>The posterior</h5>
-<p><img src="images/mb_posterior.svg" alt="Drawing" style="width: 78%;"/></p></article>
+<p><img src="images/mb_posterior.svg" alt="Drawing" style="width: 58%;"/></p></article>
  
 </slide>
 
-<slide class="thank-you-slide" >
+<slide  >
   
     <hgroup>
+      <h2>Aim 3</h2>
+      <h3>Weak association and multiple binding</h3>
+      <h4>Semigrand canonical simulations</h4>
+    </hgroup>
+    <article ><ul>
+<li>
+<p>We allow the concentration of ligand(s) to fluctuate</p>
+</li>
+<li>
+<p>Measures of affinity and cooperativity can be obtained</p>
+</li>
+<li>
+<p>Allows for fragment based approaches</p>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aim 3</h2>
+      <h3>Weak association and multiple binding</h3>
+      <h4>Simulation of ITC data</h4>
+    </hgroup>
+    <article ><ul>
+<li>
+<p>Using the data obtained from free energy calculations, we can predict and experimental titration curve. </p>
+</li>
+<li>
+<p>We can use this curve to enhance our experimental design</p>
+</li>
+<li>
+<p>And ultimately, we can validate the predictions from simulation by performing the ITC experiments</p>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="thank-you-slide segue nobackground" >
+  
+    <!-- <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside> -->
+    <hgroup class="auto-fadein">
       <h2></h2>
       <h3></h3>
       <h4></h4>
     </hgroup>
-    <article ></article>
- 
+  
 </slide>
 
 
 <slide class="thank-you-slide segue nobackground">
   <!-- <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside> -->
   <article class="flexbox vleft auto-fadein">
-    <h2></h2>
+    <h2> Fin...</h2>
     <p></p>
   </article>
   <p data-config-contact class="auto-fadein"></p>

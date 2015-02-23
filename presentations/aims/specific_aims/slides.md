@@ -2,8 +2,10 @@
 % subtitle: Admission to candidacy exam (ACE)
 % author: Bas Rustenburg
 % date: February 25th 2015
-% thank_you: Fin
+% thankyou: Fin...
+
 ---
+
 title: Aims
 build_lists: true
 
@@ -70,10 +72,11 @@ provide a way to study binding interactions without the issues like:
         </ul>
     </td>
     <td>
-        <script type="text/javascript">
-            jmolApplet0 = Jmol.getApplet("jmolApplet", Info);
-            Jmol.script(jmolApplet,"background white; load molecules/cb7.sdf; spin on;")
-        </script>
+
+    <script type="text/javascript">
+            jmolApplet1 = Jmol.getApplet("jmolApplet1", Info);
+            Jmol.script(jmolApplet1,"background white; load molecules/cb7.sdf; spin on;")
+    </script>
 
     </td>
 </table>
@@ -108,18 +111,19 @@ title: Aim 2
 subtitle: How can we take the pKa into account?
 topic: Computationally survey
 
-#### Small molecules
+<ul>
 
-* Using tools such as schrodingers Epik, Jaguar
+<h4>Small molecules</h4>
+<li>Using tools such as schrodingers Epik, Jaguar</li>
 
-#### Proteins
-* Tools such as PROPKA
-* MCCE2 (Gunner et al.)
+<h4>Proteins</h4>
+<li>Tools such as PROPKA</li>
+<li>MCCE2 (Gunner et al.)</li>
 
-#### And then perform free energy calculations
+<h4>And then perform free energy calculations</h4>
 
-* Constant-pH simulations using the obtained pKa data
-
+<li>Constant-pH simulations using the obtained pKa data</li>
+</ul>
 ---
 title: Aim 2
 subtitle: How can we take the pKa into account?
@@ -134,8 +138,26 @@ topic: Experimentally
 ---
 title: Aim 3
 subtitle: Weak association and multiple binding
+class: img-top-center
 
-[replace this by an image]
+<script type="text/javascript">
+    var Info = {
+        color: "#E8F4FF",
+        height: 600,
+        width: 1200,
+        jarFile: "scripts/jsmol/java/JmolApplet.jar",
+        isSigned: false,
+        jarPath: "scripts/jsmol/java",
+        j2sPath: "scripts/jsmol/j2s",
+        serverURL: "http:/localhost:8000/scripts/jsmol/php/jsmol.php",
+        use: "HTML5"
+    };
+</script>
+<script type="text/javascript">
+            jmolApplet1 = Jmol.getApplet("jmolApplet", Info);
+            Jmol.script(jmolApplet1,"background white; load molecules/2BXM.pdb; select all; cartoon only; color cartoon group; select ligand; wireframe 0.5; spacefill 23%; select all;")
+</script>
+<footer class="source"> Indomethacin bound to HSA (pdb: 2BXM) </footer>
 
 ---
 
@@ -147,11 +169,33 @@ class: img-top-center
 We can describe binding of multiple ligands
 
 ##### The heats of binding as a function of concentration
-<img src="images/heats.svg" alt="Drawing" style="width: 78%;"/>
+<img src="images/heats.svg" alt="Drawing" style="width: 58%;"/>
 
 ##### The posterior
-<img src="images/mb_posterior.svg" alt="Drawing" style="width: 78%;"/>
+<img src="images/mb_posterior.svg" alt="Drawing" style="width: 58%;"/>
 
 ---
 
-class: thank-you-slide
+title: Aim 3
+subtitle: Weak association and multiple binding
+topic: Semigrand canonical simulations
+
+* We allow the concentration of ligand(s) to fluctuate
+
+* Measures of affinity and cooperativity can be obtained
+
+* Allows for fragment based approaches
+---
+
+title: Aim 3
+subtitle: Weak association and multiple binding
+topic: Simulation of ITC data
+
+* Using the data obtained from free energy calculations, we can predict and experimental titration curve. 
+
+* We can use this curve to enhance our experimental design
+
+* And ultimately, we can validate the predictions from simulation by performing the ITC experiments
+---
+
+class: thank-you-slide segue nobackground
