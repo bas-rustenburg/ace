@@ -72,8 +72,8 @@ provide a way to study binding interactions without the issues like:
     <td>
 
     <script type="text/javascript">
-            jmolApplet1 = Jmol.getApplet("jmolApplet1", Info);
-            Jmol.script(jmolApplet1,"background white; load molecules/cb7.sdf; spin on;")
+            jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+            Jmol.script(jmolApplet0,"background white; load molecules/cb7.sdf; spin on;")
     </script>
 
     </td>
