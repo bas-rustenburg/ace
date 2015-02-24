@@ -10,8 +10,8 @@ title: Aims
 
 ## The binding of charged ligands
 
-  * Host-guest model systems  
   * Corrections to free energy calculations  
+  * Host-guest model systems
   * Bayesian approach to calorimetry experiments
 
 ## Protonation state effects on binding
@@ -36,7 +36,19 @@ class: img-top-center
 ---
 title: Aim 1
 subtitle: The binding of charged ligands
+topic: Issues with free energy calculations
+
+* Periodicity introduced net-charge interactions when using lattice sum methods
+
+* Affects the orientational polarization of the system (artifact)
+
+
+
+---
+title: Aim 1
+subtitle: The binding of charged ligands
 topic: Corrections to free energy calculations
+
 
 A number of different corrections have been suggested.
 
@@ -66,7 +78,8 @@ provide a way to study binding interactions without the issues like:
         <ul>
             <li> Expressing and purifying a protein</li>
             <li> Obtaining high concentration necessary for ITC experiments </li>
-            <li> Timescale needed for molecular dynamics</li>
+            <li> Small system means faster calculations. </li>
+            <li> Simple system has less phase space to sample. </li>
         </ul>
     </td>
     <td>
@@ -164,10 +177,10 @@ And then we compare to the simulated data.
         height: 300,
         width: 500,
         jarFile: "scripts/jsmol/java/JmolApplet.jar",
-        isSigned: false,
-        jarPath: "scripts/jsmol/java",
-        j2sPath: "scripts/jsmol/j2s",
-        serverURL: "http:/localhost:8000/scripts/jsmol/php/jsmol.php",
+            isSigned: false,
+            jarPath: "scripts/jsmol/java",
+            j2sPath: "scripts/jsmol/j2s",
+            serverURL: "http:/localhost:8000/scripts/jsmol/php/jsmol.php",
         use: "HTML5"
     };
 </script>

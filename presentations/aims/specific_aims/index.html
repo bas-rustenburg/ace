@@ -113,8 +113,8 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article ><h2>The binding of charged ligands</h2>
 <ul>
-<li>Host-guest model systems  </li>
 <li>Corrections to free energy calculations  </li>
+<li>Host-guest model systems</li>
 <li>Bayesian approach to calorimetry experiments</li>
 </ul>
 <h2>Protonation state effects on binding</h2>
@@ -140,6 +140,24 @@ URL: https://code.google.com/p/io-2012-slides
       <h4></h4>
     </hgroup>
     <article ><p><img src="images/charged.svg" alt="Drawing" style="width: 78%;"/></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Aim 1</h2>
+      <h3>The binding of charged ligands</h3>
+      <h4>Issues with free energy calculations</h4>
+    </hgroup>
+    <article ><ul>
+<li>
+<p>Periodicity introduced net-charge interactions when using lattice sum methods</p>
+</li>
+<li>
+<p>Affects the orientational polarization of the system (artifact)</p>
+</li>
+</ul></article>
  
 </slide>
 
@@ -184,7 +202,8 @@ URL: https://code.google.com/p/io-2012-slides
         <ul>
             <li> Expressing and purifying a protein</li>
             <li> Obtaining high concentration necessary for ITC experiments </li>
-            <li> Timescale needed for molecular dynamics</li>
+            <li> Small system means faster calculations. </li>
+            <li> Simple system has less phase space to sample. </li>
         </ul>
     </td>
     <td>
@@ -313,10 +332,10 @@ Our observables are the heats as measured by the calorimeter.</p></article>
         height: 300,
         width: 500,
         jarFile: "scripts/jsmol/java/JmolApplet.jar",
-        isSigned: false,
-        jarPath: "scripts/jsmol/java",
-        j2sPath: "scripts/jsmol/j2s",
-        serverURL: "http:/localhost:8000/scripts/jsmol/php/jsmol.php",
+            isSigned: false,
+            jarPath: "scripts/jsmol/java",
+            j2sPath: "scripts/jsmol/j2s",
+            serverURL: "http:/localhost:8000/scripts/jsmol/php/jsmol.php",
         use: "HTML5"
     };
 </script>
