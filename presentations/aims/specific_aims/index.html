@@ -112,19 +112,19 @@ URL: https://code.google.com/p/io-2012-slides
       <h4></h4>
     </hgroup>
     <article ><h2>The binding of charged ligands</h2>
-<ul class="build">
+<ul>
 <li>Host-guest model systems  </li>
 <li>Corrections to free energy calculations  </li>
 <li>Bayesian approach to calorimetry experiments</li>
 </ul>
 <h2>Protonation state effects on binding</h2>
-<ul class="build">
+<ul>
 <li>Small molecule pKa predictions  </li>
 <li>Protein pKa predictions with MCCE  </li>
 <li>Fluorescence and ITC experiments on kinase domains  </li>
 </ul>
 <h2>Weak association and multiple binding</h2>
-<ul class="build">
+<ul>
 <li>Human serum albumin as a model system  </li>
 <li>Free energy calculations with semigrand canonical ensemble formalism  </li>
 <li>Bayesian selection of theoretical binding models from experimental data</li>
@@ -204,6 +204,31 @@ URL: https://code.google.com/p/io-2012-slides
 <slide class="img-top-center" >
   
     <hgroup>
+      <h2>Aim 1</h2>
+      <h3>The binding of charged ligands</h3>
+      <h4>Bayesian isothermal titration calorimetry (ITC)</h4>
+    </hgroup>
+    <article ><p><img src="images/bayes_theorem.svg" alt="Drawing" style="width: 80%;"/></p></article>
+ 
+</slide>
+
+<slide class="img-top-center" >
+  
+    <hgroup>
+      <h2>Aim 1</h2>
+      <h3>The binding of charged ligands</h3>
+      <h4>Bayesian isothermal titration calorimetry (ITC)</h4>
+    </hgroup>
+    <article ><p><img src="images/bayes_theorem.svg" alt="Drawing" style="width: 80%;"/>
+We attempt to obtain the enthalpy, mechanical heat of injection, heat of dilution, association constant, and the true concentrations.
+<img src="images/theta_D.svg" alt="Drawing" style="width: 75%"/>
+Our observables are the heats as measured by the calorimeter.</p></article>
+ 
+</slide>
+
+<slide class="img-top-center" >
+  
+    <hgroup>
       <h2>Aim 2</h2>
       <h3>Protonation state effects on binding</h3>
       <h4></h4>
@@ -221,15 +246,23 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article ><ul>
 <li>
-<p>Proteins and small molecules can sample mixtures of different protonation states</p>
+<p>Proteins and small molecules can sample mixtures of different protonation states.</p>
 </li>
 <li>
-<p>These states all contribute to the binding affinity, possibly contributing several kcal / mol</p>
+<p>These states all contribute to the binding affinity, possibly contributing several kcal / mol.</p>
 </li>
 </ul>
 <h4>Why is it a problem?</h4>
 <ul>
-<li>We do not know in which proteins this occurs, and in which it does not!</li>
+<li>
+<p>We do not know in which proteins this occurs, and in which it does not!</p>
+</li>
+<li>
+<p>We want to identify systems where this occurs, and the effect on the binding affinity that supposedly comes from this.</p>
+</li>
+<li>
+<p>Computationally, often only one state is simulated.</p>
+</li>
 </ul></article>
  
 </slide>
@@ -272,7 +305,28 @@ URL: https://code.google.com/p/io-2012-slides
 <li>
 <p>Isothermal titration calorimetry experiments</p>
 </li>
-</ul></article>
+</ul>
+<p>And then we compare to the simulated data.</p>
+<script type="text/javascript">
+    var Info = {
+        color: "#E8F4FF",
+        height: 300,
+        width: 500,
+        jarFile: "scripts/jsmol/java/JmolApplet.jar",
+        isSigned: false,
+        jarPath: "scripts/jsmol/java",
+        j2sPath: "scripts/jsmol/j2s",
+        serverURL: "http:/localhost:8000/scripts/jsmol/php/jsmol.php",
+        use: "HTML5"
+    };
+</script>
+
+<script type="text/javascript">
+            jmolApplet1 = Jmol.getApplet("jmolApplet1", Info);
+            Jmol.script(jmolApplet1,"background white; load molecules/2HYY.pdb; hide not *:A; center *:A; select *:A; cartoon only; color cartoon group; select ligand; wireframe 0.5; spacefill 23%; select all;")
+</script>
+
+<footer class="source"> Imatinib bound to c-abl (pdb: 2HYY) </footer></article>
  
 </slide>
 
@@ -298,8 +352,8 @@ URL: https://code.google.com/p/io-2012-slides
 </script>
 
 <script type="text/javascript">
-            jmolApplet1 = Jmol.getApplet("jmolApplet", Info);
-            Jmol.script(jmolApplet1,"background white; load molecules/2BXM.pdb; select all; cartoon only; color cartoon group; select ligand; wireframe 0.5; spacefill 23%; select all;")
+            jmolApplet2 = Jmol.getApplet("jmolApplet2", Info);
+            Jmol.script(jmolApplet2,"background white; load molecules/2BXM.pdb; hide not *:A; center *:A; select *:A; cartoon only; color cartoon group; select ligand; wireframe 0.5; spacefill 23%; select all;")
 </script>
 
 <footer class="source"> Indomethacin bound to HSA (pdb: 2BXM) </footer></article>
@@ -336,7 +390,7 @@ URL: https://code.google.com/p/io-2012-slides
 <p>Measures of affinity and cooperativity can be obtained</p>
 </li>
 <li>
-<p>Allows for fragment based approaches</p>
+<p>Allows for fragment based free energy calculation approaches</p>
 </li>
 </ul></article>
  
@@ -361,17 +415,6 @@ URL: https://code.google.com/p/io-2012-slides
 </li>
 </ul></article>
  
-</slide>
-
-<slide class="thank-you-slide segue nobackground" >
-  
-    <!-- <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside> -->
-    <hgroup class="auto-fadein">
-      <h2></h2>
-      <h3></h3>
-      <h4></h4>
-    </hgroup>
-  
 </slide>
 
 
