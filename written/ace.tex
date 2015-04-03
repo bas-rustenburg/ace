@@ -47,7 +47,7 @@ In principle, alchemical free energy calculations provide a framework for quanti
 In this proposal, we address three of the most significant open challenges in the quantitative modeling of small molecule recognition.
 
 
-\subsection*{Aim 1. The binding of charged ligands}
+\subsection*{Aim 1. Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands}
 The soluble form of many drugs and endogenous small molecules is charged. 
 Yet, retrospective studies and predictive challenges show current free energy methodology fails for charged species\cite{Rocklin2013b,Muddana2014a}. 
 A number of corrections for calculations with charged ligand species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking. 
@@ -57,7 +57,7 @@ We will utilize isothermal titration calorimetry (ITC) experiments, which provid
 We will additionally develop Bayesian approaches to accurately quantify measurement error and allow for model-error propagation and improved automated experimental design. 
 The experimental datasets collected here will allow us to perform free energy calculations, and to evaluate proposed corrections in order to refine theory and algorithms as necessary. 
 
-\subsection*{Aim 2. Protonation state effects on binding}
+\subsection*{Aim 2. Quantify the magnitude of mixtures of protonation states contributions to binding free energy}
 Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner. 
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity, the true scope of the problem in ligand recognition in general is completely unknown. 
 
@@ -65,7 +65,7 @@ We will use computational techniques to conduct a large scale survey to broadly 
 Existing pKa prediction tools will be benchmarked against small molecule pKa data, and then used together with Monte Carlo titration codes (both extant and developed for this project) to provide an estimate of the scope of the problem. 
 We will perform complementary experiments on a tractable but disease-relevant system---kinase catalytic domains that can be expressed in E. coli---using fluorescence binding experiments developed in our laboratory, as well as ITC experiments when possible.
 
-\subsection*{Aim 3. Weak association and multiple binding}
+\subsection*{Aim 3. Expand alchemical free energy calculations to describe weak association and multiple binding}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
 In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations.
 We will extend the framework of alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semigrand canonical ensemble formalism. 
@@ -94,7 +94,7 @@ Completion of the work will provide modeling strategies for non-trivial challeng
 \todo[inline]{Define some generic Bayesian models for ITC}
 
 
-\subsection*{Aim 1. The binding of charged ligands}
+\subsection*{Aim 1. Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands}
 \subsubsection*{Rationale}
 The soluble form of many drugs and endogenous small molecules is charged. Yet, retrospective studies and predictive challenges show current free energy methodology fails for charged species\cite{Rocklin2013b,Muddana2014a}. 
 A number of corrections for calculations with charged ligand species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking. We will perform experiments using a Bayesian methodology to obtain a robust dataset. We will then perform alchemical free energy calulations to compare the available methods.
@@ -126,7 +126,7 @@ The experimental datasets collected here will allow us to perform free energy ca
 The selection of the appriopriate Bayesian model for ITC experiments will be critical to the performance of our analysis. While we will attempt to use simple one-to-one association models based on thermodynamical understanding of these porcesses. To describe the entire experiment set, it may be necessary to use a variety of models to deal with various heat effects that occur during the experiments, and effects such as mixing of the chemical species upon injection into the instrument cell. We can apply Bayesian model selection techniques to choose the model that best fits the data and increase the accuracy of our predictions.
 Issues with the molecular dynamics force field can influence the outcome of free energy methods in unpredictable ways. If the force field proves to be a troublesome factor, we will attempt to reparametrize our molecules to improve agreement with experiments.
 
-\subsection*{Aim 2. Protonation state effects on binding}
+\subsection*{Aim 2. Quantify the magnitude of mixtures of protonation states contributions to binding free energy}
 \subsubsection*{Rationale}
 Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner. 
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity, the true scope of the problem in ligand recognition in general is completely unknown. 
@@ -157,7 +157,7 @@ Experimental pKa data for PDB ligands might be scarcer than expected. This could
 By studying the available protein-ligand complexes in the PDB we hope to have a representative selection of protein-ligand interactions, though various classes of proteins are harder to crystallize and will therefore be underrepressented in the PDB.
 
 		
-\subsection*{Aim 3. Weak association and multiple binding}
+\subsection*{Aim 3. Expand alchemical free energy calculations to describe weak association and multiple binding}
 \subsubsection*{Rationale}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
 In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations. Characteristics such as stoichiometry are unknown and need to be modelled experimentally.
