@@ -43,8 +43,8 @@ Endogenous small molecules play the role of messengers in many signaling pathway
 Understanding their interactions is vital to understanding many biological systems, and critical to drug development efforts.
 Despite having catalogued many of the physical driving forces behind small molecule recognition, there are enormous gaps in our knowledge preventing us from articulating a quantitative, predictive understanding of small molecule affinities and selectivities for biomolecules.
 
-In principle, alchemical free energy calculations provide a framework for quantitatively describing all aspects of the thermodynamics of small molecule recognition. However, deficiencies in our quantitative understanding of binding create large challenges in the ability of these calculations to reproduce experimental data in many systems, holding back their use in probing function and aiding design.
-In this proposal, we address three of the most significant open challenges in the quantitative modeling of small molecule recognition.
+In principle, \textbf{alchemical free energy calculations} provide a framework for quantitatively describing all aspects of the thermodynamics of small molecule recognition. However, deficiencies in our quantitative understanding of binding create large challenges in the ability of these calculations to reproduce experimental data in many systems, holding back their use in probing function and aiding design.
+In this proposal, we address \textbf{three of the most significant open challenges in the quantitative modeling of small molecule recognition}.
 
 
 \subsection*{Aim 1. Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands}
@@ -70,7 +70,7 @@ In addition, drug discovery approaches such as fragment-based ligand design depe
 We will \textbf{ extend the framework of alchemical free energy calculations}  to include the potential for \textbf{ multiple (possibly weak) binding events } using a \textbf{ semigrand canonical ensemble formalism}.
 
 As a model system, we will use the pharmacologically relevant protein \textbf{ human serum albumin } (HSA), known to bind many small molecules (sometimes multiple species at a time) to a variety of distinct binding sites.
-We will  \textbf{ bridge experiment and theory } by both developing new Bayesian ITC experimental analysis techniques to select among theoretical association models, as well as simulating ITC data directly from semigrand canonical ensemble simulations.
+We will  \textbf{ overcome deficiencies in theory } by both developing new Bayesian ITC experimental analysis techniques to select among theoretical association models, as well as simulating ITC data directly from semigrand canonical ensemble simulations.
 
 \subsection*{} % Add some spacing
 
@@ -99,7 +99,7 @@ Completion of the work will provide modeling strategies for non-trivial challeng
 The soluble form of many drugs and endogenous small molecules is charged. Yet, retrospective studies and predictive challenges show current free energy methodology fails for charged species\cite{Rocklin2013b,Muddana2014a}.
 A number of corrections for calculations with charged ligand species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking. We will perform experiments using a Bayesian methodology to obtain a robust dataset. We will then \textbf{ perform alchemical free energy calulations to compare proposed corrections}.
 %\subsubsection*{Methods}
-\subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry}
+\subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry to allow for uncertainty estimation}
 We will develop Bayesian approaches to \textbf{accurately quantify measurement uncertainty and allow for model-error propagation} and improved automated experimental design.
 The methodology will allow incorporation of multiple experiments, such as calibrations, to accurately separate out heat effects due to e.g. dilution of the chemicals used or mechanical effects of the injections.
 
@@ -114,7 +114,7 @@ This estimate can then be used for experimental design, determining the optimum 
 We will simulate the outcome of ITC experiments using MCMC and then perform them to validate the results.
 
 \subsubsubsection{Subaim 1.2 : Obtain isothermal titration calorimetry data with quantified uncertainty for host-guest systems}
-We will utilize isothermal titration calorimetry (ITC) experiments, which provide a “gold standard” biophysical assay for binding affinities.
+We will utilize ITC experiments, which provide a “gold standard” biophysical assay for binding affinities.
 We propose using the association of small-molecule guests with high-affinity supramolecular hosts as a way to test, validate, and refine both theory and algorithms applicable to charged ligands.
 We will use cucurbit-7-uril \cite{Lagona2005a} as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude \cite{Cao2013a}.
 
@@ -140,7 +140,7 @@ While detailed biophysical studies of a few specific model systems have demonstr
 We will use computational techniques to conduct a large scale survey to broadly assess the importance of protonation state issues in protein-small molecule interactions across a range of systems of pharmacological interest.
 Existing pKa prediction tools will be benchmarked against small molecule pKa data, and then used together with Monte Carlo titration codes (both extant and developed for this project) to provide an estimate of the scope of the problem.
 
-\subsubsection*{Methods}
+% \subsubsection*{Methods}
 \subsubsubsection{Subaim 2.1: Benchmark pKa prediction tools against small-molecule pKa data from Sirius T3 measurements}
 Because of the complex chemical space covered by small molecules, pKa prediction tools need to be versatile. We will \textbf{benchmark existing pKa prediction tools using pKa data obtained for a series of kinase inhibitors} using a Sirius T3 instrument. This will provide a means to select a tool that can adequately predict pKa values for kinase inhibitors.
 
@@ -148,7 +148,7 @@ Because of the complex chemical space covered by small molecules, pKa prediction
 \subsubsubsection{Subaim 2.2: Estimate the effect of protonation states on binding affinity using constant-pH free energy calculations}
 Using the pKa predictions for both the small molecules of interest, we will perform constant-pH alchemical free energy calculations\cite{Mongan2004a} using openMM\cite{Eastman2013a} and Yank. We will also perform simulations that do not apply the constant-pH methods. This will allow us to estimate the effect of protonation state changes on the binding affinity. We will observe whether allowing for a mixture of protonation states makes a difference in a small class of proteins such as kinases.
 
-\subsubsubsection{Subaim 2.4: Perform fluorescence binding experiments on kinase catalytic domains}
+\subsubsubsection{Subaim 2.3: Perform fluorescence binding experiments on kinase catalytic domains}
 We will validate the results of the free energy calculations by performing complementary experiments on a tractable but disease-relevant system---kinase catalytic domains that can be expressed in E. coli---using fluorescence binding experiments developed in our laboratory. Several kinase inhibitors, for instance imatinib, has many titratable moieties and tautomers. We can measure binding affinity, possibly of multiple protonation states using the fluorescence assays. This data can then be compared to our simulations, to assertain whether they can recapitulate the protonation state effects observed in experiment.
 \todo[inline]{ITC experiments when possible?}
 \subsubsection*{Expected results}
@@ -163,10 +163,11 @@ By studying the available protein-ligand complexes in the PDB we hope to have a 
 \subsubsection*{Rationale}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
 In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations. Characteristics such as stoichiometry are unknown and need to be modelled experimentally.
-We will bridge experiment and theory by both developing new Bayesian ITC experimental analysis techniques to select among theoretical association models, as well as simulating ITC data directly from semigrand canonical ensemble simulations.
-\subsubsection*{Methods}
 As a model system, we will use the pharmacologically relevant protein human serum albumin (HSA), known to bind many small molecules (sometimes multiple species at a time) to a variety of distinct binding sites.
-\subsubsubsection{Subaim 3.1: Semi-grand canonical ensemble alchemical free energy calculations}
+We will \textbf{overcome deficiencies in theory} by both developing new \textbf{Bayesian ITC experimental analysis techniques} to select among theoretical association models, as well as simulating ITC data directly from \textbf{semigrand canonical ensemble simulations}.
+% \subsubsection*{Methods}
+
+\subsubsubsection{Subaim 3.1: Develop semi-grand canonical ensemble alchemical free energy calculation tools}
 We will extend the framework of alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semigrand canonical ensemble formalism. The total number of ligands bound to a target is governed by its chemical potential, $\mu$. Alchemical methods will allow us to insert new copies of ligands into our simulation without driving the system far away from equilibrium. \todo[inline]{Using NCMC?}
 
 \subsubsubsection{Subaim 3.2: Automatic binding model selection using Bayesian model selection}
@@ -186,8 +187,5 @@ We have solved science.
 
 % refs
 \printbibliography
-\nocite{*}
-\section*{Relevant literature}
-\printbibliography[heading=none]
 
 \end{document}
