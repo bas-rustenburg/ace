@@ -3,16 +3,17 @@
 \usepackage{titlesec}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{wrapfig}
 \usepackage{caption}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{subcaption}
-\usepackage{wrapfig}
 \usepackage[color=cyan!40,obeyFinal]{todonotes}
 \usepackage[margin=0.5in]{geometry}
 \usepackage{cleveref}
 \usepackage{microtype} %sexy kerning
 \usepackage{color} % colors
+\usepackage{ulem} % strikethrough
 \usepackage{ifdraft}
 \usepackage[	backend=biber,
 		style=numeric-comp,
@@ -30,6 +31,8 @@
 
 \newcommand{\subsubsubsection}[1]{\paragraph*{#1}}
 
+% only show strikethrough text when draft
+\renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
 % toggle for displaying instructions
 \newif\ifinstr
 \instrtrue
@@ -37,6 +40,9 @@
 %If true, display \instr wrapped text, but only if draft mode on
 \newcommand{\instr}[1]{\ifdraft{\ifinstr {\color{cyan}\emph{#1}} \fi}{}}
 
+%pKa formatting
+\newcommand{\pKa}{$\mathrm{p}K_\mathrm{a}$\ }
+\newcommand{\pH}{$\mathrm{pH}$\ }
 
 \begin{document}
 \listoftodos[Things that need to be done]\newpage
@@ -63,10 +69,10 @@ Proteins and many small-molecule drugs contain titratable moieties that can chan
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity, the true scope of the problem in ligand recognition in general is completely unknown.
 
 We will use computational techniques to conduct a survey to assess the importance of protonation state issues in protein-small molecule interactions across a range of systems of pharmacological interest.
-Existing \textbf{ pKa prediction tools will be benchmarked against experimental small molecule pKa data}, and then \textbf{ used for constant-pH alchemical free energy calculations}.
+Existing \textbf{ \pKa prediction tools will be benchmarked against experimental small molecule \pKa data}, and then \textbf{ used for constant-\pH alchemical free energy calculations}.
 We will perform complementary experiments on a tractable but disease-relevant system---kinase catalytic domains that can be expressed in E. coli---using \textbf{ fluorescence binding experiments } developed in our laboratory.
 
-\subsection*{Aim 3. Extend alchemical free energy calculations to describe weak association and multiple binding}
+\subsection*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and multiple binding}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
 In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations.
 We will \textbf{ extend the framework of alchemical free energy calculations}  to include the potential for \textbf{ multiple (possibly weak) binding events } using a \textbf{ semi-grand canonical ensemble formalism}.
@@ -99,10 +105,11 @@ Completion of the work will provide modeling strategies for non-trivial challeng
 \subsection*{Aim 1. Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands}
 \subsubsection*{Rationale}
 The soluble form of many drugs and endogenous small molecules is charged. Yet, retrospective studies and predictive challenges show current free energy methodology fails for charged species\cite{Rocklin2013b,Muddana2014a}.
-A number of corrections for calculations with charged ligand species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking\cite{Reif2013a,Rocklin2013a}. We will perform experiments using a Bayesian methodology to obtain a robust dataset. We will then \textbf{ perform alchemical free energy calulations to compare proposed corrections}.
+A number of corrections for calculations with charged ligand species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking\cite{Reif2013a,Rocklin2013a}. We will perform experiments using a Bayesian methodology to obtain a robust dataset. We will then \textbf{ perform alchemical free energy calculations to compare proposed corrections}.
 %\subsubsection*{Methods}
 \subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry to allow for uncertainty estimation}
-We will develop Bayesian approaches to \textbf{accurately quantify measurement uncertainty and allow for model-error propagation}. In order to test theoretical approaches such as free energy calculations, a robust experimental dataset is necessary to distinguish between fundamental issues with the model or experimental errors.
+In order to test theoretical approaches such as free energy calculations, a robust experimental dataset is necessary to distinguish between fundamental issues with the model or experimental errors. 
+We will develop Bayesian approaches to \textbf{accurately quantify measurement uncertainty and allow for model-error propagation}. 
 \todo[inline]{Explain how to describe an ITC experiment in a Bayesian way, focussing on things like concentration uncertainty}
 The simplest model of an ITC experiment of a ligand $\mathrm{X}$ binding to a macromolecule $\mathrm{M}$ consist of a series of $n$ injections, resulting in injection heats $q_n$,
 \begin{align}
@@ -123,22 +130,23 @@ To get the most out of single experiments, we can perform inference by applying 
 \]
 , where $\Delta G_\mathrm{bind}$ is the binding affinity, $\Delta H_\mathrm{bind}$ is the binding enthalpty, $\Delta H_0$ is the mechanical heat of injection and dilution, $[\mathrm{X_{syr}}]$ is the true syringe concentration, $[\mathrm{M_{cell}}]$ is the true cell concentration, and $\sigma$ is the measurement noise.
 
-\todo[inline,color=green!40]{explain how to prevent overfitting by using Bayesian methods}
-\todo[inline]{Explain that we can incorporate multiple experiments}
+\todo[inline,color=green!40]{explain how we prevent overfitting by using Bayesian methods}
+
 
 The methodology will allow incorporation of multiple experiments, such as calibrations, to accurately separate out heat effects due to e.g. dilution of the chemicals used or mechanical effects of the injections.
 \begin{align}
-	p\left(\Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_\mathrm{dil},\Delta H_\mathrm{mech}, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \biggl{|} \prod\limits_{m=1}^{M}\{q_m\}^{N}\right) \quad,
+	 \mathcal{P}\left(\Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_\mathrm{dil},\Delta H_\mathrm{mech}, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \biggl{|} \prod\limits_{m=1}^{M}\{q_m\}^{N}\right) \quad,
 \end{align}
 for $N$ injections per $M$ experiments. Calibration experiments can provide more certainty by separating out parts of the effects, such as dilution.
+\todo[inline]{Explain that we can incorporate multiple experiments}
 
-\todo[inline,color=orange!40]{kriging/gaussian process baseline to deal with baseline drift. no dragging around datapoints as in origin etc, alsorefer to nitpic way of doing things?}
+\todo[inline,color=orange!40]{kriging/gaussian process baseline to deal with baseline drift. no dragging around datapoints as in origin etc, also refer to nitpic way of doing things?}
 Furthermore, we will construct baseline models using gaussian process regression with scikit-learn\cite{Pedregosa2011a}.
 \todo[inline,color=red!40]{skip experimental design?}
 
-We can apply high dynamic range type experiments to perform trial experiments that allow us to find the order of magnitude of the affinity.
+\xout{We can apply high dynamic range type experiments to perform trial experiments that allow us to find the order of magnitude of the affinity.
 This estimate can then be used for experimental design, determining the optimum conditions for our experimental setup.
-We will simulate the outcome of ITC experiments using MCMC and then perform them to validate the results.
+We will simulate the outcome of ITC experiments using MCMC and then perform them to validate the results.}
 
 \todo[inline, color=black!40]{insert preliminary data figure as illustration of the type of data that we will be generating?}
 
@@ -172,58 +180,91 @@ Issues with the molecular dynamics force field can influence the outcome of free
 \subsection*{Aim 2. Quantify the magnitude of protonation state effects on binding}
 \subsubsection*{Rationale}
 Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner.
-\begin{center}
 \missingfigure[figcolor=orange!40, figwidth=0.8\textwidth]{imatinib protonation states}
-\end{center}
-While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity, the true scope of the problem in ligand recognition in general is completely unknown.
+While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity\cite{Aleksandrov2007a,Czodrowski2007a,Neeb2014a}, the true scope of the problem in ligand recognition in general is completely unknown.
 \todo[inline,color=cyan!40]{explain Czodrowski example}
-We will use computational techniques to conduct a large scale survey to broadly assess the importance of protonation state issues in protein-small molecule interactions across a range of systems of pharmacological interest.
+\textbf{The usual approach in modeling ignores these problems and assumes a single protonation state} for an entire system. Our aim is to \textbf{rectify this by using constant-\pH simulations} in the context of alchemical free energy calculations. Using computational \pKa prediction techniques to provide input for this framework will enable future consideration of these effects.
 
-Existing pKa prediction tools will be benchmarked against small molecule pKa data, and then used together with Monte Carlo titration codes (both extant and developed for this project) to provide an estimate of the scope of the problem.
-\todo[inline,color=purple!40]{short explanation constant-pH simulations}
+\xout{We will use computational techniques to conduct a large scale survey to broadly assess the importance of protonation state issues in protein-small molecule interactions across a range of systems of pharmacological interest.}
+\todo[inline,color=yellow!40]{develop techniques to deal with the protonation state issues}
+\xout{Existing \pKa prediction tools will be benchmarked against small molecule \pKa data, and then used together with Monte Carlo titration codes (both extant and developed for this project) to provide an estimate of the scope of the problem.}
+\todo[inline,color=purple!40]{short explanation constant-\pH simulations}
 
 % \subsubsection*{Methods}
-\subsubsubsection{Subaim 2.1: Benchmark pKa prediction tools against small-molecule pKa data from Sirius T3 measurements}
+\subsubsubsection{Subaim 2.1: Obtain reliable small molecule \pKa predictions for kinase inhibitors}
+Our aim is to \textbf{quantify the contribution of protonation state changes to binding} interactions. Experimental \pKa data is not widely available, so in part we will need to rely on computational \pKa prediction tools. We will \textbf{benchmark existing \pKa prediction tools}  using \pKa data obtained for a series of \textbf{kinase inhibitors} using a Sirius T3 instrument. This will provide a means to select a tool that can adequately predict \pKa values for kinase inhibitors with similar chemical components.
 
-Because of the complex chemical space covered by small molecules, pKa prediction tools need to be versatile. We will \textbf{benchmark existing pKa prediction tools using pKa data obtained for a series of kinase inhibitors} using a Sirius T3 instrument. This will provide a means to select a tool that can adequately predict pKa values for kinase inhibitors.
-\todo[inline,color=blue!40]{summary of available pKa prediction tools.}
+Preliminary results suggest that \textbf{several kinase inhibitors have access to multiple states  at physiological \pH}. For instance, the intracellular \pH of most tumors is around 7.2 \cite{Griffiths1991a,Stubbs2000a}. Preliminary data in \Cref{figure:pka-kinase} indicates that a number of FDA approved kinase inhibitors have \pKa values close to the physiological \pH.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.27\textwidth]{figures/inhibitor-pKas.png}
+	\caption{Protonation states accessible to FDA approved kinase inhibitors. Colors indicate accesibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accesible region. Preliminary data obtained using Epik.\cite{Shelley2007a,Greenwood2010a}}
+	\label{figure:pka-kinase}
+\end{figure}
 
-\subsubsubsection{Subaim 2.2: Estimate the effect of protonation states on binding affinity using constant-pH free energy calculations}
-Using the pKa predictions for both the small molecules of interest, we will perform constant-pH alchemical free energy calculations\cite{Mongan2004a} using openMM\cite{Eastman2013a} and Yank. We will also perform simulations that do not apply the constant-pH methods. This will allow us to estimate the effect of protonation state changes on the binding affinity. We will observe whether allowing for a mixture of protonation states makes a difference in a small class of proteins such as kinases.
-\todo[inline,color=violet!40]{short explanation constant-pH simulations}
+\todo[inline,color=blue!40]{summary of available \pKa prediction tools.}
+Among the tools considered will be \textbf{MoKa}\cite{Milletti2007a}, \textbf{Jaguar}\cite{Bochevarov2013a}, and \textbf{Epik}\cite{Shelley2007a,Greenwood2010a}.
+MoKa generates \pKa's based on atomistic descriptors, defined by the surrounding atoms. The descriptors are based on molecular interaction fields calculated using GRID \cite{Goodford1985a} for a library of 3D fragments, but can succesfully be applied on 2D structures.
+Schrodinger's Jaguar provides means of estimating \pKa values using quantum mechanical methods.
+Epik uses Hammett Taft linear free energy approaches\cite{Perrin1981a} for predicting \pKa values .
 
-\subsubsubsection{Subaim 2.3: Perform fluorescence binding experiments on kinase catalytic domains}
-We will validate the results of the free energy calculations by performing complementary experiments on a tractable but disease-relevant system---kinase catalytic domains that can be expressed in E. coli---using fluorescence binding experiments developed in our laboratory. Several kinase inhibitors, for instance imatinib, has many titratable moieties and tautomers. We can measure binding affinity, possibly of multiple protonation states using the fluorescence assays. This data can then be compared to our simulations, to assertain whether they can recapitulate the protonation state effects observed in experiment.
-\todo[inline]{ITC experiments when possible?}
+\subsubsubsection{Subaim 2.2: Idenification of kinase-ibhibitor combinations with potential protonation features}
+To accurately incorporate \pKa effects into our simulations, we also need to consider that the \pKa of protein residues may change on binding of a ligand. 
+
+Using kinases as model systems, we will survery small molecule-kinase interactions using MCCE\cite{Song2009a}, which will be extended to incorporate small molecules in its calculations.
+We will make a selection of crystal structures from the protein data bank (PDB)\cite{Berman2000a} of kinases with inhibitors bound. 
+We can then selecting for systems that show potential mixtures of protonation states at physiological \pH values as indicated by their multiconformer \pKa prediction to use in constant-\pH simulation as part of our aim. 
+
+
+\subsubsubsection{Subaim 2.3: Estimate the effect of protonation states on binding affinity through experiment and computation}
+The obtained data from the \pKa survey will allow us to set up alchemical free energy calculations that employ semi-grand canonical contant-\pH methods.\cite{Mongan2004a}
+
+The calculations will be performed using openMM\cite{Eastman2013a} and Yank \cite{Chodera2015a}. We will also perform simulations that do not apply the constant-\pH methods. This will allow us to estimate the effect of protonation state changes on the binding affinity.
+
+We will \textbf{validate the results of the free energy calculations by performing complementary experiments} on kinase catalytic domains that can be expressed in E. coli using ITC experiments. \textbf{The change of protonation states can be observed in ITC by performing replicate experiments using buffers of different ionization energies}. This will lead to an enthalpic contribution/penalty to the binding affinity.
+
+This data can then be compared to our simulations, to assertain whether they can recapitulate the protonation state effects observed in experiment.
+
+\todo[inline,color=violet!40]{short explanation constant-\pH simulations}
 
 \subsubsection*{Expected results}
-We expect to observe changes in protonation states in some proteins, though the degree by which they are ubiquitous is unknown.
+We expect to observe changes in protonation states in some proteins, though the degree by which they are ubiquitous is unknown. We will observe whether allowing for a mixture of protonation states makes a difference in a class of proteins such as kinases. In the case that changes in protonation state make a significant contribution, we will now have the tools to include this in our modeling. If the contribution appears to make no difference, we will have ruled out the need to use more expensive theoretical methods and more experimental resources.
+
 \subsubsection*{Pitfalls and alternatives}
-The prevalence of ligand-protein complexes that change protonation states may be ubiquitous, yet we currently evidence only exists for a small number of systems \cite{Aleksandrov2007a,Czodrowski2007a}.
-Experimental pKa data for PDB ligands might be scarcer than expected. This could make it harder to benchmark the tools required to predict small-molecule pKa's.
-By studying the available protein-ligand complexes in the PDB we hope to have a representative selection of protein-ligand interactions, though various classes of proteins are harder to crystallize and will therefore be underrepressented in the PDB.
+Currently evidence only exists for a small number of systems \cite{Aleksandrov2007a,Czodrowski2007a}. It is possible that the heat effect from changing protonation states, as observed in IT, is masked by larger heat effects that are part of the binding affinity. Alternative experiments could be performed using fluorescent kinase inhibitors that change their fluorescence signal when switching between protonation states.
+By studying the available kinase-ligand complexes in the PDB we hope to have a representative selection of protein-ligand interactions, though potentially these contributions are different for other parts of the proteome. If the result is insignificant, we can attempt to extend our search to other classes of proteins, to rule out that protonation state changes significantly contribute to other proteins.
 
-
-\subsection*{Aim 3. Expand alchemical free energy calculations to describe weak association and multiple binding}
+\subsection*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and multiple binding}
 \subsubsection*{Rationale}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
 In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations. Characteristics such as stoichiometry are unknown and need to be modelled experimentally.
 \todo[inline,color=blue!40]{what does origin already support? check their manual}
+\todo[inline,color=green!40]{our goal is to build a quantitative connection}
 As a model system, we will use the pharmacologically relevant protein human serum albumin (HSA), known to bind many small molecules (sometimes multiple species at a time) to a variety of distinct binding sites.
 We will \textbf{overcome deficiencies in theory} by both developing new \textbf{Bayesian ITC experimental analysis techniques} to select among theoretical association models, as well as simulating ITC data directly from \textbf{semi-grand canonical ensemble simulations}.
+
+
 \begin{center}
 \missingfigure[figcolor=red!40,figwidth=0.8\textwidth]{structure of HSA}
 \end{center}
 % \subsubsection*{Methods}
 
-\subsubsubsection{Subaim 3.1: Develop semi-grand canonical ensemble alchemical free energy calculation tools}
-We will extend the framework of alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. The total number of ligands bound to a target is governed by its chemical potential, $\mu$. Alchemical methods will allow us to insert new copies of ligands into our simulation without driving the system far away from equilibrium. \todo[inline]{Using NCMC?, Can this take care of larger ligands?}
+\subsubsubsection{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools}
+At current time, a framework to perform semi-grand canonical ensemble simulations with multiple ligands does not exist. Therefore we will extend the framework of alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. 
+The total number of ligands bound to a target is governed by its chemical potential, $\mu$. Alchemical methods will allow us to insert new copies of ligands into our simulation without driving the system far away from equilibrium. 
+
+\todo[inline]{Using NCMC?, Does this take care of larger ligands?, Implicit v Explicit solvent}	
 \begin{center}
 \missingfigure[figcolor=cyan!40, figwidth=0.8\textwidth]{alchemical semi-grand canonical example figure}
 \end{center}
 
-\subsubsubsection{Subaim 3.2: Automatic binding model selection using Bayesian model selection}
-Binding stoichiometry is not known a priori, yet if we want to deconvolute characteristics such as binding affinities for different sites, we need to model multiple binding sites and multiple affinities. To solve this problem, we will extend our Bayesian analysis tools with the capacity to use Bayes factors to select between possible models \todo[inline]{Is this the method most suited?}
+\subsubsubsection{Subaim 3.2: Validate computational predictions by applying Bayesian model selection on ITC  experiments}
+To provide validation of our computational results, we will perform ITC experiments on HSA. Binding stoichiometry is not known a priori, yet if we want to deconvolute characteristics such as binding affinities for different sites, we need to model multiple binding sites with multiple affinities.
+Origin, a conventional ITC analysis software package uses cooperativity parameters $n_i$ to describe multiple binding sites\cite{MicroCal2004a}.
+
+\todo[inline,color=teal!40]{SEDPHAT?}
+
+To solve this problem, we will extend our Bayesian analysis tools with the capacity to use Bayes factors to select between possible models \todo[inline]{Is this the method most suited?}
 Individual binding associations can be modeled as
 \todo[inline,color=red!40]{formulate a model that allows for multiple different associations, affinities etc}
 
