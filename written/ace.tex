@@ -94,6 +94,35 @@ Completion of the work will provide modeling strategies for non-trivial challeng
 
 \section*{Research Strategy - Innovation}
 \instr{Explain how your proposal differs from what others have tried.}
+\subsection*{Reliable uncertainty estimates of isothermal titration calorimetry results by using Bayesian statistics}
+The ABRF-MIRG'2 study revealed the disturbing fact that the uncertainty of ITC experiments is underestimated by several orders of magnitude by conventional analysis methods\cite{Myszka2003a}. Panel D of \Cref{figure:abrf-mirg2} indicates a statistical uncertainty of at least 10\% in the estimation of extinction coefficients between all participants of the study, which correlates linearly with errors in the concentrations of the solutions perpared by each lab. This error is propagated into the estimates of binding stoichiometry, affinity and enthalpy  (Panels A, B and C of \Cref{figure:abrf-mirg2}).
+
+By only performing technical replicates  and no repeat experiments, the true uncertainty can not be quantified, hence no hypothesis can be supported from any single experiment\cite{Vaux2012a}. That said, one can get an estimate of the uncertainty by performing Bayesian inference on experiments. For this reason, we propose the useage of Bayesian statistics as a means of uncertainty estimation as opposed to errors from model fit based on single or replicate experiments. Bayesian ITC\texttrademark can contribute to get more value out of single experiments by allowing for uncertainty quantification in concentrations of solutions. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/cbs_ca_II.PNG}
+	\caption{Binding measurements from the ABRF-MIRG'2 study that considered binding of CBS to carbonic anhydrase using ITC. A: Predicted stoichiometry of binding. B: Association constant $K_\mathrm{A}$. C: enthalpic contribution to binding. D: Measured extinction coefficient of ligand CBS, as reported by the 14 participants.\cite{Myszka2003a}}
+	\label{figure:abrf-mirg2}
+\end{figure}
+
+\subsection*{Quantifying and assessing correctness of poorly studied charge contributions to alchemical free energy calculations}
+That there is a problem describing charged ligands in alchemical free energy calculations has been pointed out multiple times in the past\cite{Rocklin2013b,Muddana2014a}. 
+For this reason, several possible ways of correcting this have been suggested \cite{Reif2013a,Rocklin2013a}. A quantitative comparison is lacking, and the correctness of these methods has not been established. 
+By providing an experimental dataset with small and quantified uncertainty, we can provide a comparison of these methods that gives reasonable certainty to whether observed errors are experimental in origin, or are an error in the alchemical free energy theory. 
+We can then not only provide a qualitative comparison on whether the models can possibly reproduce experiments, but will have a quantitative estimate of whether they produce the correct result.
+
+These corrections may also prove to be necessary when performing constant-\pH calculations, where protons carrying single units of charge may come into and leave the simulation system as dictated by their chemical potential. Having a proven way of dealing with these protonation events will enable hypothesis driven research backed up by reliable simulation results.
+
+\subsection*{Shedding light on the unknown contributions of protonation state changes to protein-ligand associations}
+With the exception of a few known cases\cite{Aleksandrov2007a,Czodrowski2007a}, the ubiquitousness of protonation state changes is completely unknown. Large contributions to ligand binding affinity are potentially neglected by the standard approach which considers only a single protonation state of the ligand and protein during alchemical free energy calculations.
+
+Take for instance the case of kinase inhibitor imatinib (marketed as Gleevec), for which is hinted that protonation state changes may play a role in determining its selectivity for Abl protein kinase\cite{Lin2013a}. These effects have to be quantified if one's goal is not just to answer what determines the selectivity of imatinib, but also to accurately calculate its binding affinity using alchemical free energy calculations.
+
+\subsection*{Provide new frameworks for semi-grand canonical ensemble free energy calculations}
+Currently, there is no available framework to perform alchemical free energy calculations that can sample binding free energy in the semi-grand canonical ensemble, allowing for multiple ligands to associate. We propose to extend the available toolset of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to multiple sites. As opposed to simulating a single ligand at multiple sites, this way we can correctly take into account cooperativity in binding when multiple ligands associate with a single protein.
+
 
 \section*{Research Strategy - Approach}
 \instr{Approach: More specific background information. Describe in detail the experimental design and research methods to be used. Technical hurdles to be overcome should be mentioned. Alternative approaches should be given for experiments that may not be feasible. Discussion of expected or possible results and their interpretation. Best format for each specific aim: a) rationale, b) methods, c) expected results, d) alternatives. Theory aims should follow a similar structure where possible.}
@@ -116,12 +145,7 @@ The simplest model of an ITC experiment of a ligand $\mathrm{X}$ binding to a ma
 	q_n = V_\mathrm{cell} \Delta H \left( [\mathrm{MX}]_n - [\mathrm{MX}]_{n-1} \right) + \Delta H_0 \label{equation:liberated-heat}
 \end{align}
 where $V_\mathrm{cell}$ is the volume of the sample cell, $\Delta H$ is the enthalpy of binding, $[\mathrm{MX}]_n$ is the complex concentration after $n$ injections, and $\Delta_H0$ is an offset that captures effects such as dilution and mechanical heats of stirring.
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/cbs_ca_II.PNG}
-	\caption{The experiments performed in the ABRF-MIRG'2 study reveal systematic underestimation of errors, due to not quantifying concentration uncertainty \cite{Myszka2003a}.}
-	\todo[inline,color=red!40]{increase descriptiveness of this caption}	
-\end{figure}
+
 
 Errors in the concentration of prepared solutions are a major source of uncertainty in ITC data. Not taking these into account can lead to orders of magnitude underestimation of the uncertainty of the experiments \cite{Myszka2003a}. One way to take this into account is by doing repeat experiments instead of technical replicates \cite{Vaux2012a}. This however is more time and material consuming, and therefore not a popular option among most scientific authors. 
 
