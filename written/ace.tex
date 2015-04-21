@@ -1,11 +1,9 @@
-\documentclass[10pt,draft]{article}
+\documentclass[10pt,final]{article}
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{graphicx}
-\usepackage{wrapfig}
-\usepackage{sidecap} % captions on the side
-\usepackage{float}
-
+% \usepackage{sidecap} % captions on the side
+\usepackage{floatrow}
 \usepackage{caption}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
@@ -34,7 +32,7 @@
 \newcommand{\subsubsubsection}[1]{\paragraph*{#1}}
 
 % only show strikethrough text when draft (broken, comment out for draft)
-% \renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
+\renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
 % toggle for displaying instructions
 \newif\ifinstr
 \instrtrue
@@ -104,7 +102,7 @@ Human serum albumin (HSA) is a protein with multiple binding sites that bind a w
 
 \todo[inline,color=lime!40]{refer to HSA figure with binding sites}
 
-Because of the many small molecule interactions of HSA, it is expected to be of great importance to the bioavailability of small molecules \cite{Metcalfe2010a}. It is known to bind several drugs\cite{SJOeHOLM1979a,Bannwarth1996a,Sulkowska2002a,Ghuman2005b,Perez2007a}, as well as dietary supplements\cite{Pal2013a}. It is also essential for the bioavailability of endogenous small molecules such as hormones \cite{Pardridge1986a}, and toxins such as cardiac glycosides\cite{Smith1985a}. 
+Because of the many small molecule interactions of HSA, it is expected to be of great importance to the bioavailability of small molecules \cite{Metcalfe2010a}. It is known to bind several drugs\cite{SJOeHOLM1979a,Bannwarth1996a,Sulkowska2002a,Ghuman2005a,Perez2007a}, as well as dietary supplements\cite{Pal2013a}. It is also essential for the bioavailability of endogenous small molecules such as hormones \cite{Pardridge1986a}, and toxins such as cardiac glycosides\cite{Smith1985a}. 
 
 \subsection*{Association of multiple weak binders is relevant to fragment based drug discovery}
 Multiple association is also relevant to fragment based drug discovery. The discovery of fragments that bind weakly to proteins and then combining them has been a useful method for experimental high-throughput screens. \cite{Hajduk2007a}. The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions. For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding\cite{Gilson1997a}. 
@@ -123,7 +121,8 @@ The ABRF-MIRG'2 study revealed the disturbing fact that the uncertainty of ITC e
 
 By only performing technical replicates  and no repeat experiments, the true uncertainty can not be quantified, hence no hypothesis can be supported from any single experiment\cite{Vaux2012a}. That said, one can get an estimate of the uncertainty by performing Bayesian inference on experiments. For this reason, we propose the useage of Bayesian statistics as a means of uncertainty estimation as opposed to errors from model fit based on single or replicate experiments. Bayesian ITC\texttrademark can contribute to get more value out of single experiments by allowing for uncertainty quantification in concentrations of solutions. 
 
-
+\thisfloatsetup{capposition=beside,
+capbesideposition={center,right}}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/cbs_ca_II.PNG}
@@ -350,13 +349,14 @@ We will \textbf{overcome deficiencies in theory} by both developing new \textbf{
 \todo[inline,color=red!40]{deficiencies in FBLD theory or in general? what are the deficiencies?}
 \todo[inline,color=red!40]{explain semi-grand canonical}
 
-\begin{SCfigure}
-	\centering
+\thisfloatsetup{capposition=beside,capbesideposition={center,right}}
+\begin{figure}
+	\centering	
 	\includegraphics[width=0.5\textwidth]{figures/hsa_fig7_ghuman2005.jpg}
 	\caption{\textbf{Summary of the ligand-binding capability of Human serum albumin structural studies to date.} Ligands are depicted in space-filling representation; oxygen atoms are coloured red; all other atoms in fatty acids (myristic acid), other endogenous ligands (hemin, thyroxin) and drugs are coloured dark-grey, light grey and orange, respectively. From figure 7 of \cite{Ghuman2005a}.}
 	\label{figure:albumin}
 	\todo[inline,color=red!40]{figure with binding sites illustrated instead, show small molecules we will use}
-\end{SCfigure} 
+\end{figure} 
 % \subsubsection*{Methods}
 
 \subsubsubsection{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools}
