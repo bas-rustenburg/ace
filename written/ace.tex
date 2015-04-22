@@ -1,9 +1,10 @@
-\documentclass[10pt,draft]{article}
+\documentclass[10pt,final]{article}
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{graphicx}
 % \usepackage{sidecap} % captions on the side
 \usepackage{floatrow}
+\usepackage[scientific-notation=true]{siunitx} % siunits and numbers
 \usepackage{caption}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
@@ -19,6 +20,7 @@
 		style=numeric-comp,
 		sorting=none]{biblatex}
 \addbibresource{ace.bib}
+\floatsetup{heightadjust=object}
 
 \date{}
 \titleformat{\subsection}
@@ -26,13 +28,13 @@
   {\thesubsection}
   {1em}
   {}
-
+\DeclareSIUnit\Molar{\textsc{m}}
 \setcounter{secnumdepth}{4} % paragraph acts as subsubsubsection
 
 \newcommand{\subsubsubsection}[1]{\paragraph*{#1}}
 
 % only show strikethrough text when draft (broken, comment out for draft)
-% \renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
+\renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
 % toggle for displaying instructions
 \newif\ifinstr
 \instrtrue
@@ -112,7 +114,6 @@ Using a semi-grand ensemble formulation, tighter binding is automatically achiev
 \todo[inline]{How common are charged ligands? How does it affect calculations when we don't correct them?}
 \todo[inline]{Need to optimize fragment combinations in situ. Reduce screening costs?}
 \todo[inline]{Amount of ligands that undergo protonation state changes}
-
 
 \section*{Research Strategy - Innovation}
 \instr{Explain how your proposal differs from what others have tried.}
@@ -245,12 +246,23 @@ We will use cucurbit[7]uril \cite{Lagona2005a} as a host, which is known to bind
 \todo[inline,color=blue!40]{What is the dynamic range of the affinities? Useful because it is in a similar range as those achievable by protein:small mol complexes. }
 \todo[inline,color=red!40]{It is a good model system because it is easy to sample with MD, and very soluble for ITC.}
 
-\begin{figure}[H]
- 	\centering
- 	\includegraphics[width=0.3\textwidth]{figures/cb7_bound.png}
-	\caption{A cationic guest bound to cucurbit[7]uril.}
-	\todo[inline,color=green!40]{bold face first sentence. which guest, what affinity, show another one?}
-	\label{figure:host-guest} 	
+\thisfloatsetup{floatwidth=\textwidth,%
+capposition=beside,%
+capbesideposition=left,%
+capbesidesep=none}
+\renewcommand\subfloatrowsep{\hskip 0\columnsep} % figure separation is done here
+\begin{figure}
+  \centering
+  \ffigbox[\textwidth]{
+    \begin{subfloatrow}[3]%\useFCwidth
+      \fcapside[\FBwidth]{\includegraphics[width=.27\textwidth]{figures/guest1.png}}{\caption{}}%
+      \subfloatrowsep
+      \fcapside[\FBwidth]{\includegraphics[width=.27\textwidth]{figures/guest11.png}}{\caption{}}%
+      \subfloatrowsep
+      \fcapside[\FBwidth]{\includegraphics[width=.27\textwidth]{figures/guest19.png}}{\caption{}}%
+    \end{subfloatrow}}
+{\caption{\textbf{Cucurbit[7]uril bound to several cationic guests from \textcite{Cao2013a}}. Different guests with different sizes can bind to the cavity, though their affinity is determined by their total charge, geometry and size. (a) Guest 1 is small and divalent, ($K_a =$ \SI{2.0e4}{\per\Molar}), (b) Guest 11 is larger and divalent, ($K_a =$ \SI{1.7e7}{\per\Molar}), (c) Guest 19 is bulky and monovalent, ($K_a =$ \SI{2.1e10}{\per\Molar} ). Figure prepared using Glide docking\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7\cite{Feng2004a}.}\label{figure:host-guest}}
+ 
 \end{figure}
 
 
@@ -398,9 +410,6 @@ The total number of ligands bound to a target is governed by its chemical potent
 Alchemical methods will allow us to insert new copies of ligands into our simulation without driving the system far away from equilibrium. 
 
 \todo[inline]{Using NCMC?, Does this take care of larger ligands?, Implicit v Explicit solvent}	
-
-
-
 
 \subsubsubsection{Subaim 3.2: Validate computational predictions by applying Bayesian model selection on ITC  experiments of HSA and a series of NSAIDS}
 To provide validation of our computational results, we will \textbf{perform ITC experiments on HSA}. Binding stoichiometry is not known a priori, yet if we want to deconvolute characteristics such as binding affinities for different sites, we need to model multiple binding sites with multiple affinities.
