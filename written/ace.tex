@@ -1,4 +1,4 @@
-\documentclass[10pt,final]{article}
+\documentclass[10pt,draft]{article}
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{graphicx}
@@ -32,7 +32,7 @@
 \newcommand{\subsubsubsection}[1]{\paragraph*{#1}}
 
 % only show strikethrough text when draft (broken, comment out for draft)
-\renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
+% \renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
 % toggle for displaying instructions
 \newif\ifinstr
 \instrtrue
@@ -125,7 +125,7 @@ By only performing technical replicates  and no repeat experiments, the true unc
 capbesideposition={center,right}}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/cbs_ca_II.PNG}
+	\includegraphics[width=0.49\textwidth]{figures/cbs_ca_II.PNG}
 	\caption{Binding measurements from the ABRF-MIRG'2 study that considered binding of CBS to carbonic anhydrase using \textbf{ITC as performed by 14 labs shows individual error estimates that are orders of magnitude under the actual error.} A: Predicted stoichiometry of binding. B: Association constant $K_\mathrm{A}$. C: enthalpic contribution to binding. D: Measured extinction coefficient of ligand CBS, as reported by the 14 participants.\cite{Myszka2003a}}
 	\label{figure:abrf-mirg2}
 	\todo[inline,color=green!40]{need more detail here on what this data shows. can describe that same sample was distributed to 14 laboratories to measure affinity by ITC and that reported errors were orders of magnitude smaller than actual experimental variation. Also helpful to boldface first sentence of caption that succinctly summarizes figure. like ``Current ITC data analysis approaches drastically underestimate true experimental error.''}
@@ -157,6 +157,27 @@ Furthermore, frameworks that deal with constant-\pH methodology compatible with 
 \subsubsection*{Rationale}
 The soluble form of many drugs and endogenous small molecules is charged. Yet, retrospective studies and predictive challenges show current free energy methodology fails for charged species\cite{Rocklin2013b,Muddana2014a}.
 A number of corrections for calculations with charged ligand species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking\cite{Reif2013a,Rocklin2013a, Lin2014a}. We will perform experiments using a Bayesian methodology to obtain a robust dataset. We will then \textbf{ perform alchemical free energy calculations to compare proposed corrections}.
+
+\textcite{Reif2013a} use a thermodynamic cycle to define a raw charging contribution to binding free energy,
+\begin{align}
+	\Delta\Delta A^\mathrm{raw}_\mathrm{chr} = \Delta\Delta A^\mathrm{raw}_\mathrm{chr}(\mathrm{bound}) - \Delta\Delta A^\mathrm{raw}_\mathrm{chr}(\mathrm{free}) \quad,
+\end{align}
+which according to the authors must be corrected for four independent terms, shortly summarized:
+\begin{itemize}
+  \item $\Delta A_\mathrm{pol}$, for using a finite system, arising due to periodic boundary conditions and truncated potentials, or solvent models with inaccurate dielectric permittivity.
+  \item $\Delta A_\mathrm{Psum}$, for inappropriate summation over individual point charges (``P-summation'') instead of over charges within individual solvent molecules  (``M-summation''), as well a constant offset when using Lattice-Sum methods. \cite{Kastenholz2006a}
+  \item $\Delta A_\mathrm{dir}$, from using approximations such as reaction field or lattice-sum methods instead of full Coulombic electrostatic interactions.
+  \item $\Delta A_\mathrm{exc}$, from neglecting interactions between (potentially incorrectly) excluded atoms 
+\end{itemize}
+
+\textcite{Rocklin2013a} uses similar corrections.
+
+\emph{the paper is 27 pages long and I haven't read it yet. Expecting similarities with \textcite{Reif2013a} because of the authors involved}
+\todo[inline,color=magenta!40]{check out the rocklin paper with corrections}
+
+Then, there is the approach of \cite{Lin2014a}. 
+
+
 %\subsubsection*{Methods}
 \subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry to allow for uncertainty estimation}
 In order to test theoretical approaches such as free energy calculations, a robust experimental dataset is necessary to distinguish between fundamental issues with the model or experimental errors. 
@@ -173,7 +194,7 @@ Errors in the concentration of prepared solutions are a major source of uncertai
 
 One way to take this into account is by doing repeat experiments in which all solutions are prepared anew for each replicate, instead of technical replicates \cite{Vaux2012a}. This however is time and material consuming, and therefore not a popular option among most scientists. 
 
-To provide an accurate assessment of error from single experiments, we can perform inference by applying a Bayesian approach. The concentration uncertainty can be modeled using a prior probability distribution around the expected concentration. Using Markov Chain Monte Carlo (MCMC) \cite{Metropolis1953a,Hastings1970a}, we can then sample from a posterior probability distribution to estimate the actual concentration using Bayes' rule
+To provide an accurate assessment of \textbf{error from single experiments}, we can \textbf{perform inference by applying a Bayesian approach}. The concentration uncertainty can be modeled using a prior probability distribution around the expected concentration. Using \textbf{Markov Chain Monte Carlo (MCMC)} \cite{Metropolis1953a,Hastings1970a}, we can then sample from a posterior probability distribution to estimate the actual concentration using\textbf{ Bayes' rule}
 
 \begin{align}
 	\mathcal{P}\left(\theta | \mathcal{D} \right) \propto \mathcal{P}\left(\theta\right) \mathcal{P}(\mathcal{D} | \theta)
@@ -183,13 +204,12 @@ To provide an accurate assessment of error from single experiments, we can perfo
 % \begin{align}
 % \mathcal{P} \left(\Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_0, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \biggl{|} \prod\limits_{m=1}^{M}\{q_m\}^{N}\right) \quad,
 % \end{align}
-, where $\theta$ an independent set of thermodynamical parameters, and $\mathcal{D}$ are the experimental observations, such as the injection heats $q_n$
+, where $\theta$ an independent set of thermodynamical parameters, and $\mathcal{D}$ are the experimental observations, such as the injection heats $q_n$. 
 
-An example model could describe $\theta$,as
+An example model could describe $\theta$ as
 \begin{align}
- 	\theta  % =  \left{ \Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_0, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \right}
+ 	\theta   =  \left\{ \Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_0, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \right\}
 \end{align}
-
 
 where $\Delta G_\mathrm{bind}$ is the binding affinity, $\Delta H_\mathrm{bind}$ is the binding enthalpy, $\Delta H_0$ is the mechanical heat of injection and dilution, $[\mathrm{X_{syr}}]$ is the true syringe concentration, $[\mathrm{M_{cell}}]$ is the true cell concentration, and $\sigma$ is the measurement noise.
 
@@ -197,10 +217,12 @@ where $\Delta G_\mathrm{bind}$ is the binding affinity, $\Delta H_\mathrm{bind}$
 
 
 The methodology will allow incorporation of multiple experiments, such as calibrations, to accurately separate out heat effects due to e.g. dilution of the chemicals used or mechanical effects of the injections.
-\begin{align}
-	 \mathcal{P}\left(\Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_\mathrm{dil},\Delta H_\mathrm{mech}, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \biggl{|} \prod\limits_{m=1}^{M}\{q_m\}^{N}\right) \quad,
-\end{align}
-for $N$ injections per $M$ experiments. Calibration experiments can provide more certainty by separating out parts of the effects, such as dilution.
+
+% \begin{align}
+% 	 \mathcal{P}\left(\Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_\mathrm{dil},\Delta H_\mathrm{mech}, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \biggl{|} \prod\limits_{m=1}^{M}\{q_m\}^{N}\right) \quad,
+% \end{align}
+
+% for $N$ injections per $M$ experiments. Calibration experiments can provide more certainty by separating out parts of the effects, such as dilution.
 \todo[inline]{Explain that we can incorporate multiple experiments}
 
 \todo[inline,color=red!40]{Why do we need Bayesian ITC? what do we not get out of the current method? How to validate and test this. Mention MCMC}
@@ -346,13 +368,22 @@ In addition, drug discovery approaches such as fragment-based ligand design depe
 As a model system, \textbf{we will use the pharmacologically relevant protein human serum albumin (HSA)}, known to bind many small molecules (sometimes multiple species at a time) to a variety of distinct binding sites.
 We will \textbf{overcome deficiencies in theory} by both developing new \textbf{Bayesian ITC experimental analysis techniques} to select among theoretical association models, as well as simulating ITC data directly from \textbf{semi-grand canonical ensemble simulations}.
 
+In the semi-grand canonical ensemble,  volume $V$, and temperature $T$ are constant. The number of particles of some of the species, $N_1,\dots,N_x$, is constant. However, for a number of additional species, the chemical potential $\mu_{x+1},\dots,\mu_{y}$ is constant while the number of particles fluctuates.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/semi-grand.png}
+  \caption{In the semi-grand canonical ensemble, ligands can enter and leave the system as governed by the chemical potential $\mu$. By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium.}
+  \label{figure:semigrand}
+\end{figure}
+
 \todo[inline,color=red!40]{deficiencies in FBLD theory or in general? what are the deficiencies?}
 \todo[inline,color=red!40]{explain semi-grand canonical}
 
 \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}
 	\centering	
-	\includegraphics[width=0.5\textwidth]{figures/hsa_fig7_ghuman2005.jpg}
+	\includegraphics[width=0.49\textwidth]{figures/hsa_fig7_ghuman2005.jpg}
 	\caption{\textbf{Summary of the ligand-binding capability of Human serum albumin structural studies to date.} Ligands are depicted in space-filling representation; oxygen atoms are coloured red; all other atoms in fatty acids (myristic acid), other endogenous ligands (hemin, thyroxin) and drugs are coloured dark-grey, light grey and orange, respectively. From figure 7 of \cite{Ghuman2005a}.}
 	\label{figure:albumin}
 	\todo[inline,color=red!40]{figure with binding sites illustrated instead, show small molecules we will use}
@@ -368,12 +399,7 @@ Alchemical methods will allow us to insert new copies of ligands into our simula
 
 \todo[inline]{Using NCMC?, Does this take care of larger ligands?, Implicit v Explicit solvent}	
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{figures/semi-grand.png}
-  \caption{In the semi-grand canonical ensemble, ligands can enter and leave the system as governed by the chemical potential $\mu$. By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium.}
-  \label{figure:semigrand}
-\end{figure}
+
 
 
 \subsubsubsection{Subaim 3.2: Validate computational predictions by applying Bayesian model selection on ITC  experiments of HSA and a series of NSAIDS}
