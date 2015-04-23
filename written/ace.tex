@@ -101,13 +101,7 @@ With the exception of a few known cases~\cite{Aleksandrov2007a,Czodrowski2007a,S
 
 Take for instance the case of kinase inhibitor imatinib (marketed as Gleevec), for which is hinted that protonation state changes may play a role in determining its selectivity for Abl protein kinase~\cite{Lin2013a}. These effects have to be quantified if one's goal is not just to answer what determines the selectivity of imatinib, but also to accurately calculate its binding affinity using alchemical free energy calculations.
 
-\subsection*{Human serum albumin: a binder of many small molecules ligands}
-
-Human serum albumin (HSA) is a protein with multiple binding sites that bind a wide variety of ligands~\cite{He1992a,Kragh-Hansen2002a,Sulkowska2002a}. Its binding sites are asymmetric~\cite{He1992a, Curry1998a} and one expects there to be difference in binding affinity of a ligand for each site~\cite{Sudlow1976a}.
-
-\todo[inline,color=lime!40]{refer to HSA figure with binding sites}
-
-Because of the many small molecule interactions of HSA, it is expected to be of great importance to the bioavailability of small molecules~\cite{Metcalfe2010a}. It is known to bind several drugs~\cite{SJOeHOLM1979a,Bannwarth1996a,Sulkowska2002a,Ghuman2005a,Perez2007a}, as well as dietary supplements~\cite{Pal2013a}. It is also essential for the bioavailability of endogenous small molecules such as hormones~\cite{Pardridge1986a}, and toxins such as cardiac glycosides~\cite{Smith1985a}. 
+ 
 
 \subsection*{Association of multiple weak binders is relevant to fragment based drug discovery}
 Multiple association is also relevant to fragment based drug discovery. The discovery of fragments that bind weakly to proteins and then combining them has been a useful method for experimental high-throughput screens.~\cite{Hajduk2007a}. The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions. For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding~\cite{Gilson1997a}. 
@@ -267,25 +261,6 @@ We will use cucurbit[7]uril~\cite{Lagona2005a} as a host, which is known to bind
 \label{figure:host-guest}
 \end{figure}
 
-
-% \thisfloatsetup{floatwidth=\textwidth,%
-% capposition=beside,%
-% capbesideposition=left,%
-% capbesidesep=none}
-% \renewcommand\subfloatrowsep{\hskip 0\columnsep} % figure separation is done here
-% \begin{figure}
-%   \centering
-%   \ffigbox[\textwidth]{
-%     \begin{subfloatrow}[1]%\useFCwidth
-%       \fcapside[\FBwidth]{\includegraphics[width=.28\textwidth]{figures/guest11_top.png}}{\caption{}}%
-%       \subfloatrowsep      
-%       \fcapside[\FBwidth]{\includegraphics[width=.56\textwidth]{figures/Kd_guest.png}}{\caption{}}%
-%     \end{subfloatrow}}
-% {\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}. Different guests bind to the central cavity of CB7, though their affinity is determined by their geometry and size. (a) Guest 11 shown from the front, (b) various guests and their $K_d$ values~\cite{Cao2013a}. Figure prepared using Glide docking~\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7~\cite{Feng2004a}.}\label{figure:host-guest}}
-%  
-% \end{figure}
-
-
 \todo[inline, color=red!40]{Move this part to the general rationale, using host-guest as a given for all subaims}
 
 \subsubsubsection{Subaim 1.3: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations}
@@ -390,17 +365,34 @@ By studying the available kinase-ligand complexes in the PDB we hope to have a r
 
 \todo[inline,color=red!40]{no longer doing the pdb thing}
 
-\subsection*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding}
+\subsection*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.}
 \subsubsection*{Rationale}
 \todo[inline,color=red!40]{less confusing please ~ John}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
 In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations. Characteristics such as stoichiometry are unknown and need to be modelled experimentally.
 
+
+
 \todo[inline,color=green!40]{our goal is to build a quantitative connection}
-As a model system, \textbf{we will use the pharmacologically relevant protein human serum albumin (HSA)}, known to bind many small molecules (sometimes multiple species at a time) to a variety of distinct binding sites.
+As a model system, \textbf{we will use the pharmacologically relevant protein human serum albumin (HSA)}. It is a protein with multiple binding sites that bind a wide variety of ligands~\cite{He1992a,Kragh-Hansen2002a,Sulkowska2002a}. Its binding sites are asymmetric~\cite{He1992a, Curry1998a} and one expects there to be difference in binding affinity of a ligand for each site~\cite{Sudlow1976a} (see also \Cref{figure:albumin}))
+
+\thisfloatsetup{capposition=beside,capbesideposition={center,right}}
+\begin{figure}[H]
+	\centering	
+	\includegraphics[width=0.49\textwidth]{figures/hsa_fig7_ghuman2005.jpg}
+	\caption{\textbf{Summary of the ligand-binding capability of Human serum albumin structural studies to date.} Ligands are depicted in space-filling representation; oxygen atoms are coloured red; all other atoms in fatty acids (myristic acid), other endogenous ligands (hemin, thyroxin) and drugs are coloured dark-grey, light grey and orange, respectively. Because of the many small molecule interactions of HSA, it is expected to be of great importance to the bioavailability of small molecules~\cite{Metcalfe2010a}. It is known to bind several drugs~\cite{SJOeHOLM1979a,Bannwarth1996a,Sulkowska2002a,Ghuman2005a,Perez2007a}, as well as dietary supplements~\cite{Pal2013a}. It is also essential for the bioavailability of endogenous small molecules such as hormones~\cite{Pardridge1986a}, and toxins such as cardiac glycosides~\cite{Smith1985a}. From Figure 7 of~\cite{Ghuman2005a}.
+}
+	\label{figure:albumin}
+	\todo[inline,color=red!40]{show small molecules we will use}
+\end{figure} 
+
+
 We will \textbf{overcome deficiencies in theory} by both developing new \textbf{Bayesian ITC experimental analysis techniques} to select among theoretical association models, as well as simulating ITC data directly from \textbf{semi-grand canonical ensemble simulations}.
 
 In the semi-grand canonical ensemble,  volume $V$, and temperature $T$ are constant. The number of particles of some of the species, $N_1,\dots,N_x$, is constant. However, for a number of additional species, the chemical potential $\mu_{x+1},\dots,\mu_{y}$ is constant while the number of particles fluctuates.
+
+
+
 
 \begin{figure}[H]
   \centering
@@ -412,14 +404,7 @@ In the semi-grand canonical ensemble,  volume $V$, and temperature $T$ are const
 \todo[inline,color=red!40]{deficiencies in FBLD theory or in general? what are the deficiencies?}
 \todo[inline,color=red!40]{explain semi-grand canonical}
 
-\thisfloatsetup{capposition=beside,capbesideposition={center,right}}
-\begin{figure}
-	\centering	
-	\includegraphics[width=0.49\textwidth]{figures/hsa_fig7_ghuman2005.jpg}
-	\caption{\textbf{Summary of the ligand-binding capability of Human serum albumin structural studies to date.} Ligands are depicted in space-filling representation; oxygen atoms are coloured red; all other atoms in fatty acids (myristic acid), other endogenous ligands (hemin, thyroxin) and drugs are coloured dark-grey, light grey and orange, respectively. From figure 7 of~\cite{Ghuman2005a}.}
-	\label{figure:albumin}
-	\todo[inline,color=red!40]{show small molecules we will use}
-\end{figure} 
+
 % \subsubsection*{Methods}
 
 \subsubsubsection{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools}
