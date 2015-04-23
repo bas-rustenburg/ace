@@ -174,6 +174,26 @@ which according to the authors must be corrected for four independent terms, sho
 
 Then, there is the approach of \textcite{Lin2014a}, who use some kind of method based on PMF in a single box, and then correct for periodicity \emph{need more detail}. 
 
+We propose using the association of small-molecule guests with high-affinity supramolecular hosts as a way to test, validate, and refine both theory and algorithms applicable to charged ligands. We will use cucurbit[7]uril~\cite{Lagona2005a} as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\cite{Cao2013a} (see \Cref{figure:host-guest}).
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{figures/guest11_top.png}
+  \caption{Guest 11~\cite{Cao2013a} shown from above the central cavity of CB7.}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/Kd_guest.png}  
+  \caption{A selection of guests and their $K_d$ values from\textcite{Cao2013a}.}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}. Different guests bind to the central cavity of CB7, though their affinity is determined by their geometry and size. Figure prepared using Glide docking~\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7~\cite{Feng2004a}.}
+\label{figure:host-guest}
+\end{figure}
+
 
 %\subsubsection*{Methods}
 \subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry t	o allow for uncertainty estimation}
@@ -236,30 +256,12 @@ We will simulate the outcome of ITC experiments using MCMC and then perform them
 \subsubsubsection{Subaim 1.2 : Obtain isothermal titration calorimetry data with quantified uncertainty for host-guest systems}
 
 We will utilize ITC experiments, which provide a “gold standard” biophysical assay for binding affinities.
-We propose using the association of small-molecule guests with high-affinity supramolecular hosts as a way to test, validate, and refine both theory and algorithms applicable to charged ligands.
-We will use cucurbit[7]uril~\cite{Lagona2005a} as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\cite{Cao2013a} (see also \Cref{figure:host-guest}).
+
 
 \todo[inline,color=blue!40]{What is the dynamic range of the affinities? Useful because it is in a similar range as those achievable by protein:small mol complexes. }
 \todo[inline,color=red!40]{It is a good model system because it is easy to sample with MD, and very soluble for ITC.}
 
 
-\begin{figure}
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.5\linewidth]{figures/guest11_top.png}
-  \caption{ }
-  \label{fig:sub1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{figures/Kd_guest.png}
-  \caption{ }
-  \label{fig:sub2}
-\end{subfigure}
-\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}. Different guests bind to the central cavity of CB7, though their affinity is determined by their geometry and size. (a) Guest 11 shown from above the central cavity, (b) various guests and their $K_d$ values~\cite{Cao2013a}. Figure prepared using Glide docking~\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7~\cite{Feng2004a}.}
-\label{figure:host-guest}
-\end{figure}
 
 \todo[inline, color=red!40]{Move this part to the general rationale, using host-guest as a given for all subaims}
 
