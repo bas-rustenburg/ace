@@ -1,6 +1,6 @@
 % !TEX program = xelatex
 
-\documentclass[10pt,final]{article}
+\documentclass[10pt,draft]{article}
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{graphicx}
@@ -8,6 +8,7 @@
 \usepackage{floatrow}
 \usepackage[scientific-notation=true]{siunitx} % siunits and numbers
 \usepackage{caption}
+
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{subcaption}
@@ -36,7 +37,7 @@
 \newcommand{\subsubsubsection}[1]{\paragraph*{#1}}
 
 % only show strikethrough text when draft (broken, comment out for draft)
-\renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
+% \renewcommand{\xout}[1]{\ifdraft{\xout{#1}\fi}{}}
 % toggle for displaying instructions
 \newif\ifinstr
 \instrtrue
@@ -257,13 +258,13 @@ capbesidesep=none}
   \centering
   \ffigbox[\textwidth]{
     \begin{subfloatrow}[3]%\useFCwidth
-      \fcapside[\FBwidth]{\includegraphics[width=.27\textwidth]{figures/guest1.png}}{\caption{}}%
+      \fcapside[\FBwidth]{\includegraphics[width=.28\textwidth]{figures/guest11_top.png}}{\caption{}}%
       \subfloatrowsep
-      \fcapside[\FBwidth]{\includegraphics[width=.27\textwidth]{figures/guest11.png}}{\caption{}}%
+      \fcapside[\FBwidth]{\includegraphics[width=.28\textwidth]{figures/guest11_side.png}}{\caption{}}%
       \subfloatrowsep
-      \fcapside[\FBwidth]{\includegraphics[width=.27\textwidth]{figures/guest19.png}}{\caption{}}%
+      \fcapside[\FBwidth]{\includegraphics[width=.28\textwidth]{figures/guests_2d.png}}{\caption{}}%
     \end{subfloatrow}}
-{\caption{\textbf{Cucurbit[7]uril bound to several cationic guests from \textcite{Cao2013a}}. Different guests with different sizes can bind to the cavity, though their affinity is determined by their total charge, geometry and size. (a) Guest 1 is small and divalent, ($K_a =$ \SI{2.0e4}{\per\Molar}), (b) Guest 11 is larger and divalent, ($K_a =$ \SI{1.7e7}{\per\Molar}), (c) Guest 19 is bulky and monovalent, ($K_a =$ \SI{2.1e10}{\per\Molar} ). Figure prepared using Glide docking\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7\cite{Feng2004a}.}\label{figure:host-guest}}
+{\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}. Different guests bind to the central cavity of CB7, though their affinity is determined by their geometry and size. (a) Guest 11 shown from the front, (b) from the side, (c) various guests and their $K_a$ values \cite{Cao2013a}. Figure prepared using Glide docking\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7\cite{Feng2004a}.}\label{figure:host-guest}}
  
 \end{figure}
 
@@ -367,7 +368,7 @@ We expect to observe changes in protonation states in some proteins, though the 
 Currently evidence only exists for a small number of systems \cite{Aleksandrov2007a,Czodrowski2007a}.
 \todo[inline,color=red!40]{more klebe papers?}
 
-It is possible that the heat effect from changing protonation states, as observed in ITC, is masked by larger heat effects that are part of the binding affinity. Alternative experiments could be performed using fluorescent kinase inhibitors that change their fluorescence signal when switching between protonation states.
+Alternative experiments could be performed using fluorescent kinase inhibitors that change their fluorescence signal when switching between protonation states.
 By studying the available kinase-ligand complexes in the PDB we hope to have a representative selection of protein-ligand interactions, though potentially these contributions are different for other parts of the proteome. If the result is insignificant, we can attempt to extend our search to other classes of proteins, to rule out that protonation state changes significantly contribute to other proteins.
 
 \todo[inline,color=red!40]{no longer doing the pdb thing}
