@@ -196,16 +196,15 @@ We propose using the association of small-molecule guests with high-affinity sup
 
 
 %\subsubsection*{Methods}
-\subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry t	o allow for uncertainty estimation}
+\subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry to allow for uncertainty estimation}
 In order to test theoretical approaches such as free energy calculations, a robust experimental dataset is necessary to distinguish between fundamental issues with the model or experimental errors. 
 We will develop Bayesian approaches to \textbf{accurately quantify measurement uncertainty and allow for model-error propagation}. 
 \todo[inline]{Explain how to describe an ITC experiment in a Bayesian way, focussing on things like concentration uncertainty}
-The simplest model of an ITC experiment of a ligand $\mathrm{X}$ binding to a macromolecule $\mathrm{M}$ consist of a series of $n$ injections, resulting in injection heats $q_n$,
+The simplest model of an ITC experiment of a ligand $\mathrm{X}$ binding to a macromolecule $\mathrm{M}$ consist of a series of $n$ injections, resulting in injection observed heats $q_n^\mathrm{obs}$,
 \begin{align}
-	q_n = V_\mathrm{cell} \Delta H \left( [\mathrm{MX}]_n - [\mathrm{MX}]_{n-1} \right) + \Delta H_0 \label{equation:liberated-heat}
+	q_n^\mathrm{obs} = \mathcal{N}(q_n^\mathrm{true}, \sigma^2) \quad ,
 \end{align}
-where $V_\mathrm{cell}$ is the volume of the sample cell, $\Delta H$ is the standard molar enthalpy of binding, $[\mathrm{MX}]_n$ is the complex concentration in the sample cell after $n$ injections, and $\Delta H_0$ is an offset that captures effects such as dilution and mechanical heats of stirring.
-
+which are drawn from a normal distribution $\mathcal{N}$ with a variance of $\sigma^2$ and with the true injection heats $q_n^\mathrm{true}$ as the underlying mean.
 
 Errors in the concentration of prepared solutions are a major source of uncertainty in ITC data. Not taking these into account can lead to orders of magnitude underestimation of the uncertainty of the experiments~\cite{Myszka2003a,Tellinghuisen2011a}.
 
@@ -214,19 +213,10 @@ One way to take this into account is by doing repeat experiments in which all so
 To provide an accurate assessment of \textbf{error from single experiments}, we can \textbf{perform inference by applying a Bayesian approach}. The concentration uncertainty can be modeled using a prior probability distribution around the expected concentration. Using \textbf{Markov Chain Monte Carlo (MCMC)}~\cite{Metropolis1953a,Hastings1970a}, we can then sample from a posterior probability distribution to estimate the actual concentration using\textbf{ Bayes' rule}
 
 \begin{align}
-	\mathcal{P}\left(\theta | \mathcal{D} \right) \propto \mathcal{P}\left(\theta\right) \mathcal{P}(\mathcal{D} | \theta)
+	\mathcal{P}\left(\theta | \mathcal{D} \right) \propto  \mathcal{P}(\mathcal{D} | \theta) \mathcal{P}\left(\theta\right) \quad;\quad \theta   =  \left\{ \Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_0, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \right\}
 \end{align}
 
-
-% \begin{align}
-% \mathcal{P} \left(\Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_0, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \biggl{|} \prod\limits_{m=1}^{M}\{q_m\}^{N}\right) \quad,
-% \end{align}
-, where $\theta$ an independent set of thermodynamical parameters, and $\mathcal{D}$ are the experimental observations, such as the injection heats $q_n$. 
-
-An example model could describe $\theta$ as
-\begin{align}
- 	\theta   =  \left\{ \Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_0, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \right\}
-\end{align}
+where$\mathcal{P}(\mathcal{D}|\theta)$ is the likelihood of the data $\mathcal{D}$ (i.e., injections heats $q_n^\mathrm{obs}$), given the individual thermodynamic parameters $\theta$, and $\mathcal{P}(\theta)$ is a prior distribution of the set of independent thermodynamical parameters. The prior distributions are based on known data from prior experiments, and errors of our experimental procedure that can be propagated to give estimates of the uncertainty.
 
 where $\Delta G_\mathrm{bind}$ is the binding affinity, $\Delta H_\mathrm{bind}$ is the binding enthalpy, $\Delta H_0$ is the mechanical heat of injection and dilution, $[\mathrm{X_{syr}}]$ is the true syringe concentration, $[\mathrm{M_{cell}}]$ is the true cell concentration, and $\sigma$ is the measurement noise.
 
