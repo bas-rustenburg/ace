@@ -147,34 +147,30 @@ Furthermore, frameworks that deal with constant-\pH methodology compatible with 
 \section*{Research Strategy - Approach}
 \instr{Approach: More specific background information. Describe in detail the experimental design and research methods to be used. Technical hurdles to be overcome should be mentioned. Alternative approaches should be given for experiments that may not be feasible. Discussion of expected or possible results and their interpretation. Best format for each specific aim: a) rationale, b) methods, c) expected results, d) alternatives. Theory aims should follow a similar structure where possible.}
 
-\todo[inline]{Explain Bayesian statistics (what detail?)}
-\todo[inline]{Define some generic Bayesian models for ITC}
-
 
 \subsection*{Aim 1. Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands}
 \subsubsection*{Rationale}
 The soluble form of many drugs and endogenous small molecules is charged. Yet, retrospective studies and predictive challenges show current free energy methodology fails for charged species~\cite{Rocklin2013b,Muddana2014a}.
-A number of corrections for calculations with charged ligand species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking~\cite{Reif2013a,Rocklin2013a, Lin2014a}. We will perform experiments using a Bayesian methodology to obtain a robust dataset. We will then \textbf{ perform alchemical free energy calculations to compare proposed corrections}.
+
+A number of corrections for calculations with charged ligand species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking~\cite{Reif2013a, Rocklin2013a, Lin2014a}. \textbf{We will perform isothermal titration calorimetry (ITC) experiments  using a Bayesian methodology} to \textbf{obtain a robust experimental dataset with accurately quantified uncertainty}. We will then \textbf{ perform alchemical free energy calculations to compare proposed corrections}.
+
+We propose using the \textbf{association of small-molecule guests with high-affinity supramolecular hosts} as a way to test, validate, and refine both theory and algorithms applicable to charged ligands. \textbf{We will use cucurbit[7]uril~\cite{Lagona2005a} (CB7) as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\cite{Cao2013a}} (see \Cref{figure:host-guest}). 
+
+\textbf{The small system size provides an advantage for molecular dynamics simulation}, since the limited degrees of freedom will make sampling more efficient and reduces computational cost. \textbf{ITC experiments will benefit from the high solubility of CB7.} CB7 is more soluble than a lot of proteins, \SIrange{20}{30}{millimolar}~\cite{Lagona2005a} in water versus soluble proteins,  \textless \SI{1.0}{millimolar} for a small ``soluble'' protein such as RNAase Sa~\cite{Pace2004a}. This will allow us to reach higher concentrations, which will in turn lead to less noisy data in ITC experiments.
+
 
 \textcite{Reif2013a} use a thermodynamic cycle to define a raw charging contribution to binding free energy,
-\begin{align}
-	\Delta\Delta A^\mathrm{raw}_\mathrm{chr} = \Delta\Delta A^\mathrm{raw}_\mathrm{chr}(\mathrm{bound}) - \Delta\Delta A^\mathrm{raw}_\mathrm{chr}(\mathrm{free}) \quad,
-\end{align}
-which according to the authors must be corrected for four independent terms, shortly summarized:
-\begin{itemize}
-  \item $\Delta A_\mathrm{pol}$, for using a finite system, arising due to periodic boundary conditions and truncated potentials, or solvent models with inaccurate dielectric permittivity.
-  \item $\Delta A_\mathrm{Psum}$, for inappropriate summation over individual point charges (``P-summation'') instead of over charges within individual solvent molecules  (``M-summation''), as well a constant offset when using Lattice-Sum methods.~\cite{Kastenholz2006a}
-  \item $\Delta A_\mathrm{dir}$, from using approximations such as reaction field or lattice-sum methods instead of full Coulombic electrostatic interactions.
-  \item $\Delta A_\mathrm{exc}$, from neglecting interactions between (potentially incorrectly) excluded atoms 
-\end{itemize}
+which according to the authors must be corrected for four independent terms, shortly summarized in \Cref{figure:chargecorrections}.
+\thisfloatsetup{capposition=beside,capbesideposition={center,right}}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/reif_oostenbrink.png}
+    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  $\Delta A_\mathrm{pol}$, arising due to periodic boundary conditions and truncated potentials, or solvent models with inaccurate dielectric permittivity; $\Delta A_\mathrm{Psum}$, for inappropriate summation over individual point charges (``P-summation'') instead of molecules (``M-summation'') at cutoffs, as well a constant offset when using Lattice-Sum methods.~\cite{Kastenholz2006a} ; $\Delta A_\mathrm{dir}$, from using approximations such as reaction field or lattice-sum methods instead of full Coulombic electrostatic interactions; $\Delta A_\mathrm{exc}$, from neglecting interactions between (potentially incorrectly) excluded atoms. Figure from ~\textcite{Reif2013a}.}
+  \label{figure:chargecorrections}
+\end{figure}
 
 \textcite{Rocklin2013a} uses similar corrections.
-\emph{the paper is 27 pages long and I haven't read it yet. Expecting similarities with \textcite{Reif2013a} because of the authors involved}
-\todo[inline,color=magenta!40]{check out the rocklin paper with corrections}
-
 Then, there is the approach of \textcite{Lin2014a}, who use some kind of method based on PMF in a single box, and then correct for periodicity \emph{need more detail}. 
-
-We propose using the association of small-molecule guests with high-affinity supramolecular hosts as a way to test, validate, and refine both theory and algorithms applicable to charged ligands. We will use cucurbit[7]uril~\cite{Lagona2005a} as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\cite{Cao2013a} (see \Cref{figure:host-guest}).
 
 \begin{figure}
 \centering
@@ -194,9 +190,7 @@ We propose using the association of small-molecule guests with high-affinity sup
 \label{figure:host-guest}
 \end{figure}
 
-
-%\subsubsection*{Methods}
-\subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry to allow for uncertainty estimation}
+\subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry to allow for accurate uncertainty estimation}
 In order to test theoretical approaches such as free energy calculations, a robust experimental dataset is necessary to distinguish between fundamental issues with the model or experimental errors. 
 We will develop Bayesian approaches to \textbf{accurately quantify measurement uncertainty and allow for model-error propagation}. 
 \todo[inline]{Explain how to describe an ITC experiment in a Bayesian way, focussing on things like concentration uncertainty}
@@ -206,7 +200,7 @@ The simplest model of an ITC experiment of a ligand $\mathrm{X}$ binding to a ma
 \end{align}
 which are drawn from a normal distribution $\mathcal{N}$ with a variance of $\sigma^2$ and with the true injection heats $q_n^\mathrm{true}$ as the underlying mean.
 
-Errors in the concentration of prepared solutions are a major source of uncertainty in ITC data. Not taking these into account can lead to orders of magnitude underestimation of the uncertainty of the experiments~\cite{Myszka2003a,Tellinghuisen2011a}.
+\textbf{Errors in the concentration of prepared solutions are a major source of uncertainty in ITC data.} Not taking these into account can lead to orders of magnitude underestimation of the uncertainty of the experiments~\cite{Myszka2003a,Tellinghuisen2011a}.
 
 One way to take this into account is by doing repeat experiments in which all solutions are prepared anew for each replicate, instead of technical replicates~\cite{Vaux2012a}. This however is time and material consuming, and therefore not a popular option among most scientists. 
 
