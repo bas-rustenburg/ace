@@ -8,7 +8,6 @@
 \usepackage{floatrow}
 \usepackage[scientific-notation=true]{siunitx} % siunits and numbers
 \usepackage{caption}
-
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{subcaption}
@@ -24,8 +23,6 @@
 		sorting=none]{biblatex}
 \addbibresource{ace.bib}
 \floatsetup{heightadjust=object}
-% JDC: Please use numbered references, rather than the weird boldfaced LastnameYEARa format.
-
 \date{}
 \titleformat{\subsection}
   {\normalfont\fontsize{11}{17}\sffamily\bfseries\slshape}
@@ -53,40 +50,41 @@
 \begin{document}
 \listoftodos[Indexed list of activities pertaining to labor that will be performed in the short-term future]\newpage
 \section*{\centering Specific Aims}
-% JDC: You've gone way overboard on boldfacing random words and phrases.  Between the boldfaced phrases and the boldfaced reference keys, the first page looks a bit schitzophrenic.  You should use boldface for section headings (e.g. "{\bf Approach.}  In this AIm, we will...", Aims, and key sentences that don't lead the paragraph.  If you need to emphasize special terms, try using italics.
 % JDC: Your Specific Aims is limited to one page.  You can trim down space between Aims to make this fit.  See the overleaf kinase protonation state proposal for some tricks in terms of spacing.
 Among the most fundamental molecular interactions in biology are those of small molecules with their macromolecular partners.
-\textbf{Endogenous small molecules play the role of messengers in many signaling pathways of the cell, and small molecule drugs interact with proteins in signaling cascades to modulate their function.}
+Endogenous small molecules play the role of messengers in many signaling pathways of the cell, and small molecule drugs interact with proteins in signaling cascades to modulate their function.
 Understanding their interactions is vital to understanding many biological systems, and critical to drug development efforts.
-Despite having catalogued many of the physical driving forces behind small molecule recognition, \textbf{there are enormous gaps in our knowledge preventing us from articulating a quantitative, predictive understanding of small molecule affinities and selectivities for biomolecules.}
+Despite having catalogued many of the physical driving forces behind small molecule recognition, there are enormous gaps in our knowledge preventing us from articulating a quantitative, predictive understanding of small molecule affinities and selectivities for biomolecules.
 
-In principle, \textbf{alchemical free energy calculations} provide a framework for quantitatively describing all aspects of the thermodynamics of small molecule recognition. However, deficiencies in our quantitative understanding of binding create large challenges in the ability of these calculations to reproduce experimental affinities in many systems, holding back their use in probing function and aiding design.
-In this proposal, we address \textbf{three of the most significant open challenges in the quantitative modeling of small molecule recognition}.
+In principle, alchemical free energy calculations provide a framework for quantitatively describing all aspects of the thermodynamics of small molecule recognition. 
+However, deficiencies in our quantitative understanding of binding create large challenges in the ability of these calculations to reproduce experimental affinities in many systems, holding back their use in probing function and aiding design.
+\textbf{In this proposal, we address three of the most significant open challenges in the quantitative modeling of small molecule recognition by alchemical free energy calculations}.
 
-\subsection*{Aim 1. Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands}
+\paragraph*{Aim 1. Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands.}
 The predominant soluble form of many drugs and endogenous small molecules is charged.
-Yet, retrospective studies and predictive challenges show current free energy methods fail for charged species~\cite{Rocklin2013b,Muddana2014a}.
+Yet, retrospective studies and predictive challenges show current free energy methods make substantial errors in the treatment of binding by charged species~\cite{Rocklin2013b,Muddana2014a}.
 A number of corrections for calculations with charged ligand species have been proposed~\cite{Reif2013a,Rocklin2013a, Lin2014a}, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking.
 We propose using a computationally and experimentally tractable model system---the association of small-molecule guests with high-affinity supramolecular hosts---as a way to test, validate, and refine both theory and algorithms applicable to charged ligands.
-The experimental datasets collected here will allow us to \textbf{ perform free energy calculations}, and to \textbf{ evaluate proposed corrections} in order to refine theory and algorithms as necessary.
-We will utilize \textbf{ isothermal titration calorimetry (ITC) experiments}, which provide a “gold standard” biophysical assay for binding affinities.
-We will additionally develop Bayesian approaches to accurately \textbf{ quantify measurement uncertainty} and allow for model-error propagation. \textbf{Without quantified uncertainty, it is not possible to distinguish between experimental errors and errors in theory}.
+The experimental datasets collected here will allow us to evaluate proposed corrections to free energy calculations in order to refine theory and algorithms as necessary.
+We will utilize isothermal titration calorimetry (ITC) experiments, which provide a “gold standard” biophysical assay for binding affinities.
+We will additionally develop Bayesian approaches to accurately quantify measurement uncertainty and allow for model-error propagation.
+\textbf{It is impossible to distinguish between experimental errors and errors in theory without quantified uncertainty.
+}
 
-\subsection*{Aim 2. Quantify the magnitude of protonation state effects on binding}
-\textbf{Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding} or sample mixtures of protonation states, often in a conformation-dependent manner.
-While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity, \textbf{the true scope and magnitude of the problem in ligand recognition in general is completely unknown}.
+\paragraph*{Aim 2. Quantify the magnitude of protonation state effects on binding.}
+Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner.
+While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity~\cite{Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, \textbf{the true scope and magnitude of the protonation state effects in ligand recognition in general is completely unknown.}
 
 We will use computational techniques to conduct a survey to assess the importance of protonation state issues in protein-small molecule interactions across a range of systems of pharmacological interest.
-Existing \textbf{ \pKa prediction tools will be benchmarked against experimental small molecule \pKa data}, and then \textbf{ used for constant-\pH alchemical free energy calculations}.
-We will perform complementary experiments on a tractable but disease-relevant system---kinase catalytic domains that can be expressed in \textit{E. coli}---using \textbf{ ITC experiments in buffers of different ionization enthalpies that allow for deconvolution of binding and protonation states effects}.
+Existing \pKa prediction tools will be benchmarked against experimental small molecule \pKa data, and then used as input for constant-\pH alchemical free energy calculations. Using free energy calculations we can quantify the contribution of protonation state effects, which can be validated by performing complementary experiments. We will perform ITC experiments on a tractable but disease-relevant system---kinase catalytic domains that can be expressed in \textit{E. coli}---using buffers of different ionization enthalpies that allow for deconvolution of binding and protonation states effects.
 
-\subsection*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding}
+\paragraph*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
 In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations.
-We will \textbf{ extend the framework of alchemical free energy calculations}  to include the potential for \textbf{ multiple (possibly weak) binding events } using a \textbf{ semi-grand canonical ensemble formalism}.
+We will \textbf{ extend the framework of alchemical free energy calculations}  to include the potential for multiple (possibly weak) binding events using a \textbf{ semi-grand canonical ensemble formalism}.
 
-As a model system, we will use the pharmacologically relevant protein \textbf{ human serum albumin } (HSA), known to bind many small molecules (sometimes multiple species at a time) to a variety of distinct binding sites.
-We will  \textbf{ overcome deficiencies in theory } by both developing new Bayesian ITC experimental analysis techniques to select among theoretical association models, as well as simulating ITC data directly from semi-grand canonical ensemble simulations.
+As a model system, we will use the pharmacologically relevant protein human serum albumin(HSA), known to bind many small molecules to a variety of distinct binding sites.
+We will \textbf{overcome deficiencies in theory } by both developing new Bayesian ITC experimental analysis techniques to select among theoretical association models, as well as simulating ITC data directly from semi-grand canonical ensemble simulations.
 
 \subsection*{} % Add some spacing
 
@@ -96,38 +94,88 @@ Completion of the work will provide modeling strategies for non-trivial challeng
 \instr{General background, significance in terms of basic science and disease relevance.}
 
 \todo[inline,color=magenta!40]{section on charged ligands}
+\subsection*{Accurate treatment of alchemical free energy calculations.}
+%Maybe you want to start with a section on why computer modeling or free energy calculations is important, to motivate the question of why we should care about making errors in these calculations due to incorrect protonation states?
+
+The binding free energy of a ligand (the affinity) determines whether it will spontaneously associate with a protein.
+%
+Access to information such as free energies is of great help in the design of ligands that can selectively and tightly interact with a biomolecular target.
+%
+Alchemical free energy calculations are a powerful computational tool for predicting binding free energies, as they allow for efficient sampling of the relevant states of protein-ligand complexes~\cite{Shirts2007a}.
+%
+Unfortunately, applying free energy calculations comes with several challenges that have yet to be solved~\cite{Chodera2011a,Gapsys2015a}. 
+
+%
+\textbf{Neglecting terms such as interactions with charged ligands~\cite{Rocklin2013b,Muddana2014a},
+effects from changes in ligand protonation state~\cite{Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
+and weak interactions~\cite{Gilson1997a}, has a great impact on the applicability of alchemical free energy calculations.
+}%
+There is need for validation  and extension available methods to allow for applying alchemical binding free energy calculations to wider ranges of systems,
+thereby increasing their utility in drug discovery and development processes.
+
+
+\subsubsection*{Alchemical free energy calculations need to be extended with a correct method for treating charged ligands.}
+In order to apply alchemical free energy calculations to charged ligands, one needs to eliminate artifacts introduced into the calculation from various sources.
+%
+In a physical system, the interaction never actually disappears though the interaction between a ligand and protein is weakened to the extend that it there is no measurable correlation between the interacting molecules.
+%
+The elimination of a charge from a system is therefore not a physical process, and is merely an artifact of using artificial infinite systems to approximate a macroscopic system of bulk liquid.
+%
+Bulk liquids are approximated in simulation, either by using periodic boundary conditions, or an implicit solvent.
+%
+Often, to further reduce computation cost, we introduce truncated potentials and non-Coulombic electrostatics (such as PME and reaction field potentials). 
+%
+These unphysical treatments bring with them several electrostatic interaction terms that are added on top of the physical binding free energy.
+%
+The estimated binding free energy as such needs to be corrected to eliminate these effects.
+%
+Not correcting for these terms can severely undermine the ability of alchemical free energy calculations to reproduce experimental binding affinities~\cite{Rocklin2013b,Muddana2014a}.
+
+
+\thisfloatsetup{capposition=beside,capbesideposition={center,right}}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{figures/reif_oostenbrink.png}
+    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  It is common practice to truncate Coulomb interactions beyond a certain range to reduce calculation costs and use methods such as PME or reaction fields to compensate for the loss of interaction beyond the cutoff. When there is a net charge change, this leads to errors in treatment of interaction between ligand and solvent molecules beyond cutoffs and interactions with periodic copies of the system. Figure adapted from ~\textcite{Reif2013a}.}
+  \label{figure:chargecorrections}
+\end{figure}
 
 % JDC: Putting each sentence on a separate line makes it much easier to look at diffs in version control.
-\subsection*{Shedding light on the unknown contributions of protonation state changes to protein-ligand binding affinity} % JDC: Can you refine this heading to make it snappier and fit on a single line?
-To model protein-ligand association, using the correct protonation state can be key to success~\cite{Polgar2005a,Wittayanarakul2008a}. % JDC: What does that even mean?  Can you replace this with a more direct (and less silly) sentence, like "Selecting the correct protonation states is required for accurate modeling of protein-ligand association"?  But this doesn't quite match with your point in the next sentence, which posits what happens when protonation state mixtures are relevant.  Perhaps your point is instead "The use of incorrect or inappropriate protonation states in modeling protein-ligand association can significantly degrade accuracy"?
+\subsubsection*{Unknown contributions of protonation state changes to ligand binding affinity need to be quantified.}
+The use of incorrect or inappropriate protonation states in modeling protein-ligand association can significantly degrade accuracy~\cite{Polgar2005a,Wittayanarakul2008a}.
 But what if there is not a single protonation state that contributes to the binding affinity?
 
 With the exception of a few known cases~\cite{Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},  % JDC: A few "well-studied" cases?
-the ubiquitousness % JDC: "ubiquitousness" => "ubiquity"
-of protonation state changes and the magnitude of their contribution to binding affinities is completely unknown. % JDC: There are two effects we are worried about: (1) significant population of mixtures of protonation states,  and (2) changes in dominant protonation state upon binding.  In either case, modeling the system as a single protonation state, even if this protonation state isn't entirely ridiculous, can lead to large errors.
-Large contributions to ligand binding affinity are potentially neglected by the standard approach which neglects mixtures of protonation states of the ligand and protein during alchemical free energy calculations.
+the ubiquity of protonation state changes and the magnitude of their contribution to binding affinities is completely unknown. 
+%
+We expect there are two separate effects that may be neglected:
+\begin{enumerate}
+ \item A significant population of mixtures of protonation states may be present.
+ \item Changes in the dominant protonation state could occur upon binding.
+\end{enumerate}
+%
+Modeling the system with a single protonation state can in either case lead to large errors.
 
-Take for instance the case of kinase inhibitor imatinib (marketed as Gleevec), for which is hinted that protonation state changes may play a role in determining its selectivity for Abl protein kinase~\cite{Lin2013a}. % JDC: See my paragraph on this in the Significance section of the protonation state proposal.  There is also experimental evidence and multiple computational papers (Simonson papers too).
+Take for instance the case of kinase inhibitor imatinib (marketed as Gleevec), for which is hinted that protonation state changes may play a role in determining its selectivity for Abl protein kinase~\cite{Lin2013a}.
+It is known that imatinib can assume various protonation states inside the body~\cite{Szakacs2005a}.
+
+% JDC: See my paragraph on this in the Significance section of the protonation state proposal.  There is also experimental evidence and multiple computational papers (Simonson papers too).
 These effects have to be quantified if one's goal is not just to answer what determines the selectivity of imatinib, but also to accurately calculate its binding affinity using alchemical free energy calculations.
 % JDC: You're not quite getting across the message on why this is important.  How big are the effects if you neglect this? Why is this even important?  Maybe you want to start with a section on why computer modeling or free energy calculations is important, to motivate the question of why we should care about making errors in these calculations due to incorrect protonation states?
 
-\subsection*{Association of multiple weak binders is relevant to fragment based drug discovery}
-Multiple association is also relevant to fragment based drug discovery.  % JDC: I don't think you've described what "multiple association" is.  Will everyone on your committee know unambiguously what you mean by "multiple association"?
-The discovery of fragments that bind weakly to proteins and then combining them has been a useful method for experimental high-throughput screens.~\cite{Hajduk2007a}. % JDC: FBDD is not quite "high-throughput screening", since the number of fragments is typically small (500-5000).  Maybe be more didactic here?  "In FBDD, a small number (500-5000) of small molecules are screened against a biomolecular target, and weak hits are combined in some fashion to develop lead compounds"
+\subsubsection*{Computational prediction of the association of weak binders is an unsolved problem in fragment based drug discovery.}
+Fragment based drug discovery (FBDD) screens a small library of fragments against a biomolecular target, where weak hits are combined to develop lead compounds.
+The approach is frequently applied and has impacted the way the pharmaceutical industry and academia alike approach small molecule design~\cite{Hajduk2007a}.
 The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions. 
 For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding~\cite{Gilson1997a}. 
 
-Using a semi-grand ensemble formulation, tighter binding is automatically achieved by combining multiple fragments, since it is governed by the chemical potential of the bound state. % JDC: That's not quite correct.  We use the "semigrand canonical ensemble" to model the association of a single molecular ligand species with a biomolecular target in the case where the ligand can bind 0, 1, 2, 3, ... times.  We're not dealing with linking fragments at this point---we just want to understand what is observed in the individual experiments where a single fragment species is present.
-The more favorable the binding, the stronger the potential will drive towards binding more fragments. This as opposed to simulations of single fragments and attempting to measure binding affinity, or extensive (and expensive) simulations of many fragment combinations, without a priori knowledge of good combinations. 
 
 \todo[inline]{How common are charged ligands? How does it affect calculations when we don't correct them?}
-\todo[inline]{Need to optimize fragment combinations in situ. Reduce screening costs?}
 \todo[inline]{Amount of ligands that undergo protonation state changes}
 
-% JDC: I'm skipping this section to go to Aim 1.
 \section*{Research Strategy - Innovation}
 \instr{Explain how your proposal differs from what others have tried.}
-\subsection*{Reliable uncertainty estimates of isothermal titration calorimetry results by using Bayesian statistics}
+\subsubsection*{Reliable uncertainty estimates of isothermal titration calorimetry results by using Bayesian inference.}
 The ABRF-MIRG'2 study revealed the disturbing fact that the uncertainty of ITC experiments is underestimated by several orders of magnitude by conventional analysis methods~\cite{Myszka2003a}. Panel D of \Cref{figure:abrf-mirg2} indicates a statistical uncertainty of at least 10\% in the estimation of extinction coefficients between all participants of the study, which correlates linearly with errors in the concentrations of the solutions prepared by each lab. This error is propagated into the estimates of binding stoichiometry, affinity and enthalpy  (Panels A, B and C of \Cref{figure:abrf-mirg2}).
 
 By only performing technical replicates  and no repeat experiments, the true uncertainty can not be quantified, hence no hypothesis can be supported from any single experiment~\cite{Vaux2012a}. That said, one can get an estimate of the uncertainty by performing Bayesian inference on experiments. For this reason, we propose the useage of Bayesian statistics as a means of uncertainty estimation as opposed to errors from model fit based on single or replicate experiments. Bayesian ITC\texttrademark can contribute to get more value out of single experiments by allowing for uncertainty quantification in concentrations of solutions. 
@@ -142,7 +190,7 @@ capbesideposition={center,right}}
 	\todo[inline,color=green!40]{need more detail here on what this data shows. can describe that same sample was distributed to 14 laboratories to measure affinity by ITC and that reported errors were orders of magnitude smaller than actual experimental variation. Also helpful to boldface first sentence of caption that succinctly summarizes figure. like ``Current ITC data analysis approaches drastically underestimate true experimental error.''}
 \end{figure}
 
-\subsection*{Quantifying and assessing correctness of poorly studied charge contributions to alchemical free energy calculations}
+\subsubsection*{Quantifying and assessing correctness of poorly studied charge contributions to alchemical free energy calculations.}
 That there is a problem describing charged ligands in alchemical free energy calculations has been pointed out multiple times in the past~\cite{Rocklin2013b,Muddana2014a}. 
 For this reason, several possible ways of correcting this have been suggested~\cite{Reif2013a,Rocklin2013a}. A quantitative comparison is lacking, and the correctness of these methods has not been established. 
 By providing an experimental dataset with small and quantified uncertainty, we can provide a comparison of these methods that gives reasonable certainty to whether observed errors are experimental in origin, or are an error in the alchemical free energy theory. 
@@ -151,11 +199,12 @@ We can then not only provide a qualitative comparison on whether the models can 
 These corrections may also prove to be necessary when performing constant-\pH calculations, where protons carrying single units of charge may come into and leave the simulation system as dictated by their chemical potential. Having a proven way of dealing with these protonation events will enable hypothesis driven research backed up by reliable simulation results.
 
 
-\subsection*{Provide new frameworks for semi-grand canonical ensemble free energy calculations}
-Currently, there is no available framework to perform alchemical free energy calculations that can sample binding free energy in the semi-grand canonical ensemble, allowing for multiple ligands to associate. We propose to extend the available toolset of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to multiple sites. As opposed to simulating a single ligand at multiple sites, this way we can correctly take into account cooperativity in binding when multiple ligands associate with a single protein.
+\subsubsection*{Provide new frameworks for semi-grand canonical ensemble free energy calculations.}
+Currently, there is no available framework to perform alchemical free energy calculations that can sample binding free energy in the semi-grand canonical ensemble, allowing for multiple ligands to associate.
+We propose to extend the available toolset of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to multiple sites.
+As opposed to simulating a single ligand at multiple sites, this way we can correctly take into account cooperativity in binding when multiple ligands associate with a single protein.
 
 Furthermore, frameworks that deal with constant-\pH methodology compatible with alchemical free energy calculations are 
-
 
 \section*{Research Strategy - Approach}
 \instr{Approach: More specific background information. Describe in detail the experimental design and research methods to be used. Technical hurdles to be overcome should be mentioned. Alternative approaches should be given for experiments that may not be feasible. Discussion of expected or possible results and their interpretation. Best format for each specific aim: a) rationale, b) methods, c) expected results, d) alternatives. Theory aims should follow a similar structure where possible.}
@@ -163,143 +212,153 @@ Furthermore, frameworks that deal with constant-\pH methodology compatible with 
 
 \subsection*{Aim 1. Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands}
 \subsubsection*{Rationale}
-The soluble form of many drugs and endogenous small molecules is charged. Yet, retrospective studies and predictive challenges show current free energy methodology fails for charged species~\cite{Rocklin2013b,Muddana2014a}. % JDC: I wouldn't say "fails", since this depends on having a hard criteria for success/failure.  I think you might instead say something about "substantial errors are made in the treatment of binding by charged species"
-% JDC: Can you say something about the origin of this issue?  Even something like "For explicit solvent simulations with particle mesh Ewald (PME)---the gold standard approach to simulating solvated biomolecular systems---a number of details of the calculation impact macroscopic observables when the total charge of the system or the overall charge density changes by removal of a charged ligand."
-A number of corrections for calculations with charged ligand species % JDC: Maybe instead of "corrections", we can more generally say "A number of approaches for explicitly solvated PME free energy calculations with charged ligand species..."
-have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking~\cite{Reif2013a, Rocklin2013a, Lin2014a}.
+The soluble form of many drugs and endogenous small molecules is charged. Yet, retrospective studies and predictive challenges show current free energy methodology makes substantial errors in the treatment of binding by charged species~\cite{Rocklin2013b,Muddana2014a}.
+%
+For explicit solvent simulations using particle mesh Ewald ---the gold standard approach to simulating solvated biomolecular systems--- a number of details of the calculation impact macroscopic observables when the total charge of the system or the overall charge density changes by removal of a charged ligand.
+%
+A number of approaches for explicitly solvated PME free energy calculations with charged species have been proposed, but (1) consensus, and (2) a good model system to test and to confirm theory are lacking~\cite{Reif2013a, Rocklin2013a, Lin2014a}.
 
- \textbf{We will perform isothermal titration calorimetry (ITC) experiments  using a Bayesian methodology} to \textbf{obtain a robust experimental dataset with accurately quantified uncertainty}. % JDC: \textbf{Please} stop \textbf{boldfacing} parts \bf{of} sentences, and just stick to boldfacing key sentences sparingly
- % JDC: You should introduce why you want to do ITC.  Even if you think it's obvious here, you might lead with the reason, rather than end with the reason: We propose to use X as a model system to test, validate... because these systems are both easy to perform free energy calculations on (due to their short correlation times and lack of large-scale conformational changes, unlike biomolecules), the high dynamic range of binding affinities (encompassing biologically relevant affinity ranges), and high solubilities (making them experimentally tractable).  In order to provide an experimental set of highly accurate measurements, we will use isothermal titration calorimetry (ITC) to measure binding affinities various guests to a host...  While ITC has been shown to provide unrealistically small experimental errors due to failure to propagate uncertainty in concentrations of reactants, we will develop a novel Bayesian analysis method for the ITC data that will allow us to accurately quantify the experimental uncertainty, allowing us to clearly refute or buttress these various approaches to dealing with charged ligands.
-  We will then \textbf{ perform alchemical free energy calculations to compare proposed corrections}.
+We propose using the association of small-molecule guests with high-affinity supramolecular hosts as a way to test, validate, and refine both theory and algorithms applicable to charged ligands.
+%
+We will use cucurbit[7]uril~\cite{Lagona2005a} (CB7) as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\cite{Cao2013a} (see \Cref{figure:host-guest}).
+%
+In order to provide an experimental dataset with accurately quantified uncertainty, we will perform isothermal titration calorimetry (ITC) experiments of various guests binding to CB7.
+%
+We will then perform alchemical free energy calculations to evaluate the available approaches in an attempt to support or refute them.
 
-% JDC: These sections are good!
-We propose using the \textbf{association of small-molecule guests with high-affinity supramolecular hosts} as a way to test, validate, and refine both theory and algorithms applicable to charged ligands. \textbf{We will use cucurbit[7]uril~\cite{Lagona2005a} (CB7) as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\cite{Cao2013a}} (see \Cref{figure:host-guest}). 
+%
+ITC experiments will benefit from the high solubility of CB7.
+%
+CB7 is more soluble than a lot of proteins, \SIrange[scientific-notation=false]{20}{30}{millimolar}~\cite{Lagona2005a} in water versus \textless \SI{1.0}{millimolar} for a small ``soluble'' protein such as RNAase Sa~\cite{Pace2004a}.
+%
+This will allow us to reach higher concentrations, which will make for more tractable experiments.
 
-\textbf{The small system size provides an advantage for molecular dynamics simulation}, since the limited degrees of freedom will make sampling more efficient and reduces computational cost. \textbf{ITC experiments will benefit from the high solubility of CB7.} CB7 is more soluble than a lot of proteins, \SIrange{20}{30}{millimolar}~\cite{Lagona2005a} % JDC: Why is this written as 2.0 x 10^1 instead of the much more reasonable "20"?
-in water versus soluble proteins,  \textless \SI{1.0}{millimolar} for a small ``soluble'' protein such as RNAase Sa~\cite{Pace2004a}. This will allow us to reach higher concentrations, which will in turn lead to less noisy data in ITC experiments.
+The small system size provides an advantage for molecular dynamics simulation, since the limited degrees of freedom will make sampling more efficient and reduces computational cost.
+%
+Unlike biomolecules, CB7 does not undergo large-scale conformational changes and has small correlation times.
 
-% JDC: I don't think anybody cares about the Reif scheme in particular---what they want to know at this point is some sort of basic physical description about WHY there is a problem with eliminating charged ligands.  Can you simply use this figure to illustrate the basic issue, and cite the group of papers that provide various ways of addressing the fundamental issue?  You just need to discuss some basic physical argument for the reason there are errors.  You certainly DON'T need to delve deeply into all of the distinctions between the methods (unless it can be done very simply and without sounding like you don't know what is actually going on).
-\textcite{Reif2013a} use a thermodynamic cycle to define a raw charging contribution to binding free energy,
-which according to the authors must be corrected for four independent terms, shortly summarized in \Cref{figure:chargecorrections}.
-\thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.5\textwidth]{figures/reif_oostenbrink.png}
-    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  $\Delta A_\mathrm{pol}$, arising due to periodic boundary conditions and truncated potentials, or solvent models with inaccurate dielectric permittivity; $\Delta A_\mathrm{Psum}$, for inappropriate summation over individual point charges (``P-summation'') instead of molecules (``M-summation'') at cutoffs, as well a constant offset when using Lattice-Sum methods.~\cite{Kastenholz2006a} ; $\Delta A_\mathrm{dir}$, from using approximations such as reaction field or lattice-sum methods instead of full Coulombic electrostatic interactions; $\Delta A_\mathrm{exc}$, from neglecting interactions between (potentially incorrectly) excluded atoms. Figure from ~\textcite{Reif2013a}.}
-  \label{figure:chargecorrections}
-\end{figure}
-
-\textcite{Rocklin2013a} uses similar corrections.
-Then, there is the approach of \textcite{Lin2014a}, who use some kind of method based on PMF in a single box, and then correct for periodicity \emph{need more detail}. 
-
-\begin{figure}
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=.4\linewidth]{figures/guest11_top.png}
-  % JDC: Can you show both "above" and "side" views side-by-side and of the same scale?
-  \caption{Guest 11~\cite{Cao2013a} shown from above the central cavity of CB7.}
+  \includegraphics[width=.4\linewidth]{figures/guest11_side.png}
+  \caption{Guest 11~\cite{Cao2013a} bound to the central cavity of CB7.}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=0.95\linewidth]{figures/Kd_guest.png}  
   % JDC: All of the guests are scaled in weird ways making benzene rings different sizes.  Would be great to fix this at some later point, but not essential now.
-  \caption{A selection of guests and their $K_d$ values from\textcite{Cao2013a}.}
+  \caption{A selection of guests and their $K_d$ values from \textcite{Cao2013a}.}
   \label{fig:sub2}
 \end{subfigure}
-\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}. Different guests bind to the central cavity of CB7, though their affinity is determined by their geometry and size. Figure prepared using Glide docking~\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7~\cite{Feng2004a}.}
+\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}. Different guests bind to the central cavity of CB7, though their affinity is determined by their geometry and size. Their affinities are in a range similar to many protein-ligand complexes, though the complexes are small, with few degrees of freedom, making them excellent candidates for our study. Figure prepared using Glide docking~\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7~\cite{Feng2004a}.}
 \label{figure:host-guest}
 \end{figure}
 
-% JDC: Suggest you lead with the reason for this: "Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference"
-\subsubsubsection{Subaim 1.1: Develop a Bayesian analysis framework for isothermal titration calorimetry to allow for accurate uncertainty estimation}
-In order to test theoretical approaches such as free energy calculations, a robust experimental dataset is necessary to distinguish between fundamental issues with the model or experimental errors.  % JDC: I'm not sure what "robust" means.  I AM sure that you need accurate error bars so you can tell when computed values differ from expeirmental measurements.  Could you convey this instead?
-We will develop Bayesian approaches to \textbf{accurately quantify measurement uncertainty and allow for model-error propagation}. 
-\todo[inline]{Explain how to describe an ITC experiment in a Bayesian way, focussing on things like concentration uncertainty}
-The simplest model of an ITC experiment of a ligand $\mathrm{X}$ binding to a macromolecule $\mathrm{M}$ consist of a series of $n$ injections, resulting in injection observed heats $q_n^\mathrm{obs}$,
-\begin{align}
-% JDC: Equals should be replaced by $\sim$ to indicate the left-hand variable is drawn from the distribution on the right-hand side.
-	q_n^\mathrm{obs} = \mathcal{N}(q_n^\mathrm{true}, \sigma^2) \quad ,
-\end{align}
-which are drawn from a normal distribution $\mathcal{N}$ with a variance of $\sigma^2$ and with the true injection heats $q_n^\mathrm{true}$ as the underlying mean. % JDC: Mention that the normal distribution is a good model because the central limit theorem (CLT) states that sums of individual power measurements integrated to give the heat of a single injection will be normally distributed?
+ITC has been shown to lead to serious underestimation of measurement error due to failure to propagate errors in the concentration of reactants\cite{Myszka2003a,Tellinghuisen2011a}. To provide an accurate assessment of error from single experiments, we will develop a novel analysis method using Bayesian inference.
+%
+The framework of Bayesian inference allows for the propagation of errors throughout the experimental procedure, allowing us to accurately quantify the experimental uncertainty, thereby enabling us to clearly refute or support the various approaches to dealing with charged ligands.
 
-% JDC: Many of your paragraphs are one or two sentences long, which looks really weird and leads to many paragraphs that logically should be grouped together into one paragraph.  I've grouped together some sentences on the concentration uncertainty here.
-\textbf{Errors in the concentration of prepared solutions are a major source of uncertainty in ITC data.} Not taking these into account can lead to orders of magnitude underestimation of the uncertainty of the experiments~\cite{Myszka2003a,Tellinghuisen2011a}.
+We will consider the approaches of \textcite{Reif2013a}, \textcite{Rocklin2013a}, and \textcite{Lin2014a} for eliminating the contribution of net charge.  Each scheme mostly agrees on the source of error, but has a different way of solving the problem, as described in subaim 1.2. 
+
+We will also consider the elimination of neutral salt pairs, in lieu of corrections, to evaluate the necessity of these complex schemes.
+
+
+\subsubsection*{Subaim 1.1: Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.}
+To test and confirm theoretical models, an accurate quantitative estimate is needed of the experimental error of the experiments that are used to validate.
+%
+We will develop Bayesian approaches to accurately quantify measurement uncertainty and allow for model-error propagation. 
+Errors in the concentration of prepared solutions are a major source of uncertainty in ITC data. Not taking these into account can lead to orders of magnitude underestimation of the uncertainty of the experiments~\cite{Myszka2003a,Tellinghuisen2011a}.
 One way to take this into account is by doing repeat experiments in which all solutions are prepared anew for each replicate, instead of technical replicates~\cite{Vaux2012a}. This however is time and material consuming, and therefore not a popular option among most scientists. 
-To provide an accurate assessment of \textbf{error from single experiments}, we can \textbf{perform inference by applying a Bayesian approach}.  % JDC: This sentence should go much earlier in this section.
-The concentration uncertainty can be modeled using a prior probability distribution around the expected concentration.  % JDC: Maybe "In a Bayesian approach, we can assign prior distributions to the true concentrations of both species, allowing the uncertainty in these concentrations (tracked during solution preparation via standard propagation of error) to be used as input"
-% 
-Using \textbf{Markov Chain Monte Carlo (MCMC)}~\cite{Metropolis1953a,Hastings1970a}, we can then sample from a posterior probability distribution to estimate the actual concentration using\textbf{ Bayes' rule}  % This section on what Bayesian inference should go much earlier in this section, and certainly before the model of evolved heats (which is supposed to be the likelihood of a measurement).
+
+In a Bayesian approach, we can assign prior distributions to the true concentrations of both species, allowing the uncertainty in these concentrations (tracked during solution preparation via standard propagation of error) to be used as input.
+Using \textit{Markov Chain Monte Carlo} (MCMC)~\cite{Metropolis1953a,Hastings1970a}, we can then sample from a joint posterior probability distribution of all thermodynamic parameters to estimate the actual concentration, using\textit{Bayes' rule} 
+%
 \begin{align}
 	\mathcal{P}\left(\theta | \mathcal{D} \right) \propto  \mathcal{P}(\mathcal{D} | \theta) \mathcal{P}\left(\theta\right) \quad;\quad \theta   =  \left\{ \Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_0, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \right\}
 \end{align}
+%
+where $\mathcal{P}(\mathcal{D}|\theta)$ is the likelihood of the data $\mathcal{D}$ (i.e., injections heats $q_n^\mathrm{obs}$), given the individual thermodynamic parameters $\theta$, and $\mathcal{P}(\theta)$ is a prior distribution of the set of independent thermodynamical parameters. Our posterior model contains parameters such as the binding affinity ($\Delta G_\mathrm{bind}$), the enthalpy of binding ($\Delta H_\mathrm{bind}$), an offset to incorporate mechanical and dilution effects ($\Delta H_0$),  the true reagent concentrations in the syringe ($[\mathrm{X_{syr}}]$), and in the sample cell ($[\mathrm{M_{cell}}]$), and $\sigma$, the square root of the variance of our measurements.
 
-where$\mathcal{P}(\mathcal{D}|\theta)$ is the likelihood of the data $\mathcal{D}$ (i.e., injections heats $q_n^\mathrm{obs}$), given the individual thermodynamic parameters $\theta$, and $\mathcal{P}(\theta)$ is a prior distribution of the set of independent thermodynamical parameters. The prior distributions are based on known data from prior experiments, and errors of our experimental procedure that can be propagated to give estimates of the uncertainty.
-
-where $\Delta G_\mathrm{bind}$ is the binding affinity, $\Delta H_\mathrm{bind}$ is the binding enthalpy, $\Delta H_0$ is the mechanical heat of injection and dilution, $[\mathrm{X_{syr}}]$ is the true syringe concentration, $[\mathrm{M_{cell}}]$ is the true cell concentration, and $\sigma$ is the measurement noise.
-
-\todo[inline,color=gray!20]{explain how we prevent overfitting by using Bayesian methods}
-
+The simplest likelihood model of an ITC experiment consist of a series of $n$ injections, resulting in injection observed heats $q_n^\mathrm{obs}$,
+%
+\begin{align}
+	q_n^\mathrm{obs} \sim \mathcal{N}(q_n^\mathrm{true}, \sigma^2) \quad ,
+\end{align}
+%
+which are drawn from a normal distribution $\mathcal{N}$ with a variance of $\sigma^2$ and with the true injection heats $q_n^\mathrm{true}$ as the underlying mean. As stated by the central limit theorem (CLT), the sum of the individual power measurements, integrated to give the heat of single injections, will be normally distributed.
 
 The methodology will allow incorporation of multiple experiments, such as calibrations, to accurately separate out heat effects due to e.g. dilution of the chemicals used or mechanical effects of the injections.
 
-% \begin{align}
-% 	 \mathcal{P}\left(\Delta G_\mathrm{bind}, \Delta H_\mathrm{bind}, \Delta H_\mathrm{dil},\Delta H_\mathrm{mech}, [\mathrm{X_{syr}}], [\mathrm{M_{cell}}], \sigma \biggl{|} \prod\limits_{m=1}^{M}\{q_m\}^{N}\right) \quad,
-% \end{align}
+We will collect ITC data for the series of guests used by \textcite{Cao2013a} binding to CB7. Experiments will be performed using an Auto iTC-200 instrument, available at the Rockefeller University High-Throughput and Spectroscopy Resource Center (HTSRC). The experimental setup will be designed using a python library  developed in house for the design of ITC experiments, and the setup will be carried out on our in house laboratory automation system using procedures generated by the library.
 
-% for $N$ injections per $M$ experiments. Calibration experiments can provide more certainty by separating out parts of the effects, such as dilution.
-\todo[inline]{Explain that we can incorporate multiple experiments}
+\subsubsubsection{Subaim 1.2: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations.}
+We will compare several methods that correct for changes in net charge of the system in alchemical free energy calculations~\cite{Reif2013a,Rocklin2013a, Lin2014a} in order to estimate which methods can provide quantitatively correct estimates of the binding affinity.
+%
+To do so, we will perform alchemical binding free energy calculations on the series of guests-CB7 complexes for which binding affinities were measured as part of subaim 1.1 and compare the methods to the experimental results.
 
-\todo[inline,color=red!40]{Why do we need Bayesian ITC? what do we not get out of the current method? How to validate and test this. Mention MCMC}
-
-\xout{Furthermore, we will construct baseline models using gaussian process regression with scikit-learn~\cite{Pedregosa2011a}.}
-\todo[inline,color=red!40]{skip experimental design?}
-
-\xout{We can apply high dynamic range type experiments to perform trial experiments that allow us to find the order of magnitude of the affinity.
-This estimate can then be used for experimental design, determining the optimum conditions for our experimental setup.
-We will simulate the outcome of ITC experiments using MCMC and then perform them to validate the results.}
-
-\todo[inline, color=black!40]{insert preliminary data figure as illustration of the type of data that we will be generating?}
-
-% JDC: A one-sentence subaim is not a good subaim.  Do you really need a separate subaim here?  Why not combine this with the previous subaim on Bayesian method for ITC, and just say you will collect this data for some set of host-guest compounds (which set?) and apply the Bayesian method you develop to this data?  Might also include what instrument you will collect it on (Auto iTC-200 at Rockefeller) and how you will set up the experiments (you will use your automated pipeline for setting up experiments).
-\subsubsubsection{Subaim 1.2 : Obtain isothermal titration calorimetry data with quantified uncertainty for host-guest systems}
-
-We will utilize ITC experiments, which provide a “gold standard” biophysical assay for binding affinities.
+We will consider a total of four schemes that account for charged ligand binding.
+%
+The approach of \textcite{Reif2013a} uses a thermodynamic cycle to define a raw charging contribution to binding free energy, and tries to deconvolute the various contributions so that they can be subtracted from the total binding free energy.
+%
+\textcite{Rocklin2013a} suggests a numerical, as well as an analytical scheme to calculate contributions, both using Poisson-Boltzmann (PB) calculations on the protein-ligand system.
+%
+Then, there is the approach of \textcite{Lin2014a}, who use potential of mean force (PMF) calculations in a single simulation system with a macromolecule and ligand unbound, separating them by a large distance in explicit solvent.
+%
+We will also test an additional model that does not apply corrections, in which a neutral ligand:counterion pair is alchemically eliminated. 
 
 
-\todo[inline,color=blue!40]{What is the dynamic range of the affinities? Useful because it is in a similar range as those achievable by protein:small mol complexes. }
-\todo[inline,color=red!40]{It is a good model system because it is easy to sample with MD, and very soluble for ITC.}
+%
+We will first consider whether all methods agree with each other, and the extent of the difference between their estimates.
+%
+Discrepancies between the results could indicate that some of the approaches are quantitatively incorrect.
+%
+If the various approaches agree, we can compare them in terms of efficiency.
+%
+Next, we will compare each of the approaches to the experimental data, to see whether any of them produce a quantitatively correct result.
+%
+The accurately quantified uncertainty of our experimental data will provide us with a means to refute or buttress the proposed correction schemes.
 
 
 
-\todo[inline, color=red!40]{Move this part to the general rationale, using host-guest as a given for all subaims}
-
-\subsubsubsection{Subaim 1.3: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations}
-We will compare several methods that correct for changes in net charge of the system in alchemical free energy calculations~\cite{Reif2013a,Rocklin2013a}. % JDC: Are these the only two methods you are testing?  What willl you be looking for?
-\todo[inline,color=cyan!40]{more detail needed. What are the essential ideas and why are they needed? Why is there disagreement? Might be another method from Benoit Roux.}
-
-\todo[inline,color=green!40]{Explain the theory behind the two methods short, equations, show how they are different}
-\missingfigure[figcolor=cyan!40, figwidth=0.8\textwidth]{Some illustation of alchemically removing salt pairs would be nice}
-
-We will also test an additional model in which a neutral ligand:counterion pair is alchemically eliminated. % JDC: This model belongs in the earlier section where you say that multiple approaches have been proposed.  One of those is that "no correction is needed if a neiutralizing counterion is alchemically eliminated at the same time as the charged ligand".
 
 \subsubsection*{Expected results}
-Estimates of the experimental uncertainty will allow us to distinguish model errors from variance in the experimental data.
-The work will enable the comparison of the proposed charge correction models. % JDC: This sentence doesn't say anything meaningful.
-The key question will then be whether any of the corrections  match up to experiment.
+The ITC experiments performed on the CB7-guest complexes will be analyzed using our Bayesian ITC analysis method.
+%
+This will provide us with estimates of their binding affinity with accurately quantified uncertainty. 
+%
+Then, we will perform alchemical binding free energy calculations, in an attempt to reproduce the experimental data.
+%
+We will evaluate whether each of the individual schemes produces the same answer and will estimate the difference between their estimates. 
+%
+Next, we can compare the result obtained by each scheme to the experimental results. If their estimate falls within the range of the experimental estimate, then it supports the suggested approach.
+%
+Each of the methods carries an increased computational cost with them, compared to not applying corrections.
+%
+By applying them on the same system, we can also get an estimate on how efficient they are in costs versus improved accuracy.
+
 We will then be able to recommend a methodology to use when calculating the free energy of binding for charged species, enabling reliable simulations that are impossible to perform otherwise.
 % JDC: Maybe try a different approach here: How will you actually analyze the data?  First, you'll see which, if any, of the computational techniques agree with each other, and if not, by how much they differ.  Then, you will see if any of the methods agree with experiment.  If so, this buttresses these approaches; if none of the methods agree, then you can investigate other issues (none of the methods may be correct or there may be forcefield issues).  Finally, you can also compare the efficiencies of these different computational techniques.
 
 \subsubsection*{Pitfalls and alternatives}
-\todo[inline,color=red!40]{What to do if the experimental uncertainty remains too high?}
-\todo[inline,color=red!40]{What if none of the models agree with experiment?}
-\todo[inline,color=red!40]{How do we pick a model if they all seem to agree? Can they all be correct?}
-\todo[inline,color=red!40]{modulate strength of interactions by modulating salt concentration}
 
-It is possible that all methods produce comparable results, in which case we will do...  %JDC: In which case you will do what?  I tried to give you some ideas above, such as compare efficiencies.
-Issues with the molecular dynamics force field can influence the outcome of free energy methods in unpredictable ways. If the force field proves to be a troublesome factor, we will attempt to reparametrize our molecules to improve agreement with experiments. % JDC: How will you know if the forcefield is the problem?  What about, say, comparing AMBER GAFF and CHARMM GAAMP (new parameter server from the Roux group) and maybe an OPLS model?
-\todo[inline,color=red!40]{ITC of neutral guest to point out force field problems.}
+\todo[inline,color=red!40]{modulate strength of interactions by modulating salt concentration}
+It is possible that all methods produce comparable results, in which case we can perform a comparison of efficiencies to determine which method is best.
+%
+Another potential outcome is that none of the models are able to reproduce the experimental results.
+%
+This could indicate problems with the force field used to simulate the systems.
+%
+We can use a variety of different force fields to estimate errors that are due to the force field.
+%
+For instance, we could compare the GAFF\cite{Wang2004a}, GAAMP\cite{Huang2013a}, and OPLS\cite{Schroedinger2014b} force field models to get an estimate of the force field error. 
+
+To further estimate force field error, we could perform the same experiments and alchemical free energy calculations using a neutral guest. 
+%
+This would leave out the contribution due to a net charge change, so that the accuracy of the force field can be assessed.
+
 
 \subsection*{Aim 2. Quantify the magnitude of protonation state effects on binding}
 \subsubsection*{Rationale}
@@ -316,66 +375,103 @@ While detailed biophysical studies of a few specific model systems have demonstr
 \todo[inline,color=purple!40]{short explanation constant-\pH simulations}
 \todo[inline,color=red!40]{explain kinase inhibitors}
 % \subsubsection*{Methods}
-\subsubsubsection{Subaim 2.1: Obtain reliable small molecule \pKa predictions for kinase inhibitors}
+\subsubsection*{Subaim 2.1: Survey small molecule \pKa predictions of kinase inhibitors to identify reliable \pKa prediction tools.}
 \todo[inline,color=red!40]{Couldn't we obtain reliable pKas by experimental measurement?  I think you just have to phrase this Aim title a bit more specifically so that someone reading this [and not reading your mind] can tell that you are trying to determine which small molecule pKa prediction methods [if any] could be useful to feed into a constant pH simulation framework for subsequent parts of this Aim.)}
-Our aim is to \textbf{quantify the contribution of protonation state changes to binding} interactions. Experimental \pKa data is not widely available, so in part we will need to rely on computational \pKa prediction tools. We will \textbf{benchmark existing \pKa prediction tools}  using \pKa data obtained for a series of \textbf{kinase inhibitors} using a Sirius T3 instrument.
- \todo[inline,color=red!40]{(Note that this is a gold standard for giving macroscopic pKas using a combination of electrochemical and UV-metric titrations.)}
+
+Our aim is to \textbf{quantify the contribution of protonation state changes to binding} interactions.
+%
+We will focus on a smaller subset of interactions in a tractable system, the interactions of small molecule inhibitors of kinase domains.
+%
+Preliminary results suggest that \textbf{several kinase inhibitors have access to multiple states  at physiological \pH}.
+%
+For instance, the intracellular \pH of most tumors is around 7.2~\cite{Griffiths1991a,Stubbs2000a}.
+%
+Preliminary data in \Cref{figure:pka-kinase} indicates that a number of FDA approved kinase inhibitors have \pKa values close to the physiological \pH, including imatinib~\cite{Szakacs2005a}.
+
+In order to use a computational framework such as constant-\pH simulations, we need to provide small molecule \pKa data.
+%
+These calculations can benefit greatly from input by a reliable computational \pKa prediction tool, since this could directly be connected into the framework.
+%
+We will \textbf{benchmark existing \pKa prediction tools}  using \pKa data obtained for a series of \textbf{kinase inhibitors} using a Sirius T3 instrument.
+%
+The Sirius T3 instrument provides a gold standard for giving macroscopic \pKa{}s using a combination of electrochemical and UV-metric titrations.)
 
 This will provide a means to select a tool that can adequately predict \pKa values for kinase inhibitors with similar chemical components.
 
-Preliminary results suggest that \textbf{several kinase inhibitors have access to multiple states  at physiological \pH}. For instance, the intracellular \pH of most tumors is around 7.2~\cite{Griffiths1991a,Stubbs2000a}. Preliminary data in \Cref{figure:pka-kinase} indicates that a number of FDA approved kinase inhibitors have \pKa values close to the physiological \pH.
+
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.27\textwidth]{figures/inhibitor-pKas.png}
-	\caption{Protonation states accessible to FDA approved kinase inhibitors. Colors indicate accesibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accesible region. Preliminary data obtained using Epik.~\cite{Shelley2007a,Greenwood2010a}}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+	\includegraphics[width=0.7\linewidth]{figures/inhibitor-pKas.png}
+	\caption{Protonation states accessible to FDA approved kinase inhibitors. Colors indicate accesibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accesible region, up until 6 $k_BT$. Preliminary data obtained using Epik.~\cite{Shelley2007a,Greenwood2010a}}
 	\label{figure:pka-kinase}
-	\todo[inline,color=green!40]{show some ligands, highlight sites, or even protein}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/imatinib_curve.png}
+  \includegraphics[width=0.5\linewidth]{figures/imatinib_groups.png}
+  \caption{Top: fraction of species of imatinib obtained during a titration, bottom: its sites of protonation (highlighted in purple).~\cite{Szakacs2005a}.}
+  \label{fig:imatinib-pKa}
+\end{subfigure}
+\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}.
+Different guests bind to the central cavity of CB7, though their affinity is determined by their geometry and size.
+Their affinities are in a range similar to many protein-ligand complexes, though the complexes are small, with few degrees of freedom, making them excellent candidates for our study.
+Figure prepared using Glide docking~\cite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7~\cite{Feng2004a}.}
+\label{figure:kinase-pKa}
 \end{figure}
+
 
 Among the small molecule \pKa prediction tools considered will be \textbf{MoKa}~\cite{Milletti2007a}, \textbf{Jaguar}~\cite{Bochevarov2013a}, and \textbf{Epik}~\cite{Shelley2007a,Greenwood2010a}.
 MoKa generates \pKa{}s based on atomistic descriptors, defined by the surrounding atoms. The descriptors are based on molecular interaction fields calculated using GRID~\cite{Goodford1985a} for a library of 3D fragments, but can succesfully be applied on 2D structures.
 Schrodinger's Jaguar provides means of estimating \pKa values using quantum mechanical methods.
 Epik uses Hammett Taft linear free energy approaches~\cite{Perrin1981a} for predicting \pKa values .
 
-\subsubsubsection{Subaim 2.2: Idenification of kinase-inhibitor combinations with potential protonation state effects}
-To accurately incorporate \pKa effects into our simulations, we also need to consider that the \pKa of protein residues may change on binding of a ligand. 
-\todo[inline,color=red!40]{what will you actually do in this subaim, what will the result be?}
-Using kinases as model systems, we will survery small molecule-kinase interactions using MCCE~\cite{Song2009a}, which will be extended to incorporate small molecules in its calculations.
-We will make a selection of crystal structures from the protein data bank (PDB)~\cite{Berman2000a} of kinases with inhibitors bound. 
+To accurately incorporate \pKa effects into our simulations, we also need to consider that the \pKa of protein residues may change on binding of a ligand.
+%
+We will survery small molecule-kinase interactions using MCCE~\cite{Song2009a}, which will be extended to incorporate small molecules in its calculations.
+%
+We will make a selection of crystal structures from the protein data bank (PDB)~\cite{Berman2000a} of kinases with inhibitors bound.
+%
 We can then selecting for systems that show potential mixtures of protonation states at physiological \pH values as indicated by their multiconformer \pKa prediction to use in constant-\pH simulation as part of our aim. 
 
 
-\subsubsubsection{Subaim 2.3: Estimate the effect of protonation states on binding affinity through experiment and computation}
+\subsubsection*{Subaim 2.2: Estimate the effect of protonation states on binding affinity through experiment and computation.}
 The obtained data from the \pKa survey will allow us to set up alchemical free energy calculations that employ semi-grand canonical contant-\pH methods.~\cite{Mongan2004a}
 \todo[inline,color=red!40]{(also cite Harry Stern paper and NCMC paper. Benoit Roux has just submitted a paper on this for explicit solvent too.)}
 
 The calculations will be performed using OpenMM~\cite{Eastman2013a} and Yank~\cite{Chodera2015a}. We will also perform simulations that do not apply the constant-\pH methods. This will allow us to estimate the effect of protonation state changes on the binding affinity.
 
-We will \textbf{validate the results of the free energy calculations by performing complementary experiments} on kinase catalytic domains that can be expressed in E. coli using ITC experiments. \textbf{The change of protonation states can be observed in ITC by performing replicate experiments using buffers of different ionization energies}.
-\todo[inline,color=red!40]{Cite Baker and Murphy Biophysical J 71:2049, 1996}
+We will \textbf{validate the results of the free energy calculations by performing complementary experiments} on kinase catalytic domains that can be expressed in E. coli using ITC experiments.
+%
+The change of protonation states can be observed in ITC by performing replicate experiments using buffers of different ionization energies.
+% citation {Cite Baker and Murphy Biophysical J 71:2049, 1996}
 
 This will lead to an enthalpic contribution/penalty to the binding affinity.
-\todo[inline,color=red!40]{ (We will systematically explore the effects of fixed and dynamic protonation states on kinase, inhibitor, and kinase:inhibitor complexes to determine the impact of assuming protonation states are fixed or dynamic, and to dissect the effect in terms of protein-dominated, ligand-dominated, or coupled protein-ligand effects.  We will quantify the impact on errors in binding affinity.)}
-
-This data can then be compared to our simulations, to assertain whether they can recapitulate the protonation state effects observed in experiment.
-
-\todo[inline,color=violet!40]{short explanation constant-\pH simulations}
+%
+We will systematically explore the effects of fixed and dynamic protonation states on kinase, inhibitor, and kinase:inhibitor complexes to determine the impact of assuming protonation states are fixed or dynamic, and to dissect the effect in terms of protein-dominated, ligand-dominated, or coupled protein-ligand effects.
+%
+We will quantify the impact on errors in binding affinity.
 
 \subsubsection*{Expected results}
-\todo[inline,color=red!40]{the point is to assess the prevalence and magnitude of the effect of protonation states}
-We expect to observe changes in protonation states in some proteins, though the degree by which they are ubiquitous is unknown. We will observe whether allowing for a mixture of protonation states makes a difference in a class of proteins such as kinases. In the case that changes in protonation state make a significant contribution, we will now have the tools to include this in our modeling. If the contribution appears to make no significant difference, we will have ruled out the need to use more expensive theoretical methods and more experimental resources.
+The performance of constant-\pH alchemical binding free energy calculations will allow us to asses the prevalence and magnitude of the effect of protonation states on the binding of kinase inhibitors.
+%
+From the ITC experiments we will be able to observe whether there is a net exchange of protons with the buffering solution, due to a change in the heat signature of the binding reaction.
+%
+We can use these data to validate the results of the constant-\pH simulations.
+%
+We hope to identify whether protonation state effects could have order of magnitude impacts on the binding affinity of small molecule inhibitors of kinases.
+%
+In the case that changes in protonation state make a significant contribution, we will now have the tools to include this in our modeling.
+%
+If the contribution appears to make no significant difference, we will have ruled out the need to use more expensive theoretical methods and more experimental resources.
 
-\todo[inline,color=red!40]{give idea of what magnitude of difference is meaningful.}
 
 \subsubsection*{Pitfalls and alternatives}
-{}
-\todo[inline,color=red!40]{You have too many ideas jammed into one paragraph, resulting in a kind of schitzophrenic, unfocused morass of text.  Can you break it up into one paragraph per idea?  Or better yet, break this into an "expected results" and "potential pitfalls and alternative approaches" for each sub aim?)}
-
-Currently evidence only exists for a small number of systems~\cite{Aleksandrov2007a,Czodrowski2007a}.
-\todo[inline,color=red!40]{more klebe papers?}
-
 Alternative experiments could be performed using fluorescent kinase inhibitors that change their fluorescence signal when switching between protonation states.
-By studying the available kinase-ligand complexes in the PDB we hope to have a representative selection of protein-ligand interactions, though potentially these contributions are different for other parts of the proteome. If the result is insignificant, we can attempt to extend our search to other classes of proteins, to rule out that protonation state changes significantly contribute to other proteins.
+%
+By studying the available kinase-ligand complexes in the PDB we hope to have a representative selection of protein-ligand interactions, though potentially these contributions are different for other parts of the proteome.
+%
 
 \todo[inline,color=red!40]{no longer doing the pdb thing}
 
