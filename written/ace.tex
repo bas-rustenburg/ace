@@ -573,19 +573,23 @@ K_{n+1} = \frac{[RL_{n+1}]}{[RL_n][L]} = e^{-(g_{n+1}-g_n)}
 Alchemical methods will allow us to insert new copies of ligands into our simulation without driving the system far away from equilibrium. 
 
 \subsubsubsection{Subaim 3.2: Validate computational predictions by applying Bayesian model selection on ITC  experiments of HSA and a series of NSAIDS}
-To provide validation of our computational results, we will \textbf{perform ITC experiments on HSA}. Binding stoichiometry is not known a priori, yet if we want to deconvolute characteristics such as binding affinities for different sites, we need to model multiple binding sites with multiple affinities.
+To provide validation of our computational results, we will perform ITC experiments on HSA.
+
+Binding stoichiometry is not known a priori, yet if we want to deconvolute characteristics such as binding affinities for different sites, we need to model multiple binding sites with multiple affinities.
+
 \todo[inline,color=red!40]{stoichiometry is too primitive to describe multiple binding sites with varying affinity}
 
-\textbf{Using the predicted affinities and stoichiometry from alchemical free energy calculations, we can design ITC experiments} that can provide maximal information on the actual associations. 
+Using the predicted affinities and stoichiometry from alchemical free energy calculations, we can design ITC experiments that can provide maximal information on the actual associations. 
 
-To analyze the experiments, we will have to develop new methodology. 
-Origin, a conventional ITC analysis software package uses cooperativity parameters $n_i$ to describe multiple binding sites~\cite{MicroCal2004a} up to a maximum of two. SEDPHAT additionally uses terms describing ``incompetent fractions'' of experimental components~\cite{Houtman2007a,Zhao2015b} and can deal with up to 3 sites.
-We will \textbf{extend our Bayesian analysis tools} with the capacity to select between possible association models \textbf{without limiting the number of distringuishable sites or binding stoichiometry}. At the same time \textbf{it will be able to distinguish errors in the concentrations of the prepared solutions from changes in stoichiometry}, unlike the simple Origin models. 
-
-\todo[inline,color=red!40]{correlated uncertainty estimates}
-
-Individual binding associations can be modeled as
-\todo[inline,color=red!40]{formulate a model that allows for multiple different associations, affinities etc}
+To analyze the experiments, we will have to develop new methodology to fit within our Bayesian ITC framework.
+%
+Origin, a conventional ITC analysis software package uses cooperativity parameters $n_i$ to describe multiple binding sites~\cite{MicroCal2004a} up to a maximum of two.
+%
+SEDPHAT additionally uses terms describing ``incompetent fractions'' of experimental components~\cite{Houtman2007a,Zhao2015b} and can deal with up to 3 sites.
+%
+We will extend our Bayesian analysis tools with the capacity to select between possible association models without limiting the number of distringuishable sites or binding stoichiometry.
+%
+At the same time, by applying correlated uncertainty estimates in the concentrations, it will be able to distinguish errors in the concentrations of the prepared solutions from changes in stoichiometry, unlike the simple Origin models. 
 
 \subsubsection*{Expected results}
 Alchemical free energy calculations can suggest the number of predicted interaction sites, as well as provide estimates for the affinity of each individual site.
