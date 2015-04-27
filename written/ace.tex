@@ -536,13 +536,13 @@ Its binding sites are asymmetric~\cite{He1992a, Curry1998a} and one expects ther
 % \subsubsection*{Methods}
 
 \subsubsubsection{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools}
-At current time, a framework to perform semi-grand canonical ensemble simulations with multiple ligands does not exist.
+We wish to estimate the binding affinity of multiple ligands, associating with a single protein.
+%
+Alchemical free energy calculations are frequently applied to calculate the binding affinity of single ligands to a protein~\cite{Shirts2007a}. 
+%
+Currently, a framework to perform alchemical simulations with multiple ligands does not exist.
 %
 Therefore we will extend the framework of alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. 
-%
-We will develop framework to calculate the free energy of binding of 0, 1, $\dots$, N ligands bound to a protein.
-%
-Let $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R)$ be the \emph{reduced} potential energy, based on the coordinates of  $n$ ligand molecules and the receptor.
 %
 In the semi-grand canonical ensemble ($\mu N_R PT)$, the number of ligand molecules is allowed to vary between 0 and $N_{max}$ , and the number of receptor molecules $N_R$ is fixed.
 %
@@ -550,12 +550,18 @@ The pressure, $P$, and temperature, $T$, are also fixed. The free energy of obse
 \begin{align}
  g_n = \ln \int \dif x_1 \dif x_n \dif x_R \, e^{-u_n(x_1,\dots,x_n)} \quad,
 \end{align}
+where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R)$ is the \emph{reduced} potential energy, based on the coordinates of $n$ ligand molecules and the receptor.
+
+\begin{align}
+ Q = K_1x + K_2x^2 \dots K_n x^n
+\end{align}
+
 
 \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.3\textwidth]{figures/semi-grand2.png}
-  \caption{\textbf{In the semi-grand canonical ensemble, we consider the association of 0 up to $N_\mathrm{max}$ ligands to a protein. }By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium. We can calculate the free energy of associating additional ligands to the protein. This should }
+  \caption{\textbf{In the semi-grand canonical ensemble, we consider the association of 0 up to $N_\mathrm{max}$ ligands to a protein. }By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium. We can calculate the free energy of associating additional ligands to the protein.}
   \label{figure:semigrand}
 \end{figure}
 
