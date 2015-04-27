@@ -17,6 +17,7 @@
 \usepackage{microtype} %sexy kerning
 \usepackage{color} % colors
 \usepackage{ulem} % strikethrough
+\usepackage{commath}
 \usepackage{ifdraft}
 \usepackage[	backend=biber,
 		style=numeric-comp,
@@ -477,14 +478,29 @@ By studying the available kinase-ligand complexes in the PDB we hope to have a r
 
 \subsection*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.}
 \subsubsection*{Rationale}
-\todo[inline,color=red!40]{less confusing please ~ John}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
-In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations. Characteristics such as stoichiometry are unknown and need to be modelled experimentally.
+%
+In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations.
+%
+When performing binding experiments, the stoichiometry is unknown a priori.
+%
+By using an alchemical free energy calculation framework, we can calculate the free energy of the different occupation states of a protein-multiligand complex (0, 1, $\dots$, $N_\mathrm{max}$ ligands).
+%
+This information can be used to predict the concentration of the various complexes in solution.
+%
+As part of this aim, we will develop the tools to model the association of multiple ligands using alchemical free energy calculations.
+%
+Additionally, we will extend our Bayesian ITC analysis framework with the ability to infer the number of independent binding sites, and complex concentrations.
+%
+That way, we can establish a quantitative connection between the alchemical free energy calculations, and ITC experiments of multiple association.
+%
+We will be able to simulate ITC experiments directly from the parameters obtained from our alchemical free energy calculations.
 
-
-
-\todo[inline,color=green!40]{our goal is to build a quantitative connection}
-As a model system, \textbf{we will use the pharmacologically relevant protein human serum albumin (HSA)}. It is a protein with multiple binding sites that bind a wide variety of ligands~\cite{He1992a,Kragh-Hansen2002a,Sulkowska2002a}. Its binding sites are asymmetric~\cite{He1992a, Curry1998a} and one expects there to be difference in binding affinity of a ligand for each site~\cite{Sudlow1976a} (see also \Cref{figure:albumin}))
+As a model system, we will use the pharmacologically relevant protein human serum albumin (HSA).
+%
+It is a protein with multiple binding sites that bind a wide variety of ligands~\cite{He1992a,Kragh-Hansen2002a,Sulkowska2002a}.
+%
+Its binding sites are asymmetric~\cite{He1992a, Curry1998a} and one expects there to be difference in binding affinity of a ligand for each site~\cite{Sudlow1976a} (see also \Cref{figure:albumin}))
 
 \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
@@ -497,29 +513,41 @@ As a model system, \textbf{we will use the pharmacologically relevant protein hu
 \end{figure} 
 
 
-We will \textbf{overcome deficiencies in theory} by both developing new \textbf{Bayesian ITC experimental analysis techniques} to select among theoretical association models, as well as simulating ITC data directly from \textbf{semi-grand canonical ensemble simulations}.
+% \subsubsection*{Methods}
 
-In the semi-grand canonical ensemble,  volume $V$, and temperature $T$ are constant. The number of particles of some of the species, $N_1,\dots,N_x$, is constant. However, for a number of additional species, the chemical potential $\mu_{x+1},\dots,\mu_{y}$ is constant while the number of particles fluctuates.
+\subsubsubsection{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools}
+At current time, a framework to perform semi-grand canonical ensemble simulations with multiple ligands does not exist.
+%
+Therefore we will extend the framework of alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. 
+%
+We will develop framework to calculate the free energy of binding of 0, 1, $\dots$, N ligands bound to a protein.
+%
+Let $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R)$ be the \emph{reduced} potential energy, based on the coordinates of  $n$ ligand molecules and the receptor.
+%
+In the semi-grand canonical ensemble ($\mu N_R PT)$, the number of ligand molecules is allowed to vary between 0 and $N_{max}$ , and the number of receptor molecules $N_R$ is fixed.
+%
+The pressure, $P$, and temperature, $T$, are also fixed. The free energy of observing $n$ ligand molecules is,
+\begin{align}
+ g_n = \ln \int \dif x_1 \dif x_n \dif x_R \, e^{-u_n(x_1,\dots,x_n)} \quad,
+\end{align}
 
-
-
-
+\thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{figures/semi-grand.png}
-  \caption{In the semi-grand canonical ensemble, ligands can enter and leave the system as governed by the chemical potential $\mu$. By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium.}
+  \includegraphics[width=0.3\textwidth]{figures/semi-grand2.png}
+  \caption{\textbf{In the semi-grand canonical ensemble, we consider the association of 0 up to $N_\mathrm{max}$ ligands to a protein. }By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium. We can calculate the free energy of associating additional ligands to the protein. This should }
   \label{figure:semigrand}
 \end{figure}
 
 \todo[inline,color=red!40]{deficiencies in FBLD theory or in general? what are the deficiencies?}
 \todo[inline,color=red!40]{explain semi-grand canonical}
 
+\begin{align}
+K_{n+1} = \frac{[RL_{n+1}]}{[RL_n][L]} = e^{-(g_{n+1}-g_n)}
+\label{eq:K_eq}
+\end{align}
 
-% \subsubsection*{Methods}
 
-\subsubsubsection{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools}
-At current time, a framework to perform semi-grand canonical ensemble simulations with multiple ligands does not exist. Therefore we will extend the framework of alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. 
-The total number of ligands bound to a target is governed by its chemical potential, $\mu$. 
 \todo[inline,color=red!40]{This isn't really the main idea here.  The key idea is that we need to compute the free energy of having 0, 1, 2, 3... ligands bound to the protein for some sort of standard state volume. Then, for a given ligand concentration, we can compute the probability that a given macromolecule will have 0, 1, 2, 3... ligands bound.  We can even go further and say something about cooperativities between sites, etc.)}
 
 Alchemical methods will allow us to insert new copies of ligands into our simulation without driving the system far away from equilibrium. 
