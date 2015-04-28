@@ -32,7 +32,6 @@
   {}
 \DeclareSIUnit\Molar{\textsc{m}}
 \setcounter{secnumdepth}{4} % paragraph acts as subsubsubsection
-
 \newcommand{\subsubsubsection}[1]{\paragraph*{#1}}
 
 % only show strikethrough text when draft (broken, comment out for draft)
@@ -363,7 +362,6 @@ This would leave out the contribution due to a net charge change, so that the ac
 
 \subsection*{Aim 2. Quantify the magnitude of protonation state effects on binding}
 \subsubsection*{Rationale}
-
 Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner.
 %
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity~\cite{Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
@@ -373,7 +371,10 @@ The usual approach in modeling ignores these problems and assumes a single proto
 %
 By doing so, contributions of unknown magnitude are ignored.
 %
-Our aim is to provide a framework that can combine \pKa predictions of small molecules with alchemical binding free energy calculations in a constant-\pH setting.
+Our aim is to develop a framework that can combine \pKa predictions of small molecules with alchemical binding free energy calculations in a constant-\pH setting.
+%
+We will then use this framework to quantify the effect of protonation state effects on the binding of kinase inhibitors.
+
 
 We will first validate whether the existing \pKa methods can provide useful intrinsic \pKa s of solvated ligands, before assessing their accuracy in the use for simulating complexes.
 %
@@ -458,10 +459,12 @@ We can then selecting for systems that show potential mixtures of protonation st
 
 
 \subsubsection*{Subaim 2.2: Estimate the effect of protonation states on binding affinity through experiment and computation.}
-The obtained data from the \pKa survey will allow us to set up alchemical free energy calculations that employ semi-grand canonical contant-\pH methods.~\cite{Mongan2004a}
-\todo[inline,color=red!40]{(also cite Harry Stern paper and NCMC paper. Benoit Roux has just submitted a paper on this for explicit solvent too.)}
+The obtained data from the \pKa survey will allow us to set up alchemical free energy calculations that employ semi-grand canonical contant-\pH methods.~\cite{Mongan2004a,Stern2007a,Nilmeier2011a}
+\todo[inline,color=red!40]{(Benoit Roux has just submitted a paper on this for explicit solvent too.)}
 
-The calculations will be performed using OpenMM~\cite{Eastman2013a} and Yank~\cite{Chodera2015a}. We will also perform simulations that do not apply the constant-\pH methods. This will allow us to estimate the effect of protonation state changes on the binding affinity.
+The calculations will be performed using OpenMM~\cite{Eastman2013a} and Yank~\cite{Chodera2015a}.
+%
+We will also perform simulations that do not apply the constant-\pH methods. This will allow us to estimate the effect of protonation state changes on the binding affinity.
 
 We will validate the results of the free energy calculations by performing complementary experiments on kinase catalytic domains that can be expressed in E. coli using ITC experiments.
 %
@@ -614,6 +617,7 @@ Binding sites with multiple affinities might be hard to measure accurately with 
 The aims of this proposal contribute to the limited set of tools available to deal with protein-ligand interactions in special, but not rare, cases where conventional tools provide no theoretical framework. Using Bayesian methodology will provide reliable uncertainty estimates on experimental data, which in turn will enable the distinction between theoretical model errors and experimental errors.
 
 % refs
+\setlength{\emergencystretch}{1em}
 \printbibliography
 
 \end{document}
