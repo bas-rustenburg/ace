@@ -513,8 +513,7 @@ We will also perform simulations that do not apply the constant-\pH methods. Thi
 
 We will validate the results of the free energy calculations by performing complementary experiments on kinase catalytic domains that can be expressed in E. coli using ITC experiments.
 %
-The change of protonation states can be observed in ITC by performing replicate experiments using buffers of different ionization energies.
-% citation {Cite Baker and Murphy Biophysical J 71:2049, 1996}
+The change of protonation states can be observed in ITC by performing replicate experiments using buffers of different ionization energies~\cite{Baker1996a,Neeb2014a}.
 
 This will lead to an enthalpic contribution/penalty to the binding affinity.
 %
@@ -597,15 +596,15 @@ The pressure, $P$, and temperature, $T$, are also fixed. The free energy of obse
 where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R)$ is the \emph{reduced} potential energy, based on the coordinates of $n$ ligand molecules and the receptor.
 
 \begin{align}
- Q = K_1x + K_2x^2 \dots K_n x^n
+ Q = 1 + K_1x + K_1K_2x^2 \dots \left(\prod\limits_{i=1}^{n} K_i\right) x^n = 1 + \sum\limits_{l=1}^n \left(\prod\limits_{i=1}^{l} K_l\right)x^l
 \end{align}
 
 
 \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.3\textwidth]{figures/semi-grand2.png}
-  \caption{\textbf{In the semi-grand canonical ensemble, we consider the association of 0 up to $N_\mathrm{max}$ ligands to a protein. }By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium. We can calculate the free energy of associating additional ligands to the protein.}
+  \fbox{\includegraphics[width=0.4\textwidth]{figures/binding_sites.png}}
+  \caption{\textbf{In the semi-grand canonical ensemble, we consider the association of 0 up to $N_\mathrm{max}$ ligands to a protein. }By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium. We can calculate the free energy of associating additional ligands to the protein by using binding polynomials of the stoichiometric binding constants $K_i$. Figure adapted from \textcite{Klotz1997a}. }
   \label{figure:semigrand}
 \end{figure}
 
