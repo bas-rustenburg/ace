@@ -152,6 +152,8 @@ Often, to further reduce computation cost, we introduce truncated potentials and
 %
 These unphysical treatments bring with them several electrostatic interaction terms that are added on top of the physical binding free energy.
 %
+These terms do not perturb the weights in a normal simulation, but cause substantial artifacts in alchemical simulations once charged species are eliminated or introduced as part of an alchemical perturbation.
+%
 The estimated binding free energy as such needs to be corrected to eliminate these effects.
 %
 Not correcting for these terms can severely undermine the ability of alchemical free energy calculations to reproduce experimental binding affinities~\autocite{Rocklin2013b,Muddana2014a}.
