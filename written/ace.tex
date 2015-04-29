@@ -76,9 +76,9 @@ The experimental datasets collected here will allow us to evaluate proposed corr
 %
 We will utilize isothermal titration calorimetry (ITC) experiments, which provide a “gold standard” biophysical assay for binding affinities.
 %
-We will additionally develop Bayesian approaches to accurately quantify measurement uncertainty and allow for model-error propagation.
+We will additionally develop Bayesian approaches to accurately quantify measurement uncertainty and allow for model-error propagation to rectify deficiencies in current data analysis protocols.
 %
-\textbf{It is impossible to distinguish between experimental errors and errors in theory without quantified uncertainty.
+\textbf{It is impossible to distinguish between experimental errors and errors in theory without accurately quantified uncertainty.
 }
 
 \paragraph*{Aim 2. Quantify the magnitude of protonation state effects on binding.}
@@ -86,13 +86,13 @@ Proteins and many small-molecule drugs contain titratable moieties that can chan
 %
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity~\cite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, \textbf{the true scope and magnitude of the protonation state effects in ligand recognition in general is completely unknown.}
 
-We will use computational techniques to conduct a survey to assess the importance of protonation state issues in protein-small molecule interactions across a range of systems of pharmacological interest.
+We will use computational techniques to conduct a survey to assess the importance of protonation state issues for a tractable but disease-relevant system---kinase catalytic domains that can be expressed in \textit{E. coli}.
 %
-Existing \pKa prediction tools will be benchmarked against experimental small molecule \pKa data, and then used as input for constant-\pH alchemical free energy calculations.
+Existing \pKa prediction tools will be benchmarked against experimental kinase inhibitor \pKa data, and then used as input for constant-\pH alchemical free energy calculations.
 %
 Using free energy calculations we can quantify the contribution of protonation state effects, which can be validated by performing complementary experiments.
 %
-We will perform ITC experiments on a tractable but disease-relevant system---kinase catalytic domains that can be expressed in \textit{E. coli}---using buffers of different ionization enthalpies that allow for deconvolution of binding and protonation states effects.
+We will perform ITC experiments using buffers of different ionization enthalpies that allow for deconvolution of binding and protonation states effects.
 
 \paragraph*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
@@ -102,9 +102,13 @@ In addition, drug discovery approaches such as fragment-based ligand design depe
 We will extend the framework of alchemical free energy calculations  to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism.
 %
 
-As a model system, we will use the pharmacologically relevant protein human serum albumin(HSA), known to bind many small molecules to a variety of distinct binding sites.
+As a model system, we will use the pharmacologically relevant protein human serum albumin(HSA), known to multivalently bind many different small molecules to a variety of distinct binding sites.
 %
-We will overcome deficiencies in theory by both developing new Bayesian ITC experimental analysis techniques to select among theoretical association models, as well as simulating ITC data directly from semi-grand canonical ensemble simulations.
+\textbf{Most theory and frameworks focus on 1:1 interaction.}
+%
+We will extend deficiencies by both developing new Bayesian ITC experimental analysis techniques to select among theoretical association models,
+%
+as well as simulating ITC data directly from semi-grand canonical ensemble simulations.
 
 \subsection*{} % Add some spacing
 
@@ -117,13 +121,13 @@ Completion of the work will provide modeling strategies for non-trivial challeng
 \subsection*{Accurate treatment of alchemical free energy calculations.}
 %Maybe you want to start with a section on why computer modeling or free energy calculations is important, to motivate the question of why we should care about making errors in these calculations due to incorrect protonation states?
 
-The binding free energy of a ligand (the affinity) determines whether it will spontaneously associate with a protein.
+The binding free energy of a ligand (the affinity) determines to what degree it will spontaneously associate with a protein.
 %
 Access to information such as free energies is of great help in the design of ligands that can selectively and tightly interact with a biomolecular target.
 %
 Alchemical free energy calculations are a powerful computational tool for predicting binding free energies, as they allow for efficient sampling of the relevant states of protein-ligand complexes~\cite{Shirts2007a}.
 %
-Unfortunately, applying free energy calculations comes with several challenges that have yet to be solved~\cite{Chodera2011a,Gapsys2015a}. 
+Unfortunately, broadly applying free energy calculations comes with several challenges that have yet to be solved~\cite{Chodera2011a,Gapsys2015a}. 
 
 %
 \textbf{Neglecting terms such as interactions with charged ligands~\cite{Rocklin2013b,Muddana2014a},
