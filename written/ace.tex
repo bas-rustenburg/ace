@@ -569,59 +569,66 @@ For instance, the conformational states of the protein considered for our free e
 We could use techniques such as Markov state models (MSM)~\autocite{Prinz2011a} to determine the important metastable states of kinase systems and use this knowledge to enhance our free energy calculations.
 \subsection*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.}
 \subsubsection*{Rationale}
-Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
+Weak binding and association of multiple ligands to proteins are ubiquitous interactions in biological and pharmaceutically relevant systems.
 %
-In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations.
+It is particularly common when using drug discovery approaches such as fragment-based ligand design, where concentrations are scaled up to detect weak binding signals, usually resulting in a multiple of associating fragments.
 %
-When performing binding experiments, the stoichiometry is unknown a priori.
+We propose a framework for alchemical free energy calculations that can provide predictions for consecutive ligands binding to a single macromolecule.
 %
-By using an alchemical free energy calculation framework, we can calculate the free energy of the different occupation states of a protein-multiligand complex (0, 1, $\dots$, $N_\mathrm{max}$ ligands).
+\textbf{We will overcome deficiencies in current frameworks that focus mostly on 1:1 associations.}
 %
-This information can be used to predict the concentration of the various complexes in solution.
+We can establish a quantitative connection between the alchemical free energy calculations, and ITC experiments of multiple association.
 %
-As part of this aim, we will develop the tools to model the association of multiple ligands using alchemical free energy calculations.
+The parameters obtained from our alchemical free energy calculations will allow us to simulate ITC experiments directly.
 %
-Additionally, we will extend our Bayesian ITC analysis framework with the ability to infer the number of independent binding sites, and complex concentrations.
+Our Bayesian framework for ITC experiments will be extended to include models of multiple binding sites.
 %
-That way, we can establish a quantitative connection between the alchemical free energy calculations, and ITC experiments of multiple association.
-%
-We will be able to simulate ITC experiments directly from the parameters obtained from our alchemical free energy calculations.
+Consequently, we can use ITC experiments as a means to validate the alchemical binding free energy predictions.
 
 As a model system, we will use the pharmacologically relevant protein human serum albumin (HSA).
 %
 It is a protein with multiple binding sites that bind a wide variety of ligands~\autocite{He1992a,Kragh-Hansen2002a,Sulkowska2002a}.
 %
-Its binding sites are asymmetric~\autocite{He1992a, Curry1998a} and one expects there to be difference in binding affinity of a ligand for each site~\autocite{Sudlow1976a} (see also \Cref{figure:albumin}))
+Its binding sites are asymmetric~\autocite{He1992a, Curry1998a} and one expects there to be difference in binding affinity of a ligand for each site~\autocite{Sudlow1976a} (see also \Cref{figure:albumin})).
 
-\thisfloatsetup{capposition=beside,capbesideposition={center,right}}
+% \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
-	\centering	
-	\includegraphics[width=0.49\textwidth]{figures/hsa_fig7_ghuman2005.jpg}
-	\caption{\textbf{Summary of the ligand-binding capability of Human serum albumin structural studies to date.} Ligands are depicted in space-filling representation; oxygen atoms are coloured red; all other atoms in fatty acids (myristic acid), other endogenous ligands (hemin, thyroxin) and drugs are coloured dark-grey, light grey and orange, respectively. Because of the many small molecule interactions of HSA, it is expected to be of great importance to the bioavailability of small molecules~\autocite{Metcalfe2010a}. It is known to bind several drugs~\autocite{SJOeHOLM1979a,Bannwarth1996a,Sulkowska2002a,Ghuman2005a,Perez2007a}, as well as dietary supplements~\autocite{Pal2013a}. It is also essential for the bioavailability of endogenous small molecules such as hormones~\autocite{Pardridge1986a}, and toxins such as cardiac glycosides~\autocite{Smith1985a}. From Figure 7 of~\autocite{Ghuman2005a}.
-}
+\centering
+\begin{subfigure}{.49\textwidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/hsa_fig7_ghuman2005.jpg}
+	\caption{
+      }
 	\label{figure:albumin}
-	\todo[inline,color=purple!40]{show small molecules we will use}
+	\end{subfigure}
+	\hfill{}
+ 	\begin{subfigure}{.49\textwidth}
+	  \centering	
+	  \includegraphics[width=0.9\linewidth]{figures/hsa_compounds.png}
+	  \caption{}
+	  \label{figure:hsa-compounds}
+ 	\end{subfigure}
+\caption{(a) \textbf{Summary of the ligand-binding capability of Human serum albumin structural studies to date.} Ligands are depicted in space-filling representation; oxygen atoms are coloured red; all other atoms in fatty acids (myristic acid), other endogenous ligands (hemin, thyroxin) and drugs are coloured dark-grey, light grey and orange, respectively. Because of the many small molecule interactions of HSA, it is expected to be of great importance to the bioavailability of small molecules~\autocite{Metcalfe2010a}. It is known to bind several drugs~\autocite{SJOeHOLM1979a,Bannwarth1996a,Sulkowska2002a,Ghuman2005a,Perez2007a}, as well as dietary supplements~\autocite{Pal2013a}. It is also essential for the bioavailability of endogenous small molecules such as hormones~\autocite{Pardridge1986a}, and toxins such as cardiac glycosides~\autocite{Smith1985a}. From Figure 7 of~\autocite{Ghuman2005a}. (b) A series of NSAIDS that bind to human serum albumin.}
+\label{figure:hsa}
+\todo[inline]{Find affinities for molecules?}
 \end{figure} 
 
-
-% \subsubsection*{Methods}
-
 \subsubsection*{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools.}
-We wish to estimate the binding affinity of multiple ligands, associating with a single protein.
-%
-Alchemical free energy calculations are frequently applied to calculate the binding affinity of single ligands to a protein~\autocite{Shirts2007a}. 
-%
 Currently, a framework to perform alchemical simulations with multiple ligands does not exist.
 %
 Therefore we will extend the framework of alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. 
+
+
+We can calculate the free energy of the different occupation states of a protein-multiligand complex (0, 1, $\dots$, $N_\mathrm{max}$ ligands).
 %
-In the semi-grand canonical ensemble ($\mu N_R PT)$, the number of ligand molecules is allowed to vary between 0 and $N_{max}$ , and the number of receptor molecules $N_R$ is fixed.
+In the semi-grand canonical ensemble (constant $\mu, N_R, P,T)$, the number of ligand molecules is allowed to vary between 0 and $N_{max}$ , and the number of receptor molecules $N_R$ is fixed.
 %
 The pressure, $P$, and temperature, $T$, are also fixed. The free energy of observing $n$ ligand molecules is,
 \begin{align}
  g_n = \ln \int \dif x_1 \dif x_n \dif x_R \, e^{-u_n(x_1,\dots,x_n)} \quad,
 \end{align}
-where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R)$ is the \emph{reduced} potential energy, based on the coordinates of $n$ ligand molecules and the receptor.
+%
+where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R)$ is the \textit{reduced} potential energy, based on the coordinates of $n$ ligand molecules and the receptor.
 
 \begin{align}
  Q = 1 + K_1x + K_1K_2x^2 \dots \left(\prod\limits_{i=1}^{n} K_i\right) x^n = 1 + \sum\limits_{l=1}^n \left(\prod\limits_{i=1}^{l} K_l\right)x^l
