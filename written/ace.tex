@@ -142,7 +142,7 @@ thereby increasing their utility in drug discovery and development processes.
 \subsubsection*{Alchemical free energy calculations need to be extended with a correct method for treating charged ligands.}
 In order to apply alchemical free energy calculations to charged ligands, one needs to eliminate artifacts introduced into the calculation from various sources.
 %
-In a physical system, the interaction never actually disappears though the interaction between a ligand and protein is weakened to the extend that it there is no measurable correlation between the interacting molecules.
+In a physical system, when a ligand dissociates, the interaction never actually disappears completely, though the interaction between a ligand and protein is weakened to the extend that it there is no measurable correlation between the interacting molecules.
 %
 The elimination of a charge from a system is therefore not a physical process, and is merely an artifact of using artificial infinite systems to approximate a macroscopic system of bulk liquid.
 %
@@ -175,7 +175,7 @@ But what if there is not a single protonation state that contributes to the bind
 With the exception of a few well-studied cases~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, 
 the ubiquity of protonation state changes and the magnitude of their contribution to binding affinities is completely unknown. 
 %
-We expect there are two separate effects that may be neglected:
+We expect there are two separate effects that could be relevant:
 \begin{enumerate}
  \item A significant population of mixtures of protonation states may be present.
  \item Changes in the dominant protonation state could occur upon binding.
@@ -187,6 +187,7 @@ There is strong evidence that this might be the case for small molecule kinase i
 %
 Preliminary data (\Cref{figure:pka-kinase}) suggests that many kinase inhibitors have multiple accessible protonation states at physiological \pH.
 %
+
 Not only that, some kinase inhibitors bind with picomolar affinity to their target, corresponding to 28 $k_BT$ (16.5 $\mathrm{kcal/mole}$).
 %
 A 500-fold affinity loss (6 $k_BT$ , equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency.
@@ -220,7 +221,7 @@ Therefore, it is essential to know whether these effects need to be incorporated
 
 
 % JDC: See my paragraph on this in the Significance section of the protonation state proposal.  There is also experimental evidence and multiple computational papers (Simonson papers too).
-These effects have to be quantified if one's goal is not just to answer what determines the selectivity of imatinib, but also to accurately calculate its binding affinity using alchemical free energy calculations.
+
 % JDC: You're not quite getting across the message on why this is important.  How big are the effects if you neglect this? Why is this even important?  Maybe you want to start with a section on why computer modeling or free energy calculations is important, to motivate the question of why we should care about making errors in these calculations due to incorrect protonation states?
 
 
@@ -228,9 +229,24 @@ These effects have to be quantified if one's goal is not just to answer what det
 \section*{Research Strategy - Innovation}
 \instr{Explain how your proposal differs from what others have tried.}
 \subsubsection*{Reliable uncertainty estimates of isothermal titration calorimetry results by using Bayesian inference.}
-The ABRF-MIRG'2 study revealed the disturbing fact that the uncertainty of ITC experiments is underestimated by several orders of magnitude by conventional analysis methods~\autocite{Myszka2003a}. Panel D of \Cref{figure:abrf-mirg2} indicates a statistical uncertainty of at least 10\% in the estimation of extinction coefficients between all participants of the study, which correlates linearly with errors in the concentrations of the solutions prepared by each lab. This error is propagated into the estimates of binding stoichiometry, affinity and enthalpy  (Panels A, B and C of \Cref{figure:abrf-mirg2}).
+If experimental results are to be used to validate theoretical models, it is essential that one accurately estimates the uncertainty of the experiment. 
+%
+\textbf{Otherwise, one can not differentiate between experimental and theoretical error, leading to unnecessary rejection of a model. }
 
-By only performing technical replicates  and no repeat experiments, the true uncertainty can not be quantified, hence no hypothesis can be supported from any single experiment~\autocite{Vaux2012a}. That said, one can get an estimate of the uncertainty by performing Bayesian inference on experiments. For this reason, we propose the useage of Bayesian statistics as a means of uncertainty estimation as opposed to errors from model fit based on single or replicate experiments. Bayesian ITC can contribute to get more value out of single experiments by allowing for uncertainty quantification in concentrations of solutions. 
+
+The ABRF-MIRG'2 study revealed the disturbing fact that the uncertainty of ITC experiments is underestimated by several orders of magnitude by conventional analysis methods~\autocite{Myszka2003a}.
+%
+Panel D of \Cref{figure:abrf-mirg2} indicates a statistical uncertainty of at least 10\% in the estimation of extinction coefficients between all participants of the study, which correlates linearly with errors in the concentrations of the solutions prepared by each lab. 
+%
+This error is propagated into the estimates of binding stoichiometry, affinity and enthalpy  (Panels A, B and C of \Cref{figure:abrf-mirg2}).
+
+By only performing technical replicates  and no repeat experiments, the true uncertainty can not be quantified, hence no hypothesis can be supported from any single experiment~\autocite{Vaux2012a}.
+%
+That said, one can get an estimate of the uncertainty by performing Bayesian inference on experiments.
+%
+For this reason, we propose the useage of Bayesian statistics as a means of uncertainty estimation as opposed to errors from model fit based on single or replicate experiments.
+%
+Bayesian ITC can contribute to get more value out of single experiments by allowing for uncertainty quantification in concentrations of solutions. 
 
 \thisfloatsetup{capposition=beside,
 capbesideposition={center,right}}
@@ -242,10 +258,12 @@ capbesideposition={center,right}}
 	\todo[inline,color=purple!40]{need more detail here on what this data shows. can describe that same sample was distributed to 14 laboratories to measure affinity by ITC and that reported errors were orders of magnitude smaller than actual experimental variation. Also helpful to boldface first sentence of caption that succinctly summarizes figure. like ``Current ITC data analysis approaches drastically underestimate true experimental error.''}
 \end{figure}
 
-\subsubsection*{Quantifying and assessing correctness of poorly studied charge contributions to alchemical free energy calculations.}
+\subsubsection*{Quantifying exactitude of charge corrections to alchemical free energy calculations.}
 That there is a problem describing charged ligands in alchemical free energy calculations has been pointed out multiple times in the past~\autocite{Rocklin2013b,Muddana2014a}. 
 %
-For this reason, several possible ways of correcting this have been suggested~\autocite{Reif2013a,Rocklin2013a}. A quantitative comparison is lacking, and the correctness of these methods has not been established.
+For this reason, several possible ways of correcting this have been suggested~\autocite{Reif2013a,Rocklin2013a,Lin2014a}.
+%
+\textbf{A quantitative comparison is lacking, and the correctness of the available charge correction methods has not been established.}
 %
 By providing an experimental dataset with small and quantified uncertainty, we can provide a comparison of these methods that gives reasonable certainty to whether observed errors are experimental in origin, or are an error in the alchemical free energy theory. 
 %
@@ -255,18 +273,21 @@ These corrections may also prove to be necessary when performing constant-\pH ca
 
 \todo[inline]{How common are charged ligands? How does it affect calculations when we don't correct them?}
 
-\subsubsection*{Computational prediction of the association of weak binders is an unsolved problem in fragment based drug discovery.}
+ 
+
+
+\subsubsection*{Estimating free energies of multiple ligands using semi-grand canonical ensemble free energy calculations.}
 Fragment based drug discovery (FBDD) screens a small library of fragments against a biomolecular target, where weak hits are combined to develop lead compounds.
 %
 The approach is frequently applied and has impacted the way the pharmaceutical industry and academia alike approach small molecule design~\autocite{Hajduk2007a}.
 %
 The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions.
 %
-For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding~\autocite{Gilson1997a}. 
+For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding~\autocite{Gilson1997a}.
+%
+Often, because of the high concentrations necessary to obtain a signal, multiple fragments associate with a target at a time.
 
-
-\subsubsection*{Estimating free energies of multiple ligands using semi-grand canonical ensemble free energy calculations.}
-Currently, there is no available framework to perform alchemical free energy calculations that allowing for an arbitrary amount ligands to associate with a single protein.
+\textbf{Currently, there is no available framework to perform alchemical free energy calculations that allowing for an arbitrary amount ligands to associate with a single protein.}
 %
 We propose to extend the available toolset of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to multiple sites.
 %
@@ -313,17 +334,17 @@ Unlike biomolecules, CB7 does not undergo large-scale conformational changes and
   \centering
   \includegraphics[width=.4\linewidth]{figures/guest11_top.png}
   \includegraphics[width=.4\linewidth]{figures/guest11_side.png}
-  \caption{Guest 11~\autocite{Cao2013a} bound to the central cavity of CB7.}
+  \caption{A divalent guest bound to bound to the central cavity of CB7.}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=0.95\linewidth]{figures/Kd_guest.png}  
+  \includegraphics[width=1\linewidth]{figures/Kd_guest2.png}  
   % JDC: All of the guests are scaled in weird ways making benzene rings different sizes.  Would be great to fix this at some later point, but not essential now.
   \caption{A selection of guests and their $K_d$ values from \textcite{Cao2013a}.}
   \label{fig:sub2}
 \end{subfigure}
-\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}. Different guests bind to the central cavity of CB7, though their affinity is determined by their geometry and size. Their affinities are in a range similar to many protein-ligand complexes, though the complexes are small, with few degrees of freedom, making them excellent candidates for our study. Figure prepared using Glide docking~\autocite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7~\autocite{Feng2004a}.}
+\caption{\textbf{Cucurbit[7]uril (CB7) bound to several cationic guests from \textcite{Cao2013a}}. Different guests bind to the central cavity of CB7, their affinity determined by their geometry and size. Their affinities are in a range similar to many protein-ligand complexes, though the complexes are small, with few degrees of freedom, making them excellent candidates for our study. Figure prepared using Glide docking~\autocite{Halgren2004a,Friesner2004a,Friesner2006a,Schroedinger2014a} into crystal structure pdb:QQ7~\autocite{Feng2004a}.}
 \label{figure:host-guest}
 \end{figure}
 
