@@ -75,19 +75,16 @@ We propose using a computationally and experimentally tractable model system---t
 %
 The experimental datasets collected here will allow us to evaluate proposed corrections to free energy calculations in order to refine theory and algorithms as necessary.
 %
-We will utilize isothermal titration calorimetry (ITC) experiments, which provide a “gold standard” biophysical assay for binding affinities.
+We will utilize isothermal titration calorimetry (ITC) experiments, which provide a ``gold standard'' biophysical assay for binding affinities.
 %
-We will additionally develop Bayesian approaches to accurately quantify measurement uncertainty and allow for model-error propagation to rectify deficiencies in current data analysis protocols.
-%
-\textbf{It is impossible to distinguish between experimental errors and errors in theory without accurately quantified uncertainty.
-}
+Because we require accurate experimental uncertainties to determine whether theory is discrepant from experiment in a statistically significant manner, we will additionally develop Bayesian approaches to accurately quantify measurement uncertainty and allow for model-error propagation to rectify deficiencies in current data analysis protocols.
 
 \paragraph*{Aim 2. Quantify the magnitude of protonation state effects on binding.}
 Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner.
 %
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, \textbf{the true scope and magnitude of the protonation state effects in ligand recognition in general is completely unknown.}
 
-We will use computational techniques to conduct a survey to assess the importance of protonation state issues for a tractable but disease-relevant system---kinase catalytic domains that can be expressed in \textit{E. coli}.
+We will use computational techniques to conduct a survey to assess the importance of protonation state issues for a tractable but disease-relevant system---kinase catalytic domains with known bacterial expression and their corresponding commercially-available small molecule inhibitors.
 %
 Existing \pKa prediction tools will be benchmarked against experimental kinase inhibitor \pKa data, and then used as input for constant-\pH alchemical free energy calculations.
 %
@@ -98,18 +95,18 @@ We will perform ITC experiments using buffers of different ionization enthalpies
 \paragraph*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.}
 Weak binding and association of multiple ligands are ubiquitous interactions in biological and pharmaceutically relevant systems.
 %
-In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from biophysical experiments with modeling for these situations.
+In addition, drug discovery approaches such as fragment-based ligand design depend predominantly on a reliable method for integrating data from disparate biophysical experiments with modeling.
 %
 We will extend the framework of alchemical free energy calculations  to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism.
 %
 
 As a model system, we will use the pharmacologically relevant protein human serum albumin(HSA), known to multivalently bind many different small molecules to a variety of distinct binding sites.
 %
-\textbf{Most theory and frameworks focus on 1:1 interaction.}
+\textbf{Most theory and frameworks focus on simple 1:1 association models, which are insufficient to correctly describe association in these circumstances.}
 %
 We will extend deficiencies by both developing new Bayesian ITC experimental analysis techniques to select among theoretical association models,
 %
-as well as simulating ITC data directly from semi-grand canonical ensemble simulations.
+as well as simulating ITC data directly from semi-grand canonical ensemble simulations to enable direct comparisons between experiment and theory.
 
 \subsection*{} % Add some spacing
 
@@ -122,25 +119,23 @@ Completion of the work will provide modeling strategies for non-trivial challeng
 \subsection*{Accurate treatment of alchemical free energy calculations.}
 %Maybe you want to start with a section on why computer modeling or free energy calculations is important, to motivate the question of why we should care about making errors in these calculations due to incorrect protonation states?
 
-The binding free energy of a ligand (the affinity) determines to what degree it will spontaneously associate with a protein.
+The binding free energy of a ligand (related to the affinity) determines to what degree it will spontaneously associate with a protein.
 %
-Access to information such as free energies is of great help in the design of ligands that can selectively and tightly interact with a biomolecular target.
+Access to information such as free energies can be of great utility in the design of ligands that can selectively and tightly interact with a biomolecular target.
 %
-Alchemical free energy calculations are a powerful computational tool for predicting binding free energies, as they allow for efficient sampling of the relevant states of protein-ligand complexes~\autocite{Shirts2007a}.
+Alchemical free energy calculations are a powerful computational tool for computing binding free energies, as they allow for efficient sampling of the relevant states of protein-ligand complexes~\autocite{Shirts2007a}.
 %
-Unfortunately, broadly applying free energy calculations comes with several challenges that have yet to be solved~\autocite{Chodera2011a,Gapsys2015a}. 
-
+While these methods hold considerable promise in the accurate prediction of small molecule biding free energies {\color{red}[CITE T4 lysozyme, FKBP, and Schrodinger benchmark papers]}, their domain of applicability is currently highly restricted; and the broad application of free energy calculations to numerous pharmacologically relevant targets requires a number of additional challenges to be overcome~\autocite{Chodera2011a,Gapsys2015a}. 
 %
-\textbf{Neglecting terms such as interactions with charged ligands~\autocite{Rocklin2013b,Muddana2014a},
-effects from changes in ligand protonation state~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
-and weak interactions~\autocite{Gilson1997a}, has a great impact on the applicability of alchemical free energy calculations.
+\textbf{In particular, the neglect of corrections required for the treatment of charged ligands~\autocite{Rocklin2013b,Muddana2014a},
+dynamic protonation state effects~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
+and the potential for weak interactions and multiple ligand association events~\autocite{Gilson1997a} can have a great impact on the reliability of alchemical free energy calculations for numerous systems in which these effects are important.
 }%
-There is need for validation  and extension available methods to allow for applying alchemical binding free energy calculations to wider ranges of systems,
-thereby increasing their utility in drug discovery and development processes.
+There is a great need for validation and extension of available methods for treating these situations in order to apply alchemical binding free energy calculations to wider ranges of pharmacologically relevant systems.
 
 
-\subsubsection*{Alchemical free energy calculations need to be extended with a correct method for treating charged ligands.}
-In order to apply alchemical free energy calculations to charged ligands, one needs to eliminate artifacts introduced into the calculation from various sources.
+\subsubsection*{Alchemical free energy calculations involving charged ligands in explicit solvent require charge corrections.}
+In order to apply alchemical free energy calculations to charged ligands, one needs to eliminate artifacts introduced into the calculation arising from the modeling of bulk solvent behavior using a small periodic system.
 %
 In a physical system, when a ligand dissociates, the interaction never actually disappears completely, though the interaction between a ligand and protein is weakened to the extend that it there is no measurable correlation between the interacting molecules.
 %
@@ -156,24 +151,25 @@ These terms do not perturb the weights in a normal simulation, but cause substan
 %
 The estimated binding free energy as such needs to be corrected to eliminate these effects.
 %
-Not correcting for these terms can severely undermine the ability of alchemical free energy calculations to reproduce experimental binding affinities~\autocite{Rocklin2013b,Muddana2014a}.
+Neglecting to correct for these contributions can severely undermine the ability of alchemical free energy calculations to reproduce experimental binding affinities~\autocite{Rocklin2013b,Muddana2014a}.
 
 
 \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.4\textwidth]{figures/reif_oostenbrink.png}
-    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  It is common practice to truncate Coulomb interactions beyond a certain range to reduce calculation costs and use methods such as PME or reaction fields to compensate for the loss of interaction beyond the cutoff. When there is a net charge change, this leads to errors in treatment of interaction between ligand and solvent molecules beyond cutoffs and interactions with periodic copies of the system (blue arrows). Likewise, interactions between macromolecule and ligand need to be corrected (red arrows). Lastly, self interacting terms may also introduce errors when charges are removed (green arrows). Figure adapted from ~\textcite{Reif2013a}.}
+    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  It is common practice to truncate Coulomb interactions beyond a certain range to reduce calculation costs and use methods such as PME {\color{red}[CITE]} or reaction field {\color{red}[CITE]} solvation models to compensate for the loss of interaction beyond the cutoff. When there is a net charge change, this leads to errors in treatment of interaction between ligand and solvent molecules beyond cutoffs and interactions with periodic copies of the system (blue arrows). Likewise, interactions between macromolecule and ligand need to be corrected (red arrows). Lastly, self interacting terms may also introduce errors when charges are removed (green arrows). Figure adapted from ~\textcite{Reif2013a}.}
   \label{figure:chargecorrections}
 \end{figure}
 
-% JDC: Putting each sentence on a separate line makes it much easier to look at diffs in version control.
-\subsubsection*{Unknown contributions of protonation state changes to kinase inhibitor binding affinity need to be quantified.}
+\subsubsection*{Protonation state effects can be important in kinase inhibitor binding, but the scope of this problem is unknown.}
 The use of incorrect or inappropriate protonation states in modeling protein-ligand association can significantly degrade accuracy~\autocite{Polgar2005a,Wittayanarakul2008a}.
 But what if there is not a single protonation state that contributes to the binding affinity?
 
+{\color{red}[JDC: Talk about Abl:imatinib system here and the evidence for protonation state effects there.]}
+
 With the exception of a few well-studied cases~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, 
-the ubiquity of protonation state changes and the magnitude of their contribution to binding affinities is completely unknown. 
+the ubiquity of protonation state changes and the magnitude of their contribution to binding affinities in protein-ligand association in general is completely unknown. 
 %
 We expect there are two separate effects that could be relevant:
 \begin{enumerate}
@@ -184,13 +180,13 @@ We expect there are two separate effects that could be relevant:
 Modeling the system with a single protonation state can in either case lead to large errors.
 %
 There is strong evidence that this might be the case for small molecule kinase inhibitors~\autocite{Szakacs2005a,Seeliger2007a,Lin2013a}. 
-%
-Preliminary data (\Cref{figure:pka-kinase}) suggests that many kinase inhibitors have multiple accessible protonation states at physiological \pH.
+{\color{red}[JDC: This one sentence on kinase inhibitors is insufficient to motivate your readers into believing you that this is important.  I'd lead with the Abl example up above where I have marked this in red, then go into the how the scope of the problem is unknown, as you already have written.]}
 %
 
-Not only that, some kinase inhibitors bind with picomolar affinity to their target, corresponding to 28 $k_BT$ (16.5 $\mathrm{kcal/mole}$).
+Preliminary data (\Cref{figure:pka-kinase}) suggests that many kinase inhibitors have multiple accessible protonation states at physiological \pH.
 %
-A 500-fold affinity loss (6 $k_BT$ , equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency.
+As some kinase inhibitors bind with picomolar affinity to their target (corresponding to 28 $k_BT$), a 500-fold affinity loss (6 $k_BT$ , equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency.
+{\color{red}[JDC: This section is just a jumble of unrelated statements that have no real logical bearing on each other.  After stating that kinase inhibitors can tolerate a 2.6 log unit shift in p$K_a$, you should say that the predicted p$K_a$ of FDA-approved kinase inhibitors suggests that a majority of these could therefore access multiple protonation states (and reference the figure, which I don't think you reference yet).  Then, you can say that neglecting the potential for sampling an alternative protonation state would lead to large errors in predicted binding affinities.]}
 %
 Neglecting these kind of contributions would thus lead to large errors in predicted binding affinities.
 %
@@ -214,7 +210,9 @@ Therefore, it is essential to know whether these effects need to be incorporated
   \caption{}
   \label{figure:imatinib-pKa}
 \end{subfigure}
-\caption{(a) \textbf{Protonation states accessible to FDA approved kinase inhibitors.} Colors indicate accesibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accesible region, up until 6 $k_BT$. Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}. (b) Top: fraction of species of imatinib (Gleevec) measured by titration and NMR~\autocite{Szakacs2005a}, Bottom: The individual sites of protonation of imatinib, highlighted in purple~\autocite{Szakacs2005a}.}
+\caption{(a) \textbf{Protonation states accessible to FDA approved kinase inhibitors.} Colors indicate accesibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accesible region, up until 6 $k_BT$. Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}. (b) Top: fraction of species of imatinib (Gleevec) measured by titration and NMR~\autocite{Szakacs2005a}, Bottom: The individual sites of protonation of imatinib, highlighted in purple~\autocite{Szakacs2005a}.
+{\color{red}[JDC: Where is this figure referenced?]}
+}
 \label{figure:kinase-pKa}
 \end{figure}
 
@@ -231,7 +229,7 @@ Therefore, it is essential to know whether these effects need to be incorporated
 \subsubsection*{Reliable uncertainty estimates of isothermal titration calorimetry results by using Bayesian inference.}
 If experimental results are to be used to validate theoretical models, it is essential that one accurately estimates the uncertainty of the experiment. 
 %
-\textbf{Otherwise, one can not differentiate between experimental and theoretical error, leading to unnecessary rejection of a model. }
+\textbf{Otherwise, it is impossible to tell whether experiment and theory differ from each other in a statistically significant way.}
 
 
 The ABRF-MIRG'2 study revealed the disturbing fact that the uncertainty of ITC experiments is underestimated by several orders of magnitude by conventional analysis methods~\autocite{Myszka2003a}.
@@ -258,18 +256,16 @@ capbesideposition={center,right}}
 	\todo[inline,color=purple!40]{need more detail here on what this data shows. can describe that same sample was distributed to 14 laboratories to measure affinity by ITC and that reported errors were orders of magnitude smaller than actual experimental variation. Also helpful to boldface first sentence of caption that succinctly summarizes figure. like ``Current ITC data analysis approaches drastically underestimate true experimental error.''}
 \end{figure}
 
-\subsubsection*{Quantifying exactitude of charge corrections to alchemical free energy calculations.}
-That there is a problem describing charged ligands in alchemical free energy calculations has been pointed out multiple times in the past~\autocite{Rocklin2013b,Muddana2014a}. 
+\subsubsection*{Assessing proposed charge corrections in alchemical free energy calculations of charged ligands.}
+Alchemical free energy calculations involving charged ligands in explicit solvent include artifacts due to the treatment of the system as an infinite periodic box~\autocite{Rocklin2013b,Muddana2014a}. 
 %
-For this reason, several possible ways of correcting this have been suggested~\autocite{Reif2013a,Rocklin2013a,Lin2014a}.
+Several means of correcting for these artifacts have been suggested~\autocite{Reif2013a,Rocklin2013a,Lin2014a}.
 %
-\textbf{A quantitative comparison is lacking, and the correctness of the available charge correction methods has not been established.}
+\textbf{A quantitative comparison of these methodologies to each other and to experiment has not yet been performed, and the correctness of any of these available charge correction methods has not been established.}
 %
-By providing an experimental dataset with small and quantified uncertainty, we can provide a comparison of these methods that gives reasonable certainty to whether observed errors are experimental in origin, or are an error in the alchemical free energy theory. 
+By collecting an experimental dataset with small and quantified uncertainty and comparing these methods to each other, we can determine whether these methods provide consistent corrections, as well as which, if any, methods correct for all experimental artifacts and allow quantitative agreement with experiment.
 %
-We can then not only provide a qualitative comparison on whether the models can possibly reproduce experiments, but will have a quantitative estimate of whether they produce the correct result.
-%
-These corrections may also prove to be necessary when performing constant-\pH calculations, where protons carrying single units of charge may come into and leave the simulation system.
+These corrections may also prove to be necessary when performing constant-\pH calculations, where both ligand and protein charge (and hence the total system charge) may fluctuate during the simulaton.
 
 \todo[inline]{How common are charged ligands? How does it affect calculations when we don't correct them?}
 
@@ -475,7 +471,7 @@ This will then be plugged into a titration framework called MCCE~\autocite{Song2
 %
 We will use available kinase-inhibitor complexes from the protein databank (PDB)~\autocite{Berman2000a}, using the small molecule \pKa predictions as input.
 %
-Then, we will perform constant-\pH free energy calculation, feeding in the input from complex \pKa value estimates.
+Then, we will perform constant-\pH free energy calculations, feeding in the input from complex \pKa value estimates.
 %
 The free energy calculations will be validated by performing complimentary ITC experiments.
 %
