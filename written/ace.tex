@@ -4,6 +4,12 @@
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{graphicx}
+\usepackage[hidelinks,
+	    colorlinks,
+	    citecolor=cyan!50!black,
+	    linkcolor=purple!50!black,
+	    urlcolor=purple!70!black]{hyperref} % load before floatrow and subcaption to prevent errors
+
 % \usepackage{sidecap} % captions on the side
 \usepackage{floatrow}
 \usepackage[scientific-notation=true]{siunitx} % siunits and numbers
@@ -20,9 +26,12 @@
 \usepackage{commath}
 \usepackage{ifdraft}
 \usepackage[	backend=biber,
+		firstinits=true,
 		style=numeric-comp,
 		sorting=none,
 		autopunct]{biblatex}
+
+
 \addbibresource{ace.bib}
 \floatsetup{heightadjust=object}
 \date{}
@@ -46,6 +55,7 @@
 %pKa formatting
 \newcommand{\pKa}{p$K_\mathrm{a}$\ }
 \newcommand{\pH}{p$\mathrm{H}$\ }
+\newcommand{\pKas}{p$K_\mathrm{a}$s\ }
 
 \begin{document}
 \listoftodos[Indexed list of activities pertaining to labor that will be performed in the short-term future]\newpage
@@ -125,7 +135,7 @@ Access to information such as free energies can be of great utility in the desig
 %
 Alchemical free energy calculations are a powerful computational tool for computing binding free energies, as they allow for efficient sampling of the relevant states of protein-ligand complexes~\autocite{Shirts2007a}.
 %
-While these methods hold considerable promise in the accurate prediction of small molecule biding free energies {\color{red}[CITE T4 lysozyme, FKBP, and Schrodinger benchmark papers]}, their domain of applicability is currently highly restricted; and the broad application of free energy calculations to numerous pharmacologically relevant targets requires a number of additional challenges to be overcome~\autocite{Chodera2011a,Gapsys2015a}. 
+While these methods hold considerable promise in the accurate prediction of small molecule biding free energies~\autocite{Fujitani2005a,Deng2006a,Wang2015a}, their domain of applicability is currently highly restricted; and the broad application of free energy calculations to numerous pharmacologically relevant targets requires a number of additional challenges to be overcome~\autocite{Chodera2011a,Gapsys2015a}. 
 %
 \textbf{In particular, the neglect of corrections required for the treatment of charged ligands~\autocite{Rocklin2013b,Muddana2014a},
 dynamic protonation state effects~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
@@ -158,18 +168,25 @@ Neglecting to correct for these contributions can severely undermine the ability
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.4\textwidth]{figures/reif_oostenbrink.png}
-    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  It is common practice to truncate Coulomb interactions beyond a certain range to reduce calculation costs and use methods such as PME {\color{red}[CITE]} or reaction field {\color{red}[CITE]} solvation models to compensate for the loss of interaction beyond the cutoff. When there is a net charge change, this leads to errors in treatment of interaction between ligand and solvent molecules beyond cutoffs and interactions with periodic copies of the system (blue arrows). Likewise, interactions between macromolecule and ligand need to be corrected (red arrows). Lastly, self interacting terms may also introduce errors when charges are removed (green arrows). Figure adapted from ~\textcite{Reif2013a}.}
+    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  It is common practice to truncate Coulomb interactions beyond a certain range to reduce calculation costs and use methods such as PME~\autocite{Essmann1995a} or reaction field~\autocite{Tironi1995a} solvation models to compensate for the loss of interaction beyond the cutoff. When there is a net charge change, this leads to errors in treatment of interaction between ligand and solvent molecules beyond cutoffs and interactions with periodic copies of the system (blue arrows). Likewise, interactions between macromolecule and ligand need to be corrected (red arrows). Lastly, self interacting terms may also introduce errors when charges are removed (green arrows). Figure adapted from ~\textcite{Reif2013a}.}
   \label{figure:chargecorrections}
 \end{figure}
 
 \subsubsection*{Protonation state effects can be important in kinase inhibitor binding, but the scope of this problem is unknown.}
 The use of incorrect or inappropriate protonation states in modeling protein-ligand association can significantly degrade accuracy~\autocite{Polgar2005a,Wittayanarakul2008a}.
+%
 But what if there is not a single protonation state that contributes to the binding affinity?
-
-{\color{red}[JDC: Talk about Abl:imatinib system here and the evidence for protonation state effects there.]}
+%
+Imatinib (Gleevec) is a potent inhibitor of Abl kinase~\autocite{Druker2001a}, and has shown high efficacy in patients with chronic myeloid leukemia~\autocite{OBrien2003a}.
+%
+At physiological \pH, it has access to multiple protonation states (see \Cref{figure:imatinib-pKa})~\autocite{Szakacs2005a}.
+%
+Furthermore, from computation and experiment, there is evidence that there could be \pH dependent effects to the binding affinity~\autocite{Seeliger2007a,Lin2013a}.
 
 With the exception of a few well-studied cases~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, 
 the ubiquity of protonation state changes and the magnitude of their contribution to binding affinities in protein-ligand association in general is completely unknown. 
+%
+Preliminary data (\Cref{figure:pka-kinase}) suggests that many kinase inhibitors have multiple accessible protonation states at physiological \pH.
 %
 We expect there are two separate effects that could be relevant:
 \begin{enumerate}
@@ -179,16 +196,13 @@ We expect there are two separate effects that could be relevant:
 %
 Modeling the system with a single protonation state can in either case lead to large errors.
 %
-There is strong evidence that this might be the case for small molecule kinase inhibitors~\autocite{Szakacs2005a,Seeliger2007a,Lin2013a}. 
-{\color{red}[JDC: This one sentence on kinase inhibitors is insufficient to motivate your readers into believing you that this is important.  I'd lead with the Abl example up above where I have marked this in red, then go into the how the scope of the problem is unknown, as you already have written.]}
+As some kinase inhibitors bind with picomolar affinity to their target (corresponding to 28 $k_BT$), a 500-fold affinity loss (6 $k_BT$ , equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency (\Cref{figure:pka-kinase}).
 %
+This suggests that a majority of these compounds could access multiple protonation states, while retaining a high binding affinity.
 
-Preliminary data (\Cref{figure:pka-kinase}) suggests that many kinase inhibitors have multiple accessible protonation states at physiological \pH.
+% {\color{red}[JDC: This section is just a jumble of unrelated statements that have no real logical bearing on each other.  After stating that kinase inhibitors can tolerate a 2.6 log unit shift in p$K_a$, you should say that the predicted p$K_a$ of FDA-approved kinase inhibitors suggests that a majority of these could therefore access multiple protonation states (and reference the figure, which I don't think you reference yet).  Then, you can say that neglecting the potential for sampling an alternative protonation state would lead to large errors in predicted binding affinities.]}
 %
-As some kinase inhibitors bind with picomolar affinity to their target (corresponding to 28 $k_BT$), a 500-fold affinity loss (6 $k_BT$ , equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency.
-{\color{red}[JDC: This section is just a jumble of unrelated statements that have no real logical bearing on each other.  After stating that kinase inhibitors can tolerate a 2.6 log unit shift in p$K_a$, you should say that the predicted p$K_a$ of FDA-approved kinase inhibitors suggests that a majority of these could therefore access multiple protonation states (and reference the figure, which I don't think you reference yet).  Then, you can say that neglecting the potential for sampling an alternative protonation state would lead to large errors in predicted binding affinities.]}
-%
-Neglecting these kind of contributions would thus lead to large errors in predicted binding affinities.
+Neglecting the potential of sampling alternate protonation states would thus lead to large errors in predicted binding affinities.
 %
 Such large contributions could play a significant role in the selectivity of kinase inhibitors for their targets.
 %
@@ -198,20 +212,23 @@ Therefore, it is essential to know whether these effects need to be incorporated
 \centering
 \begin{subfigure}{.48\textwidth}
   \centering
-	\includegraphics[width=0.95\linewidth]{figures/inhibitor-pKas.png}
+	\includegraphics[width=0.9\linewidth]{figures/inhibitor-pKas.png}
 	\caption{}
 	\label{figure:pka-kinase}
 \end{subfigure}%
 \hfill{}
 \begin{subfigure}{.48\textwidth}
   \centering
-  \includegraphics[width=0.95\linewidth]{figures/imatinib_curve.png}
-  \includegraphics[width=0.95\linewidth]{figures/imatinib_groups.png}
+  \includegraphics[width=0.8\linewidth]{figures/imatinib_curve.png}
+  \includegraphics[width=0.8\linewidth]{figures/imatinib_groups.png}
   \caption{}
   \label{figure:imatinib-pKa}
 \end{subfigure}
-\caption{(a) \textbf{Protonation states accessible to FDA approved kinase inhibitors.} Colors indicate accesibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accesible region, up until 6 $k_BT$. Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}. (b) Top: fraction of species of imatinib (Gleevec) measured by titration and NMR~\autocite{Szakacs2005a}, Bottom: The individual sites of protonation of imatinib, highlighted in purple~\autocite{Szakacs2005a}.
-{\color{red}[JDC: Where is this figure referenced?]}
+\caption{(a) \textbf{Protonation states accessible to FDA approved kinase inhibitors.} 
+The intracellular \pH of most tumors is around 7.2~\autocite{Griffiths1991a,Stubbs2000a}.
+Colors indicate accesibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accesible region, up until 6 $k_BT$.
+Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}.
+(b) Top: fraction of species of imatinib (Gleevec) measured by titration and NMR~\autocite{Szakacs2005a}, Bottom: The individual sites of protonation of imatinib, highlighted in purple~\autocite{Szakacs2005a}.
 }
 \label{figure:kinase-pKa}
 \end{figure}
@@ -283,15 +300,13 @@ For instance, because of the absence of a strong signal that two compounds are `
 %
 Often, because of the high concentrations necessary to obtain a signal, multiple fragments associate with a target at a time.
 
+Unfortunately, most effort in modeling frameworks has focussed on simple 1:1 interactions. 
+%
 \textbf{Currently, there is no available framework to perform alchemical free energy calculations that allowing for an arbitrary amount ligands to associate with a single protein.}
 %
 We propose to extend the available toolset of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to multiple sites.
 %
 As opposed to simulating a single ligand at multiple sites, this way we can correctly take into account cooperativity in binding when multiple ligands associate with a single protein.
-
-\subsubsection*{Providing an estimate of the prevalence and magnitude of protonation state event contributions to kinase inhibitor binding}
-\todo[inline,color=purple!40]{write this section, inspiration from the kinase proposal}
-
 
 \section*{Research Strategy - Approach}
 \instr{Approach: More specific background information. Describe in detail the experimental design and research methods to be used. Technical hurdles to be overcome should be mentioned. Alternative approaches should be given for experiments that may not be feasible. Discussion of expected or possible results and their interpretation. Best format for each specific aim: a) rationale, b) methods, c) expected results, d) alternatives. Theory aims should follow a similar structure where possible.}
@@ -410,7 +425,6 @@ The accurately quantified uncertainty of our experimental data will provide us w
 
 
 
-
 \subsubsection*{Expected results}
 The ITC experiments performed on the CB7-guest complexes will be analyzed using our Bayesian ITC analysis method.
 %
@@ -425,9 +439,9 @@ Next, we can compare the result obtained by each scheme to the experimental resu
 Each of the methods carries an increased computational cost with them, compared to not applying corrections.
 %
 By applying them on the same system, we can also get an estimate on how efficient they are in costs versus improved accuracy.
+%
+We will then be able to recommend a methodology to use when calculating the free energy of binding for charged species.
 
-We will then be able to recommend a methodology to use when calculating the free energy of binding for charged species, enabling reliable simulations that are impossible to perform otherwise.
-% JDC: Maybe try a different approach here: How will you actually analyze the data?  First, you'll see which, if any, of the computational techniques agree with each other, and if not, by how much they differ.  Then, you will see if any of the methods agree with experiment.  If so, this buttresses these approaches; if none of the methods agree, then you can investigate other issues (none of the methods may be correct or there may be forcefield issues).  Finally, you can also compare the efficiencies of these different computational techniques.
 
 \subsubsection*{Pitfalls and alternatives}
 
@@ -451,66 +465,62 @@ This would leave out the contribution due to a net charge change, so that the ac
 \subsubsection*{Rationale}
 Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner.
 %
+The usual approach in modeling ignores these effects and assumes a single protonation state for an entire system.
+%
+By doing so, one ignores contributions to the binding affinity that are of unknown magnitude.
+
+Evidence exists that for the binding of imatinib to Abl kinase, \pH{} dependent effects may contribute to the binding affinity\cite{Szakacs2005a, Seeliger2007a, Lin2013a}. 
+%
+Our preliminary investigations suggest that the same effects will be relevant to a large number of FDA approved kinase inhibitors (\Cref{figure:pka-kinase}).
+%
+Kinase inhibitors typically have high potency, so these effects may mostly go unnoticed in standard experimental assays.
+%
+However, they will form a potential pitfall when modeling, since these unknown contributions potentially lead to effects as large as 2.6 log units in the binding affinity (\Cref{figure:pka-kinase}).
+
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
 the ubiquity and magnitude of protonation state effects in ligand recognition in general is unknown.
 %
-The usual approach in modeling ignores these problems and assumes a single protonation state for an entire system.
+\textbf{Our aim is to quantify the effect of protonation state changes on the binding affinity of kinase inhibitors, and to develop a modeling framework that uses \pKa predictions of protein-ligand complexes to enable accurate modeling of these effects.
+}%
+We will first validate whether the existing \pKa methods can provide useful intrinsic \pKas of solvated ligands, before assessing their accuracy in the use for simulating complexes.
 %
-By doing so, contributions of unknown magnitude are ignored.
+Experimental kinase inhibitor \pKa data, previously obtained by our lab, will be used to benchmark small molecule \pKa prediction tools.
 %
-Our aim is to develop a framework that can combine \pKa predictions of small molecules with alchemical binding free energy calculations in a constant-\pH setting.
+These will then be plugged into a titration framework called MCCE~\autocite{Song2009a}, which can derive \pKa values for small molecule-protein complexes, starting from the ``null-model'' of separated protein and ligand \pKa values.
 %
-We will then use this framework to quantify the effect of protonation state effects on the binding of kinase inhibitors.
+Available kinase-inhibitor complexes from the protein databank (PDB)~\autocite{Berman2000a} will then be used as input for protein-ligand complex-\pKa predictions.
+%
+Our set will only include kinases that can be expressed in \textit{E. coli}, so that we can perform complimentary experiments.
+%
+To get an estimate of the binding affinity, and to quantify the effect of protonation state changes on it, we will perform constant-\pH free energy calculations, which will rely on the \pKa predictions provided by the MCCE calculations.
+%
+%
+As means of validation, we will perform complimentary ITC experiments in buffers with varying ionization enthalpy, from which we can also determine the thermodynamic contribution of protonation state effects on the total binding free energy~\autocite{Baker1996a,Neeb2014a}.
 
-
-We will first validate whether the existing \pKa methods can provide useful intrinsic \pKa s of solvated ligands, before assessing their accuracy in the use for simulating complexes.
-%
-We will use experimental \pKa data, obtained for a series of kinase inhibitors to benchmark the tools.
-%
-This will then be plugged into a titration framework called MCCE~\autocite{Song2009a}, which can derive adapted \pKa values for small molecule-protein  complexes.
-%
-We will use available kinase-inhibitor complexes from the protein databank (PDB)~\autocite{Berman2000a}, using the small molecule \pKa predictions as input.
-%
-Then, we will perform constant-\pH free energy calculations, feeding in the input from complex \pKa value estimates.
-%
-The free energy calculations will be validated by performing complimentary ITC experiments.
-%
-By performing multiple ITC experiments in buffers with varying ionization enthalpy, we can determine the thermodynamic contribution of protonation state effects on the total binding free energy~\autocite{Baker1996a,Neeb2014a}.
-%
-This will allow us to validate the free energy calculations, and can provide validation on whether protonation state effects have a large contribution on the binding affinity.
-%
-We can then use our alchemical free energy calculation framework to predict the magnitude of protonation state effects in other systems, for which experiments have not been performed.
-
-\todo[inline,color=purple!40]{short explanation constant-\pH simulations}
-
-% \subsubsection*{Methods}
 \subsubsection*{Subaim 2.1: Survey the utility of available small molecule \pKa predictions for use in constant-\pH alchemical free energy calculations.}
-Our aim is to quantify the contribution of protonation state changes to binding interactions.
+Preliminary data indicates that a number of FDA approved kinase inhibitors have \pKa values close to the physiological \pH{}, including imatinib~\autocite{Szakacs2005a}, (\Cref{figure:pka-kinase}).
 %
-We will focus on a smaller subset of interactions in a tractable system, the interactions of small molecule inhibitors of kinase domains.
+We aim to quantify these contributions, in order to find out how important they are for correctly estimating the binding affinity of small molecule kinase inhibitors.
 %
-Preliminary results suggest that several kinase inhibitors have access to multiple states  at physiological \pH.
+We want to use alchemical free energy calculations, a reliable standard for calculating binding affinities~\autocite{Fujitani2005a,Deng2006a,Wang2015a}.
 %
-For instance, the intracellular \pH of most tumors is around 7.2~\autocite{Griffiths1991a,Stubbs2000a}.
+To accurately incorporate these effects, we will use constant-\pH simulations~\autocite{Mongan2004a,Stern2007a,Nilmeier2011a}.
 %
-Preliminary data in \Cref{figure:pka-kinase} indicates that a number of FDA approved kinase inhibitors have \pKa values close to the physiological \pH, including imatinib~\autocite{Szakacs2005a}.
-
-In order to use a computational framework such as constant-\pH simulations, we need to provide small molecule \pKa data.
+The relevant protonation states can only be captured if we have accurate \pKa data for both the protein and the inhibitor.
 %
-These calculations can benefit greatly from input by a reliable computational \pKa prediction tool, since this could directly be connected into the framework.
+For an efficient framework, we would like to incorporate a reliable computational \pKa prediction tool, so that we can estimate the \pKa and simulate a system using a single, straightforward procedure.
 %
-We will benchmark existing \pKa prediction tools using \pKa data obtained for a series of kinase inhibitors using a Sirius T3 instrument.
+To identify reliable tools, we will benchmark existing \pKa prediction tools using \pKa data obtained for a series of kinase inhibitors using a Sirius T3 instrument.
 %
-The Sirius T3 instrument provides a gold standard for giving macroscopic \pKa{}s using a combination of electrochemical and UV-metric titrations.)
-
-This will provide a means to select a tool that can adequately predict \pKa values for kinase inhibitors with similar chemical components.
-
-
-
+The Sirius T3 instrument provides a gold standard for giving macroscopic \pKas using a combination of electrochemical and UV-metric titrations.
+%
+This will help us select a tool that can adequately predict \pKa values for kinase inhibitors with similar chemical components.
+%
+We will then correct the \pKas received for the effect of forming a protein-ligand complex, by using MCCE2~\autocite{Song2009a}.
 
 Among the small molecule \pKa prediction tools considered will be \textbf{MoKa}~\autocite{Milletti2007a}, \textbf{Jaguar}~\autocite{Bochevarov2013a}, and \textbf{Epik}~\autocite{Shelley2007a,Greenwood2010a}.
 %
-MoKa generates \pKa{}s based on atomistic descriptors, defined by the surrounding atoms.
+MoKa generates \pKas based on atomistic descriptors, defined by the surrounding atoms.
 %
 The descriptors are based on molecular interaction fields calculated using GRID~\autocite{Goodford1985a} for a library of 3D fragments, but can succesfully be applied on 2D structures.
 %
@@ -527,23 +537,38 @@ We will make a selection of crystal structures from the protein data bank (PDB)~
 We can then selecting for systems that show potential mixtures of protonation states at physiological \pH values as indicated by their multiconformer \pKa prediction to use in constant-\pH simulation as part of our aim. 
 
 
+
 \subsubsection*{Subaim 2.2: Estimate the effect of protonation states on binding affinity through experiment and computation.}
-The obtained data from the \pKa survey will allow us to set up alchemical free energy calculations that employ semi-grand canonical contant-\pH methods.~\autocite{Mongan2004a,Stern2007a,Nilmeier2011a}
-\todo[inline,color=purple!40]{(Benoit Roux has just submitted a paper on this for explicit solvent too.)}
-
-The calculations will be performed using OpenMM~\autocite{Eastman2013a} and Yank~\autocite{Chodera2015a}.
-%
-We will also perform simulations that do not apply the constant-\pH methods. This will allow us to estimate the effect of protonation state changes on the binding affinity.
-
-We will validate the results of the free energy calculations by performing complementary experiments on kinase catalytic domains that can be expressed in E. coli using ITC experiments.
-%
-The change of protonation states can be observed in ITC by performing replicate experiments using buffers of different ionization energies~\autocite{Baker1996a,Neeb2014a}.
-
-This will lead to an enthalpic contribution/penalty to the binding affinity.
-%
 We will systematically explore the effects of fixed and dynamic protonation states on kinase, inhibitor, and kinase:inhibitor complexes to determine the impact of assuming protonation states are fixed or dynamic, and to dissect the effect in terms of protein-dominated, ligand-dominated, or coupled protein-ligand effects.
 %
-We will quantify the impact on errors in binding affinity.
+The obtained data from the \pKa survey of kinase inhibitors will allow us to identify a set of kinases and inhibitors that are likely to exhibit protonation state effects in their binding.
+%
+After selecting a subset, we will set up alchemical free energy calculations that employ semi-grand canonical contant-\pH methods ~\autocite{Mongan2004a,Stern2007a,Nilmeier2011a}, to allow us to quantify the effect of protonation state changes on binding.
+%
+{\color{purple}(Benoit Roux has just submitted a paper on this for explicit solvent too. ASR: what reference?)}
+%
+Our set will only include kinases that can be expressed in \textit{E. coli}, so that we can perform complimentary experiments.
+%
+We will then verify these results by performing ITC experiments in the same systems, using buffers with different ionization enthalpies~\autocite{Baker1996a,Neeb2014a}.
+
+In a constant-\pH simulation, the distribution of protons can change in the system at a constant chemical potential of protons $\mu_{H^+}$,
+\begin{align}
+ \text{p}\mathrm{H} = -\log_{10}\left( a_{\mathrm{H}^+} \right) = -\log_{10}\left( \exp\left(\frac{\mu_{H^+} -\mu_{H^+}^\ominus}{RT}\right)\right) \approx -\log_{10}\left( [\mathrm{H}] \right) 
+\end{align}
+, where $a_{\mathrm{H}^+}$ is the activity coefficient of the protons, the superscript $\ominus$ indicates a thermodynamic standard state, $R$ is the molar gas constant and $T$ is the absolute temperature.
+%
+Protonation and deprotonation events are sampled using a Monte Carlo (MC) method, using the free energy of proton transfer, calculated from the electrostatic interactions, as an acceptance criterium.
+%
+The free energy of proton transfer depends on the reference \pKa value, as obtained from our \pKa survey.
+{\color{purple} ASR: Add equation for this?}
+%
+The calculations will be performed using OpenMM~\autocite{Eastman2013a} and Yank~\autocite{Chodera2015a}.
+%
+The change of protonation states can be observed in ITC by performing replicate experiments using buffers of different ionization energies~\autocite{Baker1996a,Neeb2014a}.
+%
+This will lead to an enthalpic contribution/penalty to the binding affinity.
+%
+We will quantify the impact on errors in binding affinity from these experiments and compare them to computation.
 
 \subsubsection*{Expected results}
 The performance of constant-\pH alchemical binding free energy calculations will allow us to asses the prevalence and magnitude of the effect of protonation states on the binding of kinase inhibitors.
@@ -563,6 +588,9 @@ In the case that our computational estimates of the protonation state contributi
 For instance, the conformational states of the protein considered for our free energy calculations might need to be expanded.
 %
 We could use techniques such as Markov state models (MSM)~\autocite{Prinz2011a} to determine the important metastable states of kinase systems and use this knowledge to enhance our free energy calculations.
+%
+In the case that there is disagreement with experiment because of force field errors, we can perform experiments and simulations on systems where protonation state changes are not expected to occur, in order to evaluate the magnitude of this error.
+
 \subsection*{Aim 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.}
 \subsubsection*{Rationale}
 Weak binding and association of multiple ligands to proteins are ubiquitous interactions in biological and pharmaceutically relevant systems.
@@ -630,16 +658,14 @@ where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R)$ is the \te
  Q = 1 + K_1x + K_1K_2x^2 \dots \left(\prod\limits_{i=1}^{n} K_i\right) x^n = 1 + \sum\limits_{l=1}^n \left(\prod\limits_{i=1}^{l} K_l\right)x^l
 \end{align}
 
-
 \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
   \centering
-  \fbox{\includegraphics[width=0.4\textwidth]{figures/binding_sites.png}}
+  \fbox{\includegraphics[width=0.4\textwidth]{figures/binding_sites2.png}}
   \caption{\textbf{In the semi-grand canonical ensemble, we consider the association of 0 up to $N_\mathrm{max}$ ligands to a protein. }By using alchemical perturbations, they can be inserted without pushing the system away from equilibrium. We can calculate the free energy of associating additional ligands to the protein by using binding polynomials of the stoichiometric binding constants $K_i$. Figure adapted from \textcite{Klotz1997a}. }
   \label{figure:semigrand}
 \end{figure}
 
-\todo[inline,color=purple!40]{deficiencies in FBLD theory or in general? what are the deficiencies?}
 \todo[inline,color=purple!40]{explain semi-grand canonical}
 
 \begin{align}
@@ -653,6 +679,7 @@ K_{n+1} = \frac{[RL_{n+1}]}{[RL_n][L]} = e^{-(g_{n+1}-g_n)}
 Alchemical methods will allow us to insert new copies of ligands into our simulation without driving the system far away from equilibrium. 
 
 \subsubsection*{Subaim 3.2: Validate computational predictions by applying Bayesian model selection on ITC  experiments of HSA and a series of NSAIDS.}
+We wish to predict the outcome of experiments
 To provide validation of our computational results, we will perform ITC experiments on HSA.
 %
 Binding stoichiometry is not known a priori, yet if we want to deconvolute characteristics such as binding affinities for different sites, we need to model multiple binding sites with multiple affinities.
