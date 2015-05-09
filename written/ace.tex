@@ -173,16 +173,23 @@ Neglecting to correct for these contributions can severely undermine the ability
 \end{figure}
 
 \subsubsection*{Protonation state effects can be important in kinase inhibitor binding, but the scope of this problem is unknown.}
+Kinases are important signaling proteins, that have been implied in cancer for a long time~\autocite{Levinson1978a}.
+%
+They are a promising drug target, and many drugs have succesfully developed to inhibit kinases that are disregulated in cancer ~\autocite{Baselga2006a,Garber2006a,OHare2011a}.
+%
+Unfortunately, newly emerging mutations lead to resistance, meaning that the dr
+
+Imatinib (Gleevec) is a potent inhibitor of Abl kinase~\autocite{Druker2001a}, and has shown high efficacy in patients with chronic myeloid leukemia~\autocite{OBrien2003a}.
+%
+
+At physiological \pH, it has access to multiple protonation states (see \Cref{figure:imatinib-pKa})~\autocite{Szakacs2005a}.
+%
+Furthermore, from computation and experiment, there is evidence that there could be \pH dependent effects to the binding affinity~\autocite{Seeliger2007a,Lin2013a}.
+%
 The use of incorrect or inappropriate protonation states in modeling protein-ligand association can significantly degrade accuracy~\autocite{Polgar2005a,Wittayanarakul2008a}.
 %
 But what if there is not a single protonation state that contributes to the binding affinity?
 %
-Imatinib (Gleevec) is a potent inhibitor of Abl kinase~\autocite{Druker2001a}, and has shown high efficacy in patients with chronic myeloid leukemia~\autocite{OBrien2003a}.
-%
-At physiological \pH, it has access to multiple protonation states (see \Cref{figure:imatinib-pKa})~\autocite{Szakacs2005a}.
-%
-Furthermore, from computation and experiment, there is evidence that there could be \pH dependent effects to the binding affinity~\autocite{Seeliger2007a,Lin2013a}.
-
 With the exception of a few well-studied cases~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, 
 the ubiquity of protonation state changes and the magnitude of their contribution to binding affinities in protein-ligand association in general is completely unknown. 
 %
@@ -245,7 +252,6 @@ Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}.
 If experimental results are to be used to validate theoretical models, it is essential that one accurately estimates the uncertainty of the experiment. 
 %
 \textbf{Otherwise, it is impossible to tell whether experiment and theory differ from each other in a statistically significant way.}
-
 
 The ABRF-MIRG'2 study revealed the disturbing fact that the uncertainty of ITC experiments is underestimated by several orders of magnitude by conventional analysis methods~\autocite{Myszka2003a}.
 %
@@ -745,10 +751,6 @@ Estimation of the association constants in the binding polynomials may yield lar
 In order to improve the information gain, we can explore various ways of performing Bayesian experimental design.
 %
 This should allow us to decrease the uncertainty in the estimates.
-%
-HSA also binds large amounts of fatty acids.
-%
-In case 
 
 \section*{Conclusion}
 The aims of this proposal contribute to the limited set of tools available to deal with protein-ligand interactions in special, but not rare, cases where conventional tools provide no theoretical framework. Using Bayesian methodology will provide reliable uncertainty estimates on experimental data, which in turn will enable the distinction between theoretical model errors and experimental errors.
