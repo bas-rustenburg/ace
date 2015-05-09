@@ -749,7 +749,15 @@ The experiments will yield credible intervals for each of the terms in the bindi
 We can then try to confirm whether the free energy calculations conform to the experimental results.
 
 \subsubsection*{Pitfalls and alternatives}
-Estimation of the association constants in the binding polynomials may yield large uncertainties.
+We will need to keep close track of sampling issues in our free energy calculations.
+%
+It is possible that our simulations will spend most of their time sampling a single stoichiometry, if it is unfavorable to add more ligands.
+%
+We may need to employ some methods that drive the simulation to sample more alternative binding stoichiometries.
+%
+Otherwise, our estimates of the free energy of binding will be poorly converged.
+%
+Experimental estimation of the association constants in the binding polynomials may yield large uncertainties.
 %
 In order to improve the information gain, we can explore various ways of performing Bayesian experimental design.
 %
