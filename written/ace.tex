@@ -608,7 +608,7 @@ Additional verification using host-guest complexes where the host or guest exper
 \subsubsection*{Rationale}
 Weak binding and association of multiple ligands to proteins are ubiquitous interactions in biological and pharmaceutically relevant systems.
 %
-It is particularly common when using drug discovery approaches such as fragment-based ligand design, where concentrations are scaled up to detect weak binding signals, usually resulting in a multiple of associating fragments.
+It is particularly common when using drug discovery approaches such as fragment-based ligand design, where concentrations are scaled up to detect weak binding signals, usually resulting in multiple associating fragments.
 %
 Most available free energy calculation frameworks focus on 1:1 binding interactions, and are not suited for calculating free energies of an arbitrary number of ligands.
 %
@@ -634,6 +634,8 @@ Because of its ability to bind many small molecules, it is of great importance t
 Its high solubility makes it easy to reach the concentrations required for ITC experiments~\autocite{Jr.1995a}. 
 %
 Many of the compounds that bind to HSA are commercially available~\autocite{Zsila2011a}.
+%
+The NSAIDs selected by us for this study (\Cref{figure:hsa-compounds}) are commercially available in hydrate or soluble salt forms, making them suitable for ITC experiments as well.
 
 % \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
@@ -658,13 +660,18 @@ It is known to bind several drugs~\autocite{SJOeHOLM1979a,Bannwarth1996a,Sulkows
 \todo[inline]{Find affinities for molecules?}
 \end{figure} 
 
-\subsubsection*{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools to simulate NSAID binding to HSA.}
-Since current alchemical free energy calculation frameworks focus mostly on 1:1 association, we will need to extend this framework to incorporate multiple ligand binding to HSA. 
+\subsubsection*{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools to simulate multiple ligand binding.}
+Since current alchemical free energy calculation frameworks focus mostly on 1:1 association, we will need to extend this framework to incorporate multiple ligand binding. 
 %
 We will build upon the existing Yank framework~\autocite{Chodera2015a} for alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. 
 %
 Our extension will allow us to calculate the free energy of the different occupation states of a protein-multiligand complex using a ladder of 0, 1, $\dots$, $N_\mathrm{max}$ bound ligands.
 %
+As a first application of the framework we will study the binding of NSAIDS (\Cref{figure:hsa-compounds}) to HSA.
+%
+The compounds we have selected are known to bind to various sites on HSA~\autocite{Zsila2011a}, and are soluble enough to perform ITC experiments for validation.
+%
+
 In the semi-grand canonical ensemble (constant $\mu, N_R, P,T)$, the number of ligand molecules is allowed to vary between 0 and $N_{max}$ , and the number of receptor ($R$) molecules $N_R$ is fixed.
 %
 The pressure, $P$, and temperature, $T$, are also fixed. The free energy of observing $n$ ligand molecules is,
@@ -691,7 +698,7 @@ K_{n+1} = \frac{[RL_{n+1}]}{[RL_n][L]} = e^{-(g_{n+1}-g_n)}
 %
 This gives us an additional benefit of modeling weak association, where we can evaluate an energy for a number of ligands associating, even without a strongly defined binding site. 
 %
-From the estimated enthalpy and associaton constants we can simulate an ITC experiment, where we calculate the complex concentrations as a function of the receptor and ligand concentration, as heats $q_m$ is liberated with each injection $m$
+From the estimated enthalpy and association constants we can simulate an ITC experiment, where we calculate the complex concentrations as a function of the receptor and ligand concentration, as heats $q_m$ is liberated with each injection $m$
 %
 \begin{align}
  q_m^* = V \Delta H \left( [PL_n]_m - [PL_n]_{m-1} \right) + \Delta H_0 \quad, \label{equation:liberated-heat}
@@ -708,49 +715,63 @@ allowing us to establish a quantitative connection with ITC experiments.
 \end{figure}
 
 \subsubsection*{Subaim 3.2: Validate computational predictions by applying Bayesian model selection on ITC  experiments of HSA and a series of NSAIDS.}
-We can use the parameters obtained from the free energy calculations to simulate an ITC experiment.
+In order to validate the results obtained from free energy calculations, we will perform complementary ITC experiments on HSA. 
 %
-We then perform ITC experiments as a validation of our calculations.
+To design the ITC experiments, we can use the parameters obtained from the free energy calculations to simulate an ITC experiment.
 %
-Current ITC analysis tools are too limited in terms of their model descriptions.
+This will allow us to find an experimental setup that can provide us with maximal information on the different binding constants.
 %
-Origin, a conventional ITC analysis software package uses cooperativity parameters $n_i$ to describe multiple binding sites~\autocite{MicroCal2004a} up to a maximum of two.
+We will be extending our Bayesian ITC framework, so that we can perform an adequate analysis. 
 %
-This is too primitive to actually describe multiple binding events, and contains errors in concentrations.
+Current ITC analysis tools are too limited in terms of their model descriptions, nor do they provide accurate uncertainty estimates due to lack of error propagation.
 %
-SEDPHAT additionally uses terms describing ``incompetent fractions'' of experimental components~\autocite{Houtman2007a,Zhao2015b} and can deal with up to 3 sites.
+Tools like Origin~\autocite{MicroCal2004a} and NanoAnalyze~\autocite{NanoAnalyze2014a}, conventional ITC analysis software packages, uses cooperativity parameters $n_i$ to describe multiple binding sites up to a maximum of two.
 %
-We will extend our Bayesian analysis tools with the capacity to use binding polynomials (\Cref{equation:bindingpolynomial}) to estimate the binding affinity.
+This is too primitive to actually describe multiple binding events~\autocite{Klotz1997a}.
 %
-Using the predicted affinities and stoichiometry from alchemical free energy calculations, we can design ITC experiments that can provide maximal information on the actual associations. 
+Furthermore, errors in the concentrations of the reagent solutions are not propagated, directly influencing the value of the estimated stoichiometry.
 %
-At the same time, by applying correlated uncertainty estimates in the concentrations, it will be able to distinguish errors in the concentrations of the prepared solutions from changes in stoichiometry, unlike the simple Origin models.
+More advanced tools such as SEDPHAT additionally uses terms describing ``incompetent fractions'' of experimental components~\autocite{Houtman2007a,Zhao2015b} and can deal with up to 3 sites.
 %
-By sampling the correlated uncertainty, we improve over fits as provided by SEDPHAT, that contain more parameters than Origin models, but do not properly account for correlated uncertainties.
+Unlike a Bayesian analysis, it does not propagate errors accurately and just provides a ``fudge factor'' to improve the quality of the fit.
+%
+We will extend our Bayesian analysis tools with the capacity to use binding polynomials (\Cref{equation:bindingpolynomial}) to estimate the binding affinity and provide accurate uncertainty estimates.
+%
+It will be able to propagate errors in the reagent concentrations of the prepared solutions, unlike the Non-Bayesian models.
+%
+Additionally, the binding polynomial will not be limited to necessarily 2, or 3 sites. 
+%
+It can be extended to incorporate as many ligands as needed.
+%
+
 
 \subsubsection*{Expected results}
-The newly developed free energy calculation framework will allow us to estimate the free energy of associating an arbitrary numner of ligands to a protein.
+The newly developed free energy calculation framework will allow us to estimate the free energy of associating an arbitrary number of ligands to a protein.
 %
 From these free energies, we can estimate stoichiometric binding constants, which will allow us to calculate complex concentrations for a given receptor and ligand concentration.
 %
-This information can be used to simulate ITC experiments of multiple ligands binding to HSA at the same time, binding to multiple sites.
+Our method will be applied on HSA, a pharmacologically relevant target, to predict the binding affinity of a series of NSAIDs. 
 %
-Our Bayesian ITC analysis methodology will enable us to experimentally measure binding affinities to HSA as a means of validation.
+The information obtained information can then be used to simulate ITC experiments of multiple ligands binding to HSA at the same time, binding to multiple sites.
+%
+If these estimates are correct, this will enable the design of experiments that provide more information on binding by reducing the uncertainty.
+%
+We can also use our Bayesian ITC analysis methodology to experimentally measure binding affinities to HSA as a means of validation of the calculations.
 %
 The experiments will yield credible intervals for each of the terms in the binding polynomial, with increasing uncertainty for the higher order terms.
 %
-We can then try to confirm whether the free energy calculations conform to the experimental results.
+We can estimate whether experimental results can confirm the predictions within the experimental uncertainty.
 
 \subsubsection*{Pitfalls and alternatives}
-We will need to keep close track of sampling issues in our free energy calculations.
+Our simulations may suffer from sampling issues in our free energy calculations.
 %
 It is possible that our simulations will spend most of their time sampling a single stoichiometry, if it is unfavorable to add more ligands.
 %
-We may need to employ some methods that drive the simulation to sample more alternative binding stoichiometries.
+We may need to employ some methods that drive the simulation to sample more states of the system.
 %
 Otherwise, our estimates of the free energy of binding will be poorly converged.
 %
-Experimental estimation of the association constants in the binding polynomials may yield large uncertainties.
+Higher order binding terms in the polynomial will have increased uncertainty, which will limit our ability to estimate binding free energies of accurately.
 %
 In order to improve the information gain, we can explore various ways of performing Bayesian experimental design.
 %
