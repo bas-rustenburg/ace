@@ -205,8 +205,6 @@ Modeling the system with a single protonation state can in either case lead to l
 As some kinase inhibitors bind with picomolar affinity to their target (corresponding to 28 $k_BT$), a 500-fold affinity loss (6 $k_BT$ , equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency (\Cref{figure:pka-kinase}).
 %
 This suggests that a majority of these compounds could access multiple protonation states, while retaining a high binding affinity.
-
-% {\color{red}[JDC: This section is just a jumble of unrelated statements that have no real logical bearing on each other.  After stating that kinase inhibitors can tolerate a 2.6 log unit shift in p$K_a$, you should say that the predicted p$K_a$ of FDA-approved kinase inhibitors suggests that a majority of these could therefore access multiple protonation states (and reference the figure, which I don't think you reference yet).  Then, you can say that neglecting the potential for sampling an alternative protonation state would lead to large errors in predicted binding affinities.]}
 %
 Neglecting the potential of sampling alternate protonation states would thus lead to large errors in predicted binding affinities.
 %
@@ -236,13 +234,6 @@ Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}.
 (b) Top: The individual sites of protonation of imatinib accessible with a penalty of 6 $k_BT$ under physiological conditions, highlighted in red~\autocite{Szakacs2005a}. Bottom: fraction of species of imatinib (Gleevec) measured by titration and NMR~\autocite{Szakacs2005a}, with the red region denoting states accessible with a penalty of 6 $k_BT$ under physiological conditions.}
 \label{figure:kinase-pKa}
 \end{figure}
-
-
-
-% JDC: See my paragraph on this in the Significance section of the protonation state proposal.  There is also experimental evidence and multiple computational papers (Simonson papers too).
-
-% JDC: You're not quite getting across the message on why this is important.  How big are the effects if you neglect this? Why is this even important?  Maybe you want to start with a section on why computer modeling or free energy calculations is important, to motivate the question of why we should care about making errors in these calculations due to incorrect protonation states?
-
 
 
 \section*{Research Strategy - Innovation}
@@ -477,14 +468,13 @@ Our preliminary investigations suggest that the same effects will be relevant to
 %
 Kinases are important signaling proteins, and for a long time its been known that disregulation of some kinases can lead to cancer~\autocite{Levinson1978a,Vivanco2002a}.
 %
-They are a promising drug target, and many drugs have succesfully developed to inhibit kinases that are disregulated in cancer ~\autocite{Baselga2006a,Garber2006a,OHare2011a}.
+They are a promising drug target, and many drugs have succesfully been developed to inhibit kinases that are disregulated in cancer ~\autocite{Baselga2006a,Garber2006a,OHare2011a}.
 %
 Kinase inhibitors typically have high potency, so protonation state effects may mostly go unnoticed in standard experimental assays.
 %
 The usual approach in modeling ignores these effects and assumes a single protonation state for an entire system.
 %
-However, they form a potential pitfall when modeling, since these unknown contributions potentially lead to effects as large as 2.6 log units in the binding affinity (\Cref{figure:pka-kinase}).
-{\color{red}[JDC: The 2.6 log unit number was not an attempt to guess how much error neglect of protonation states could lead to.  It was just an attempt to determine what size pKa shift could be tolerated while still maintaining sub-nM potency.]}
+However, they form a potential pitfall when modeling, since these unknown contributions potentially lead to large errors in the binding affinity (\Cref{figure:pka-kinase}).
 
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
 the ubiquity and magnitude of protonation state effects in ligand recognition in general is unknown.
@@ -509,10 +499,20 @@ We will first benchmark these tools using experimental kinase inhibitor \pKa dat
 %
 Once a suitable tool has been identified, we will use it to generate reference \pKas for the constant-\pH free energy calculations, combining the two into a useful framework for calculating the free energy of binding.
 %
-We will validate the simulation results by performing complimentary ITC experiments in buffers with varying ionization enthalpy, from which we can also determine the thermodynamic contribution of protonation state effects on the total binding free energy~\autocite{Baker1996a,Neeb2014a}.
+In a constant-\pH simulation, the distribution of protons can change in the system at a constant chemical potential of protons $\mu_{H^+}$,
+\begin{align}
+ \text{p}\mathrm{H} = -\log_{10}\left( a_{\mathrm{H}^+} \right) = -\log_{10}\left( \exp\left(\frac{\mu_{H^+} -\mu_{H^+}^\ominus}{RT}\right)\right) \approx -\log_{10}\left( [\mathrm{H}^+] \right) 
+\end{align}
+, where $a_{\mathrm{H}^+}$ is the activity coefficient of the protons, the superscript $\ominus$ indicates a thermodynamic standard state, $R$ is the molar gas constant and $T$ is the absolute temperature.
 %
-These experiments allow for the measurement of net-exchange of protons between buffer and kinase-inhibitor complex, so that we can quantify the net contribution to the binding free energy. 
-{\color{red}[JDC: The last two sentences duplicate the previous paragraph.]}
+Protonation and deprotonation events are sampled using a Monte Carlo (MC) method, using the free energy of proton transfer, calculated from the electrostatic interactions, as an acceptance criterium.
+%
+The free energy of proton transfer depends on the reference \pKa value, as obtained from our \pKa survey, which is why we need an accurate estimate for these reference values to quantify contributions from our simulations.
+{\color{purple} ASR: Add equation for this?}
+%
+
+
+
 
 \subsubsection*{Subaim 2.1: Benchmark small molecule \pKa prediction tools against experimental data for kinase inhibitors.}
 The constant-\pH simulations can only capture relevant protonation if we have accurate \pKa data for the inhibitors.
@@ -558,34 +558,16 @@ To quantify the magnitude of these effects---as well as determine their origin--
 {\color{purple}(Benoit Roux has just submitted a paper on this for explicit solvent too. ASR: what reference?)}
 %
 By allowing the dynamic protonation states for kinase, inhibitor, both, and neither, we will be able to both quantify the magnitude of dynamic protonation state effects and determine the primary origin of these effects.
+%
+The calculations will be performed using OpenMM~\autocite{Eastman2013a} and Yank~\autocite{Chodera2015a}.
 
 For systems in which the kinase can be expressed bacteria and the alchemical free energy calculations with dynamic protonation states indicate there will be a net change in charge for kinase and inhibitor upon binding, we will use ITC experiments that are able to dissect out the binding affinities of different protonation species.
 %
-By performing ITC experiments at the same pH using buffers with different ionization enthalpies, one is able to dissect the contribution of each protonation state to the binding affinity~\autocite{Baker1996a,Neeb2014a}.
-%
 Changes in protonation states will lead to an enthalpic contribution/penalty to the binding affinity.
 %
-We can separate out this contribution in experiment by performing replicate ITC experiments using buffers of different ionization energies~\autocite{Baker1996a,Neeb2014a}.
+By performing ITC experiments at the same pH using buffers with different ionization enthalpies, one is able to dissect the contribution of each protonation state to the binding affinity~\autocite{Baker1996a,Neeb2014a}.
 %
 To analyze these experiments, we will extend our Bayesian ITC methods to model the different experiments together to provide correlated uncertainty estimates.
-
-
-{\color{red}[JDC: Not sure where this bit below is supposed to go.  Maybe in Subaim 2.2, or in the intro above the subaims?]}
-
-In a constant-\pH simulation, the distribution of protons can change in the system at a constant chemical potential of protons $\mu_{H^+}$,
-\begin{align}
- \text{p}\mathrm{H} = -\log_{10}\left( a_{\mathrm{H}^+} \right) = -\log_{10}\left( \exp\left(\frac{\mu_{H^+} -\mu_{H^+}^\ominus}{RT}\right)\right) \approx -\log_{10}\left( [\mathrm{H}^+] \right) 
-\end{align}
-, where $a_{\mathrm{H}^+}$ is the activity coefficient of the protons, the superscript $\ominus$ indicates a thermodynamic standard state, $R$ is the molar gas constant and $T$ is the absolute temperature.
-%
-Protonation and deprotonation events are sampled using a Monte Carlo (MC) method, using the free energy of proton transfer, calculated from the electrostatic interactions, as an acceptance criterium.
-%
-The free energy of proton transfer depends on the reference \pKa value, as obtained from our \pKa survey, which is why we need an accurate estimate for these reference values to quantify contributions from our simulations.
-{\color{purple} ASR: Add equation for this?}
-%
-The calculations will be performed using OpenMM~\autocite{Eastman2013a} and Yank~\autocite{Chodera2015a}.
-%
-
 
 \subsubsection*{Expected results}
 Our initial survey with MCCE will allow us to estimate the prevalence of protonation state effects on binding of small molecule kinase inhibitors. 
