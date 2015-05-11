@@ -237,6 +237,34 @@ Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}.
 \end{figure}
 
 
+\subsubsection*{Pharmacokinetic studies and fragment based drug design approaches would benefit from multiple ligand weak association models.}
+Human serum albumin (HSA) is an important serum protein that controls the bioavailability of small molecules by absorbing them into the  bloodstream~\autocite{Smith1985a,Jr.1995a}.
+%
+It essential to understand how drugs interact with this protein, if one wants to predict pharmacokinetics~\autocite{Smith1985a,Bannwarth1996a,Kragh-Hansen2002a,Sulkowska2002a,Zsila2011a}.
+%
+One aspect that makes HSA hard to model is the fact that it binds multiple ligands simultaneously~\cite{He1992a,Jr.1995a,Curry1998a,Ghuman2005a,Pal2013a}.
+%
+Most experimental tools and theoretical models focus on 1:1 association of proteins and ligands, but it is important to extend these tools if one wishes to accurately describe binding of multiple ligands to HSA.
+
+Besides HSA, the association of multiple ligands is also commonly observed in fragment based drug discovery (FBDD). 
+%
+The approach is frequently applied and has impacted the way the pharmaceutical industry and academia alike approach small molecule design~\autocite{Hajduk2007a}.
+%
+The reason why multiple association models are needed is because of the high concentrations necessary to obtain a signal.
+%
+Most fragments interact weakly with a protein target. 
+%
+Fragment concentrations are scaled up to increase the amount of signal, however at high concentrations one often observes multiple fragments binding to the protein.
+%
+To rationalize experiments FBDD approaches cannot benefit from modeling approaches  that only describe 1:1 interactions.
+%
+The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions.
+%
+For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding~\autocite{Gilson1997a}.
+%
+A framework that can describe the interaction of low affinity ligands that associate multiply would therefore not be relevant just for HSA, but would also open up modeling opportunities in the field of fragment based drug discovery.
+
+
 \section*{Research Strategy - Innovation}
 \instr{Explain how your proposal differs from what others have tried.}
 \subsubsection*{Reliable uncertainty estimates of isothermal titration calorimetry results by using Bayesian inference.}
@@ -289,8 +317,14 @@ For the first time these models will be compared to each other by simulating the
 We can determine whether these methods provide consistent corrections, and at the same time the experimental dataset allows the assessment of quantitative agreement with experiment.
 
 \subsubsection*{Estimating free energies of multiple ligands using semi-grand canonical ensemble free energy calculations.}
-Fragment based drug discovery (FBDD) screens a small library of fragments against a biomolecular target, where weak hits are combined to develop lead compounds.
+Association of multiple ligands to a protein is an important, but poorly studied effect, common in fragment based drug discovery (FBDD).
 %
+The typical FBDD approach uses high concentrations in order to increase the signal that is experimentally observed. 
+%
+This is necessary because most fragment interactions with proteins are weak. 
+%
+High fragment concentrations often lead to multiple fragments binding to a protein at once. 
+
 The approach is frequently applied and has impacted the way the pharmaceutical industry and academia alike approach small molecule design~\autocite{Hajduk2007a}.
 %
 The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions.
@@ -299,11 +333,11 @@ For instance, because of the absence of a strong signal that two compounds are `
 %
 Often, because of the high concentrations necessary to obtain a signal, multiple fragments associate with a target at a time.
 
-Unfortunately, most effort in modeling frameworks has focussed on simple 1:1 interactions. 
+Unfortunately, most effort in modeling frameworks has focused on simple 1:1 interactions. 
 %
 \textbf{Currently, there is no available framework to perform alchemical free energy calculations that allowing for an arbitrary amount ligands to associate with a single protein.}
 %
-We propose to extend the available toolset of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to multiple sites.
+We propose to extend the available tool set of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to multiple sites.
 %
 As opposed to simulating a single ligand at multiple sites, this way we can correctly take into account cooperativity in binding when multiple ligands associate with a single protein.
 
