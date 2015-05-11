@@ -162,7 +162,8 @@ These terms do not perturb the weights in a normal simulation, but cause substan
 The estimated binding free energy as such needs to be corrected to eliminate these effects.
 %
 Neglecting to correct for these contributions can severely undermine the ability of alchemical free energy calculations to reproduce experimental binding affinities~\autocite{Rocklin2013b,Muddana2014a}.
-
+%
+These corrections may also prove to be necessary when performing dynamical protonation state calculations, where both the number of ligand and protein protons (and hence the total system charge) may fluctuate during the simulation.
 
 \thisfloatsetup{capposition=beside,capbesideposition={center,right}}
 \begin{figure}[H]
@@ -275,20 +276,19 @@ capbesideposition={center,right}}
 \end{figure}
 
 \subsubsection*{Assessing proposed charge corrections in alchemical free energy calculations of charged ligands.}
-Alchemical free energy calculations involving charged ligands in explicit solvent include artifacts due to the treatment of the system as an infinite periodic box~\autocite{Rocklin2013b,Muddana2014a}. 
+Alchemical free energy calculations involving charged ligands in explicit solvent suffer from artifacts due to the treatment of the system as an infinite periodic box, and approximations in the electrostatic models~\autocite{Rocklin2013b,Muddana2014a}. 
 %
 Several means of correcting for these artifacts have been suggested~\autocite{Reif2013a,Rocklin2013a,Lin2014a}.
 %
 \textbf{A quantitative comparison of these methodologies to each other and to experiment has not yet been performed, and the correctness of any of these available charge correction methods has not been established.}
 %
-By collecting an experimental dataset with small and quantified uncertainty and comparing these methods to each other, we can determine whether these methods provide consistent corrections, as well as which, if any, methods correct for all experimental artifacts and allow quantitative agreement with experiment.
+Our work will contribute substantially to the understanding of these charge corrections by providing an experimental dataset with small and unquantified uncertainty, against which models can be validated.
 %
-These corrections may also prove to be necessary when performing constant-\pH calculations, where both ligand and protein charge (and hence the total system charge) may fluctuate during the simulaton.
-
-\todo[inline]{How common are charged ligands? How does it affect calculations when we don't correct them?}
-
- 
-
+For the first time these models will be compared to each other by simulating the same system.
+%
+We can determine whether these methods provide consistent corrections. 
+%
+At the same time, the experimental dataset allows the assessment of quantitative agreement with experiment.
 
 \subsubsection*{Estimating free energies of multiple ligands using semi-grand canonical ensemble free energy calculations.}
 Fragment based drug discovery (FBDD) screens a small library of fragments against a biomolecular target, where weak hits are combined to develop lead compounds.
