@@ -144,13 +144,13 @@ There is a great need for validation and extension of available methods for trea
 \subsubsection*{Alchemical free energy calculations involving charged ligands in explicit solvent require charge corrections.}
 In order to apply alchemical free energy calculations to charged ligands, one needs to eliminate artifacts introduced into the calculation arising from the modeling of bulk solvent behavior using a small periodic system.
 %
-In a physical system, when a ligand dissociates, the interaction never actually disappears completely, though the interaction between a ligand and protein is weakened to the extend that it there is no measurable correlation between the interacting molecules.
+In a physical system, when a ligand dissociates, the interaction never actually disappears completely, though the interaction between a ligand and protein is weakened to the extent that it there is no measurable correlation between the interacting molecules.
 %
 The elimination of a charge from a system is therefore not a physical process, and is merely an artifact of using artificial infinite systems to approximate a macroscopic system of bulk liquid.
 %
 Bulk liquids are approximated in simulation, either by using periodic boundary conditions, or an implicit solvent.
 %
-Often, to further reduce computation cost, we introduce truncated potentials and non-Coulombic electrostatics (such as particle mesh ewald (PME)~\autocite{Essmann1995a} and reaction field (RF)~\autocite{Tironi1995a} potentials). 
+Often, to further reduce computation cost, we introduce truncated potentials and non-Coulombic electrostatics (such as particle mesh Ewald [PME]~\autocite{Essmann1995a} and reaction field [RF]~\autocite{Tironi1995a} potentials). 
 %
 These unphysical treatments bring with them several electrostatic interaction terms that are added on top of the physical binding free energy.
 %
@@ -166,16 +166,16 @@ These corrections may also prove to be necessary when performing dynamical proto
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.4\textwidth]{figures/reif_oostenbrink.png}
-    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  It is common practice to truncate Coulomb interactions beyond a certain range to reduce calculation costs and use methods such as PME~\autocite{Essmann1995a} or reaction field~\autocite{Tironi1995a} solvation models to compensate for the loss of interaction beyond the cutoff. When there is a net charge change, this leads to errors in treatment of interaction between ligand and solvent molecules beyond cutoffs and interactions with periodic copies of the system (blue arrows). Likewise, interactions between macromolecule and ligand need to be corrected (red arrows). Lastly, self interacting terms may also introduce errors when charges are removed (green arrows). Figure adapted from ~\textcite{Reif2013a}.}
+    \caption{\textbf{Graphic illustration of contributions to binding free energy introduced when changing the net charge of the system.}  It is common practice to truncate Coulomb interactions beyond a certain range to reduce calculation costs and use methods such as PME~\autocite{Essmann1995a} or reaction field~\autocite{Tironi1995a} solvation models to compensate for the loss of interaction beyond the cutoff. When there is a net charge change, this leads to errors in treatment of interaction between ligand and solvent molecules beyond cutoffs and interactions with periodic copies of the system (blue arrows). Likewise, interactions between macromolecule and ligand need to be corrected (red arrows). Lastly, self interacting terms may also introduce errors when charges are removed (green arrows). Figure adapted from \textcite{Reif2013a}.}
   \label{figure:chargecorrections}
 \end{figure}
 
 \subsubsection*{Protonation state effects can be important in kinase inhibitor binding, but the scope of this problem is unknown.}
 Kinases are important signaling proteins, and for a long time its been known that disregulation of some kinases can lead to cancer~\autocite{Levinson1978a,Vivanco2002a}.
 %
-They are a promising drug target, and many drugs have succesfully developed to inhibit kinases that are disregulated in cancer ~\autocite{Baselga2006a,Garber2006a,OHare2011a}.
+They are a promising drug target, and many drugs have succesfully developed to inhibit kinases that are disregulated in cancer~\autocite{Baselga2006a,Garber2006a,OHare2011a}.
 %
-Unfortunately, newly emerging mutations lead to resistance, meaning that the drug development effort never stops~\autocite{Shah2004a,Pao2005a,Garber2006a,Zhang2009a}.
+Unfortunately, intrinsic or induced mutations can lead to resistance, meaning there is a continued need for drugs to overcome resistance~\autocite{Shah2004a,Pao2005a,Garber2006a,Zhang2009a}.
 
 Imatinib (Gleevec) is a potent inhibitor of Abl kinase~\autocite{Druker2001a}, and has shown high efficacy in patients with chronic myeloid leukemia~\autocite{OBrien2003a}.
 %
@@ -200,9 +200,9 @@ We expect there are two separate effects that could be relevant:
 %
 Modeling the system with a single protonation state can in either case lead to large errors.
 %
-As some kinase inhibitors bind with picomolar affinity to their target (corresponding to 28 $k_BT$), a 500-fold affinity loss (6 $k_BT$ , equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency (\Cref{figure:pka-kinase}).
+As some kinase inhibitors bind with picomolar affinity to their target (corresponding to 28 $k_BT$), a 500-fold affinity loss (6 $k_BT$, equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency (\Cref{figure:pka-kinase}).
 %
-This suggests that a majority of these compounds could access multiple protonation states, while retaining a high binding affinity.
+This suggests that a majority of these compounds could access multiple protonation states while still retaining a high binding affinity.
 %
 Neglecting the potential of sampling alternate protonation states would thus lead to large errors in predicted binding affinities.
 %
@@ -237,7 +237,7 @@ Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}.
 \subsubsection*{Multiple (weak) ligand binding models are required for studies of HSA and fragment based drug design.}
 Most experimental tools and theoretical frameworks focus on 1:1 association of proteins and ligands, but these tools must be extended if one wishes to accurately describe binding of multiple ligands to human serum albumin (HSA), or the weak association of multiple fragments with a protein.
 %
-\textbf{This proposal tends to deficiencies in existing frameworks by dealing with the association of multiple ligands, as well as weak association, enabling accurate modeling of human serum albumin and protein-fragment binding.}
+\textbf{This proposal addresses deficiencies in existing frameworks by dealing with the association of multiple ligands, as well as weak association, enabling accurate modeling of human serum albumin and protein-fragment binding.}
 
 Because HSA controls the bioavailability of small molecules by absorbing them into the bloodstream~\autocite{Smith1985a,Jr.1995a}, it essential to understand how drugs interact with it if one wants to predict pharmacokinetics~\autocite{Smith1985a,Bannwarth1996a,Kragh-Hansen2002a,Sulkowska2002a,Zsila2011a}.
 %
@@ -287,7 +287,7 @@ capbesideposition={center,right}}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.49\textwidth]{figures/cbs_ca_II.PNG}
-	\caption{Binding measurements from the ABRF-MIRG'2 study that considered binding of CBS to carbonic anhydrase using \textbf{ITC as performed by 14 labs shows individual error estimates that are orders of magnitude under the actual error.} A: Predicted stoichiometry of binding. B: Association constant $K_\mathrm{A}$. C: enthalpic contribution to binding. D: Measured extinction coefficient of ligand CBS, as reported by the 14 participants~\autocite{Myszka2003a}. Error bars indicate the error as reported by the individual labs that were part of the study. The gray region indicates the uncertainty when taking into account all of the measurements. As can be seen, some labs underestimate the overall error by over 2 orders of magnitude. The extinction coefficient, as displayed in panel D is directly proportional to the concentration, revealing that concentration errors of around 10 percent are likely not propagated correctly into the analysis.}
+	\caption{Binding measurements of CBS to bovine carbonic anhydrase II from the ABRF-MIRG'2 study. \textbf{Independent ITC as performed by 14 labs shows individual error estimates are orders of magnitude smaller than actual experimental variation.} A: Predicted stoichiometry of binding. B: Association constant $K_\mathrm{A}$. C: enthalpic contribution to binding. D: Measured extinction coefficient of ligand CBS, as reported by the 14 participants~\autocite{Myszka2003a}. Error bars indicate the error as reported by the individual labs that were part of the study. The gray region indicates the uncertainty when taking into account all of the measurements. As can be seen, some labs underestimate the overall error by over 2 orders of magnitude. The extinction coefficient, as displayed in panel D is directly proportional to the concentration, revealing that concentration errors of around 10 percent are likely not propagated correctly into the analysis.}
 	\label{figure:abrf-mirg2}	
 \end{figure}
 
@@ -309,7 +309,7 @@ Imatinib, a potent inhibitor of Abl kinase~\autocite{Druker2001a}, has access to
 %
 The magnitude of these contributions still remains to be elucidated, and preliminary data (\Cref{figure:pka-kinase}) suggests that many other kinase inhibitors have multiple accessible protonation states at physiological \pH.
 %
-\textbf{This work will be the first attempt to identify and quantify these effects for known kinase inhibitors, both experimentally and computationally.}
+\textbf{This work will be the first attempt to comprehensively identify and quantify these effects for known kinase inhibitors, both experimentally and computationally.}
 %
 Some well studied model systems have shown that protonation state changes can contribute significantly to ligand binding affinity ~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, yet contribution of protonation state effects to binding affinities in protein-ligand association in general is completely unknown. 
 %
@@ -330,7 +330,7 @@ It also provides a solution for some of the challenges associated with modeling 
 %
 The alchemical framework that we suggest handles the association of weak ligands by sampling the overall free energy of association as a function of the number of ligands bound, without focusing on individual binding sites.
 %
-The free energy of association can be derived from semi-grand canonical ensemble theory~\autocite{Dill2010a}.
+The model for multiple ligand association can be derived from semi-grand canonical ensemble theory~\autocite{Dill2010a}.
 %
 The semi-grand canonical ensemble also allows for the direct, quantitative connection between alchemical free energy calculations and ITC experiments.
 %
