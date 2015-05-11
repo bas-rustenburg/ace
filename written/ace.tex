@@ -654,15 +654,15 @@ Additional verification using host-guest complexes where the host or guest exper
 \subsubsection*{Rationale}
 Weak binding and association of multiple ligands to proteins are ubiquitous interactions in biological and pharmaceutically relevant systems.
 %
-It is particularly common when using drug discovery approaches such as fragment-based ligand design, where concentrations are scaled up to detect weak binding signals, usually resulting in multiple associating fragments.
+It is particularly common when using drug discovery approaches such as fragment-based ligand design, where concentrations are scaled up to detect weak binding signals, often resulting in multiple associating fragments.
 %
 Most available free energy calculation frameworks focus on 1:1 binding interactions, and are not suited for calculating free energies of an arbitrary number of ligands.
 %
-\textbf{We will overcome deficiencies in current frameworks with a new framework that can provide predictions for consecutive ligands binding to a single macromolecule.}
+\textbf{We will overcome deficiencies in current frameworks with a new framework that can provide predictions for ligands binding multiple times to a single macromolecule.}
 %
-Our proposed framework will create an alchemical ladder from 0$\dots N_\mathrm{max}$ ligands, and can provide absolute binding free energies by using a semi-grand canonical ensemble methodology~\autocite{Kofke1988a,Kofke1999a,Lynch2000a}.
+Our proposed framework will create an alchemical ladder from 0$\dots N_\mathrm{max}$ ligands, and can provide a description of binding by using a semi-grand canonical ensemble methodology~\autocite{Kofke1988a,Kofke1999a,Lynch2000a}.
 %
-We can establish a quantitative connection between the alchemical free energy calculations, and ITC experiments of multiple association.
+We can establish a quantitative connection between these semi-grand canonical alchemical free energy calculations and ITC experiments on these systems.
 %
 The parameters obtained from our alchemical free energy calculations will allow us to simulate ITC experiments directly.
 %
@@ -705,7 +705,7 @@ The NSAIDs selected by us for this study (\Cref{figure:hsa-compounds}) are comme
 \todo[inline]{Find affinities for molecules?}
 \end{figure} 
 
-\subsubsection*{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools to simulate multiple ligand binding.}
+\subsubsection*{Subaim 3.1: Extend alchemical free energy calculations to simulate multiple ligand binding.}
 Since current alchemical free energy calculation frameworks focus mostly on 1:1 association, we will need to extend available frameworks to incorporate multiple ligand binding. 
 %
 We will build upon the existing Yank framework~\autocite{Chodera2015a} for alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. 
@@ -719,24 +719,25 @@ The compounds we have selected are known to bind to multiple sites on HSA~\autoc
 
 To calculate the free energy of binding for multiple ligands, we employ semi-grand canonical ensemble theory.
 %
-In the semi-grand canonical ensemble (constant $\mu, N_R, P,T)$, the number of ligand molecules is allowed to vary between 0 and $N_{max}$ , and the number of receptor ($R$) molecules $N_R$ is fixed.
+In the semi-grand canonical ensemble (constant $\mu, N_R, p, T)$, the number of ligand molecules is allowed to vary between 0 and $N_{max}$ , and the number of receptor ($R$) molecules $N_R$ is fixed.
 %
-The pressure, $P$, and temperature, $T$, are also fixed. The free energy of observing $n$ ligand molecules is,
+The pressure, $p$, and temperature, $T$, are also fixed. The free energy of observing $n$ ligand molecules is,
 \begin{align}
  g_n = \ln \int \dif x_1 \dots \dif x_n \dif x_R \, e^{-u_n(x_1,\dots,x_n)} \quad,
 \end{align}
 %
-where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R)$ is the \textit{reduced} potential energy, based on the coordinates of $n$ ligand molecules and the receptor. Similarly, we can also derive the enthalpy associated with binding of $n$ ligands, $h_n$.
+where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R) + \beta p V(x)$ is the \textit{reduced} potential energy, based on the coordinates of $n$ ligand molecules and the receptor, and $V(x)$ is the instantaneous volume of the simulation cell. Similarly, we can also derive the enthalpy associated with binding of $n$ ligands, $h_n$.
 
 By knowing the free energies of each occupation state, we can estimate the bound concentrations for a given concentration of receptor $R$ and ligand $L$.
 %
 The term in the logarithm can be substituted by what is known as the binding polynomial,
 %
 \begin{align}
- Q = 1 + K_1x + K_1K_2x^2 \dots \left(\prod\limits_{i=1}^{n} K_i\right) x^n = 1 + \sum\limits_{l=1}^n \left(\prod\limits_{i=1}^{l} K_l\right)x^l \quad,
+ Q = 1 + K_1x + K_1K_2x^2 + \cdots + \left(\prod\limits_{i=1}^{n} K_i\right) x^n = 1 + \sum\limits_{l=1}^n \left(\prod\limits_{i=1}^{l} K_l\right)x^l \quad,
  \label{equation:bindingpolynomial}
 \end{align}
 which is equivalent to the partition function of the system~\autocite{Dill2010a}.
+{\color{red}[JDC: What is $x$ and $Q$ here?]}
 
 In this equation, $K_n$ are the stoichiometric association constants, not site constants (see also \Cref{figure:semi-grand}) meaning we do not define a specific site.
 %
