@@ -474,7 +474,7 @@ Kinase inhibitors typically have high potency, so protonation state effects may 
 %
 The usual approach in modeling ignores these effects and assumes a single protonation state for an entire system.
 %
-However, they form a potential pitfall when modeling, since these unknown contributions potentially lead to large errors in the binding affinity (\Cref{figure:pka-kinase}).
+However, they form a potential pitfall when modeling, since these unknown contributions potentially lead to large errors in the binding affinity.
 
 While detailed biophysical studies of a few specific model systems have demonstrated that these effects can contribute several kcal/mol in binding affinity~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
 the ubiquity and magnitude of protonation state effects in ligand recognition in general is unknown.
@@ -488,34 +488,20 @@ To identify whether protonation state changes may have an effect on binding in t
 From the populations of protonation states sampled by MCCE, we can predict which kinase-inhibitor combinations are likely to sample multiple protonation states of importance or if large population shifts are observed upon binding.
 %
 For systems where MCCE simulations suggest significant involvement of protonation state effects in binding, we will investigate these further using detailed alchemical free energy calculations into which we implement a dynamic protonation state sampling scheme~\autocite{Mongan2004a,Stern2007a,Nilmeier2011a}.
+%
 For those systems where detailed free energy calculations show kinase and ligand experience a net change in charge and for which kinase catalytic domains can be expressed in bacteria, we will use isothermal titration calorimetry (ITC) experiments~\autocite{Baker1996a,Neeb2014a} to experimentally verify and quantify the contributions of protonation state effects to binding.
 %
 
-Both MCCE and the alchemical constant-\pH calculations require that we know the \pKa of titratable sites in our small molecules. 
+Both MCCE and the dynamic protonation alchemical free energy calculations require that we know the \pKa of titratable sites in our small molecules. 
 %
 While a number of tools exist to predict these, their accuracy for kinase inhibitors is uncertain.
 %
 We will first benchmark these tools using experimental kinase inhibitor \pKa data for FDA-approved kinase inhibitors.
 %
 Once a suitable tool has been identified, we will use it to generate reference \pKas for the constant-\pH free energy calculations, combining the two into a useful framework for calculating the free energy of binding.
-%
-In a constant-\pH simulation, the distribution of protons can change in the system at a constant chemical potential of protons $\mu_{H^+}$,
-\begin{align}
- \text{p}\mathrm{H} = -\log_{10}\left( a_{\mathrm{H}^+} \right) = -\log_{10}\left( \exp\left(\frac{\mu_{H^+} -\mu_{H^+}^\ominus}{RT}\right)\right) \approx -\log_{10}\left( [\mathrm{H}^+] \right) 
-\end{align}
-, where $a_{\mathrm{H}^+}$ is the activity coefficient of the protons, the superscript $\ominus$ indicates a thermodynamic standard state, $R$ is the molar gas constant and $T$ is the absolute temperature.
-%
-Protonation and deprotonation events are sampled using a Monte Carlo (MC) method, using the free energy of proton transfer, calculated from the electrostatic interactions, as an acceptance criterium.
-%
-The free energy of proton transfer depends on the reference \pKa value, as obtained from our \pKa survey, which is why we need an accurate estimate for these reference values to quantify contributions from our simulations.
-{\color{purple} ASR: Add equation for this?}
-%
-
-
-
 
 \subsubsection*{Subaim 2.1: Benchmark small molecule \pKa prediction tools against experimental data for kinase inhibitors.}
-The constant-\pH simulations can only capture relevant protonation if we have accurate \pKa data for the inhibitors.
+The dynamic protonation state simulations can only capture relevant protonation if we have accurate \pKa data for the inhibitors.
 %
 To identify reliable tools, we will benchmark existing \pKa prediction tools using \pKa data obtained for a series of kinase inhibitors using a Sirius T3 instrument.
 %
@@ -533,7 +519,7 @@ The descriptors are based on molecular interaction fields calculated using GRID~
 %
 Schrodinger's Jaguar provides means of estimating \pKa values using quantum mechanical methods.
 %
-Epik uses Hammett Taft linear free energy approaches~\autocite{Perrin1981a} for predicting \pKa values .
+Epik uses Hammett Taft linear free energy approaches~\autocite{Perrin1981a} for predicting \pKa values.
 
 \subsubsection*{Subaim 2.2: Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.}
 We will systematically explore the effects of fixed and dynamic protonation states on kinase, inhibitor, and kinase:inhibitor complexes to determine the impact of assuming protonation states are fixed or dynamic, and to dissect the effect in terms of protein-dominated, ligand-dominated, or coupled protein-ligand effects.
@@ -560,6 +546,17 @@ To quantify the magnitude of these effects---as well as determine their origin--
 By allowing the dynamic protonation states for kinase, inhibitor, both, and neither, we will be able to both quantify the magnitude of dynamic protonation state effects and determine the primary origin of these effects.
 %
 The calculations will be performed using OpenMM~\autocite{Eastman2013a} and Yank~\autocite{Chodera2015a}.
+%
+The dynamic protonation state sampling scheme, also known as constant-\pH, allows the distribution of protons in the system to change, at a constant chemical potential of protons $\mu_{H^+}$,
+\begin{align}
+ \text{p}\mathrm{H} = -\log_{10}\left( a_{\mathrm{H}^+} \right) = -\log_{10}\left( \exp\left(\frac{\mu_{H^+} -\mu_{H^+}^\ominus}{RT}\right)\right) \approx -\log_{10}\left( [\mathrm{H}^+] \right) 
+\end{align}
+, where $a_{\mathrm{H}^+}$ is the activity coefficient of the protons, the superscript $\ominus$ indicates a thermodynamic standard state, $R$ is the molar gas constant and $T$ is the absolute temperature.
+%
+Protonation and deprotonation events are sampled using a Monte Carlo (MC) method, using the free energy of proton transfer, calculated from the electrostatic interactions, as an acceptance criterium.
+%
+The free energy of proton transfer depends on the reference \pKa value, as obtained from our \pKa survey, which is why we need an accurate estimate for these reference values to quantify contributions from our simulations.
+%
 
 For systems in which the kinase can be expressed bacteria and the alchemical free energy calculations with dynamic protonation states indicate there will be a net change in charge for kinase and inhibitor upon binding, we will use ITC experiments that are able to dissect out the binding affinities of different protonation species.
 %
