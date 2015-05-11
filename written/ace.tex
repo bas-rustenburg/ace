@@ -182,7 +182,7 @@ Unfortunately, newly emerging mutations lead to resistance, meaning that the dru
 
 Imatinib (Gleevec) is a potent inhibitor of Abl kinase~\autocite{Druker2001a}, and has shown high efficacy in patients with chronic myeloid leukemia~\autocite{OBrien2003a}.
 %
-At physiological \pH, it has access to multiple protonation states (see \Cref{figure:imatinib-pKa})~\autocite{Szakacs2005a}.
+At physiological \pH, it has access to multiple protonation states (\Cref{figure:imatinib-pKa})~\autocite{Szakacs2005a}.
 %
 Furthermore, from computation and experiment, there is evidence that there could be \pH dependent effects to the binding affinity~\autocite{Seeliger2007a,Lin2013a}.
 %
@@ -237,8 +237,10 @@ Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}.
 \end{figure}
 
 
-\subsubsection*{Pharmacokinetic studies and fragment based drug design approaches would benefit from multiple ligand weak association models.}
-Human serum albumin (HSA) is an important serum protein that controls the bioavailability of small molecules by absorbing them into the  bloodstream~\autocite{Smith1985a,Jr.1995a}.
+\subsubsection*{Pharmacokinetic studies and fragment based drug design approaches require the use of multiple ligand weak association models.}
+Accurately modeling the interaction of low affinity ligands, that associate multiply with their target, is relevant to human serum albumin (HSA) binding and to the field of fragment based drug discovery (FBDD).
+
+HSA is an important serum protein that controls the bioavailability of small molecules by absorbing them into the  bloodstream~\autocite{Smith1985a,Jr.1995a}.
 %
 It essential to understand how drugs interact with this protein, if one wants to predict pharmacokinetics~\autocite{Smith1985a,Bannwarth1996a,Kragh-Hansen2002a,Sulkowska2002a,Zsila2011a}.
 %
@@ -246,24 +248,19 @@ One aspect that makes HSA hard to model is the fact that it binds multiple ligan
 %
 Most experimental tools and theoretical models focus on 1:1 association of proteins and ligands, but it is important to extend these tools if one wishes to accurately describe binding of multiple ligands to HSA.
 
-Besides HSA, the association of multiple ligands is also commonly observed in fragment based drug discovery (FBDD). 
+The association of multiple ligands is also a common phenomenon in FBDD.
 %
 The approach is frequently applied and has impacted the way the pharmaceutical industry and academia alike approach small molecule design~\autocite{Hajduk2007a}.
 %
-The reason why multiple association models are needed is because of the high concentrations necessary to obtain a signal.
-%
-Most fragments interact weakly with a protein target. 
+Multiple association models are needed is because most fragments only show a measurable signal at high concentrations, because of their weak interactions.
 %
 Fragment concentrations are scaled up to increase the amount of signal, however at high concentrations one often observes multiple fragments binding to the protein.
 %
-To rationalize experiments FBDD approaches cannot benefit from modeling approaches  that only describe 1:1 interactions.
+To rationalize experiments FBDD approaches cannot benefit from modeling approaches that only describe 1:1 interactions.
 %
-The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions.
+Additionally, the association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions~\autocite{Gilson1997a}. 
 %
-For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding~\autocite{Gilson1997a}.
-%
-A framework that can describe the interaction of low affinity ligands that associate multiply would therefore not be relevant just for HSA, but would also open up modeling opportunities in the field of fragment based drug discovery.
-
+Modeling of weak interactions is therefore a significant problem in FBDD.
 
 \section*{Research Strategy - Innovation}
 \instr{Explain how your proposal differs from what others have tried.}
@@ -317,7 +314,7 @@ For the first time these models will be compared to each other by simulating the
 We can determine whether these methods provide consistent corrections, and at the same time the experimental dataset allows the assessment of quantitative agreement with experiment.
 
 \subsubsection*{Quantifying unknown contributions to kinase-inhibitor binding specificity by modeling protonation state effects.}
-Imatinib, a potent inhibitor of Abl kinase~\autocite{Druker2001a}, has access to multiple protonation states at physiological \pH (see \Cref{figure:imatinib-pKa})~\autocite{Szakacs2005a}.
+Imatinib, a potent inhibitor of Abl kinase~\autocite{Druker2001a}, has access to multiple protonation states at physiological \pH (\Cref{figure:imatinib-pKa})~\autocite{Szakacs2005a}.
 %
 There is evidence that there could be \pH dependent effects to the binding affinity~\autocite{Seeliger2007a,Lin2013a}.
 %
@@ -325,7 +322,7 @@ The magnitude of these contributions still remains to be elucidated, and prelimi
 %
 \textbf{This work will be the first to identify and quantify these effects for known kinase inhibitors that have been approved by the FDA, both experimentally and computationally.}
 %
-Some well studied model systems have shown that protonation state changes can contribute significantly to the binding affinity ~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, yet contribution of protonation state effects to to binding affinities in protein-ligand association in general is completely unknown. 
+Some well studied model systems have shown that protonation state changes can contribute significantly to ligand binding affinity ~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, yet contribution of protonation state effects to binding affinities in protein-ligand association in general is completely unknown. 
 %
 Providing the evidence that this is important for kinase inhibitors may lead to further studies into how this contributes to inhibitor selectivity, a poorly understood characteristic of many kinase inhibitors~\autocite{Karaman2008a}.
 %
@@ -366,7 +363,7 @@ A number of approaches for explicitly solvated PME free energy calculations with
 
 We propose using the association of small-molecule guests with high-affinity supramolecular hosts as a way to test, validate, and refine both theory and algorithms applicable to charged ligands.
 %
-We will use cucurbit[7]uril~\autocite{Lagona2005a} (CB7) as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\autocite{Cao2013a} (see \Cref{figure:host-guest}).
+We will use cucurbit[7]uril~\autocite{Lagona2005a} (CB7) as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\autocite{Cao2013a} (\Cref{figure:host-guest}).
 %
 In order to provide an experimental dataset with accurately quantified uncertainty, we will perform isothermal titration calorimetry (ITC) experiments of various guests binding to CB7.
 %
@@ -701,8 +698,7 @@ The NSAIDs selected by us for this study (\Cref{figure:hsa-compounds}) are comme
 	  \caption{}
 	  \label{figure:hsa-compounds}
  	\end{subfigure}
-\caption{(a) \textbf{Summary of the ligand-binding capability of Human serum albumin structural studies.} Ligands are depicted in space-filling representation; oxygen atoms are colored red; all other atoms in fatty acids (myristic acid), other endogenous ligands (hemin, thyroxin) and drugs are coloured dark-gray, light gray and orange, respectively. Because of the many small molecule interactions of HSA, it is expected to be of great importance to the bioavailability of small molecules~\autocite{Metcalfe2010a}. Its binding sites are asymmetric~\autocite{He1992a, Curry1998a} and one expects there to be a difference in binding affinity of a ligand for each site~\autocite{Sudlow1976a} (see also \Cref{figure:albumin}).
-It is known to bind several drugs~\autocite{SJOeHOLM1979a,Bannwarth1996a,Sulkowska2002a,Ghuman2005a,Perez2007a,Zsila2011a}, as well as dietary supplements~\autocite{Pal2013a}. It is also essential for the bioavailability of endogenous small molecules such as hormones~\autocite{Pardridge1986a}, and toxins such as cardiac glycosides~\autocite{Smith1985a}. From Figure 7 of~\autocite{Ghuman2005a}. (b) A series of commercially available NSAIDS that bind to human serum albumin, which will be used for this study~\autocite{Zsila2011a}.}
+\caption{(a) \textbf{Summary of the ligand-binding capability of Human serum albumin structural studies.} Ligands are depicted in space-filling representation; oxygen atoms are colored red; all other atoms in fatty acids (myristic acid), other endogenous ligands (hemin, thyroxin) and drugs are coloured dark-gray, light gray and orange, respectively. Because of the many small molecule interactions of HSA, it is expected to be of great importance to the bioavailability of small molecules~\autocite{Metcalfe2010a}. Its binding sites are asymmetric~\autocite{He1992a, Curry1998a} and one expects there to be a difference in binding affinity of a ligand for each site~\autocite{Sudlow1976a}. \Cref{figure:albumin} depicts the various binding sides of HSA, and shows how diverse the structure of each binding site is. It is known to bind several drugs~\autocite{SJOeHOLM1979a,Bannwarth1996a,Sulkowska2002a,Ghuman2005a,Perez2007a,Zsila2011a}, as well as dietary supplements~\autocite{Pal2013a}. It is also essential for the bioavailability of endogenous small molecules such as hormones~\autocite{Pardridge1986a}, and toxins such as cardiac glycosides~\autocite{Smith1985a}. From Figure 7 of~\autocite{Ghuman2005a}. (b) A series of commercially available NSAIDS that bind to human serum albumin, which will be used for this study~\autocite{Zsila2011a}.}
 \label{figure:hsa}
 \todo[inline]{Find affinities for molecules?}
 \end{figure} 
