@@ -316,30 +316,41 @@ For the first time these models will be compared to each other by simulating the
 %
 We can determine whether these methods provide consistent corrections, and at the same time the experimental dataset allows the assessment of quantitative agreement with experiment.
 
-\subsubsection*{Estimating free energies of multiple ligands using semi-grand canonical ensemble free energy calculations.}
-Association of multiple ligands to a protein is an important, but poorly studied effect, common in fragment based drug discovery (FBDD).
+\subsubsection*{Quantifying unknown contributions to kinase-inhibitor binding specificity by modeling protonation state effects.}
+Imatinib, a potent inhibitor of Abl kinase~\autocite{Druker2001a}, has access to multiple protonation states at physiological \pH (see \Cref{figure:imatinib-pKa})~\autocite{Szakacs2005a}.
 %
-The typical FBDD approach uses high concentrations in order to increase the signal that is experimentally observed. 
+There is evidence that there could be \pH dependent effects to the binding affinity~\autocite{Seeliger2007a,Lin2013a}.
 %
-This is necessary because most fragment interactions with proteins are weak. 
+The magnitude of these contributions still remains to be elucidated, and preliminary data (\Cref{figure:pka-kinase}) suggests that many kinase inhibitors have multiple accessible protonation states at physiological \pH.
 %
-High fragment concentrations often lead to multiple fragments binding to a protein at once. 
+\textbf{This work will be the first to identify and quantify these effects for known kinase inhibitors that have been approved by the FDA, both experimentally and computationally.}
+%
+Some well studied model systems have shown that protonation state changes can contribute significantly to the binding affinity ~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, yet contribution of protonation state effects to to binding affinities in protein-ligand association in general is completely unknown. 
+%
+Providing the evidence that this is important for kinase inhibitors may lead to further studies into how this contributes to inhibitor selectivity, a poorly understood characteristic of many kinase inhibitors~\autocite{Karaman2008a}.
+%
+It may also warrant the investigation of these effects in other classes of proteins.
 
-The approach is frequently applied and has impacted the way the pharmaceutical industry and academia alike approach small molecule design~\autocite{Hajduk2007a}.
+\subsubsection*{Estimating free energies of multiple ligands using semi-grand canonical ensemble free energy calculations.}
+Most experimental and modeling frameworks for treatment of protein-ligand binding focus on 1:1 association.
+%
+Conversely, to model binding of ligands to serum albumin, or to model the weak binding of fragments to a protein, one needs to model the association of multiple ligands.
+%
+\textbf{This work will provide novel computational and experimental frameworks that will allow for the simulation and analysis of multiple ligand association with a single target.}
+%
+Association of multiple ligands to a protein is an important, but poorly studied effect in fragment based drug discovery (FBDD), where high fragment concentrations often lead to multiple fragments binding to a protein at once. 
 %
 The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions.
 %
 For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding~\autocite{Gilson1997a}.
 %
-Often, because of the high concentrations necessary to obtain a signal, multiple fragments associate with a target at a time.
+We propose to extend the available tool set of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to poorly defined sites.
+%
+The alchemical framework that we suggest handles the association of weak ligands by sampling the overall free energy of association as a function of the number of ligands bound, without focusing on individual binding sites.
+%
+As opposed to simulating a single ligand at multiple sites, this way we can correctly take into account cooperativity in binding when multiple ligands associate with a single protein, and weak interactions are quantified in a way that does not require strict definition of a bound state.
 
-Unfortunately, most effort in modeling frameworks has focused on simple 1:1 interactions. 
-%
-\textbf{Currently, there is no available framework to perform alchemical free energy calculations that allowing for an arbitrary amount ligands to associate with a single protein.}
-%
-We propose to extend the available tool set of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to multiple sites.
-%
-As opposed to simulating a single ligand at multiple sites, this way we can correctly take into account cooperativity in binding when multiple ligands associate with a single protein.
+
 
 \section*{Research Strategy - Approach}
 \instr{Approach: More specific background information. Describe in detail the experimental design and research methods to be used. Technical hurdles to be overcome should be mentioned. Alternative approaches should be given for experiments that may not be feasible. Discussion of expected or possible results and their interpretation. Best format for each specific aim: a) rationale, b) methods, c) expected results, d) alternatives. Theory aims should follow a similar structure where possible.}
