@@ -335,19 +335,21 @@ Conversely, to model binding of ligands to serum albumin, or to model the weak b
 %
 \textbf{This work will provide novel computational and experimental frameworks that will allow for the simulation and analysis of multiple ligand association with a single target.}
 %
-Association of multiple ligands to a protein is an important, but poorly studied effect in fragment based drug discovery (FBDD), where high fragment concentrations often lead to multiple fragments binding to a protein at once. 
+Association of multiple ligands to a protein is an important, but poorly studied effect, relevant in fragment based drug discovery (FBDD), where high fragment concentrations often lead to multiple fragments binding to a protein at once, and to plasma protein binding. 
 %
-The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions.
+The association of fragments is hard to model computationally, because of the challenges associated with modeling weak interactions~\autocite{Gilson1997a}.
 %
-For instance, because of the absence of a strong signal that two compounds are ``bound'' to each other, it can be hard to define binding~\autocite{Gilson1997a}.
+The tools to perform alchemical free energy calculations of multiple ligands, and to analyze ITC experiments capturing the same effects are very limited.
 %
-We propose to extend the available tool set of the computational chemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to poorly defined sites.
+We propose to extend the available tool set of the biochemist with semi-grand canonical ensemble methods that enable the calculation of binding affinities of multiple ligands to poorly defined sites.
 %
 The alchemical framework that we suggest handles the association of weak ligands by sampling the overall free energy of association as a function of the number of ligands bound, without focusing on individual binding sites.
 %
 As opposed to simulating a single ligand at multiple sites, this way we can correctly take into account cooperativity in binding when multiple ligands associate with a single protein, and weak interactions are quantified in a way that does not require strict definition of a bound state.
-
-
+%
+The semi-grand canonical ensemble also allows for the direct, quantitative connection between alchemical free energy calculations and ITC experiments.
+%
+It will enable simulations of ITC experiments to optimize experimental design.
 
 \section*{Research Strategy - Approach}
 \instr{Approach: More specific background information. Describe in detail the experimental design and research methods to be used. Technical hurdles to be overcome should be mentioned. Alternative approaches should be given for experiments that may not be feasible. Discussion of expected or possible results and their interpretation. Best format for each specific aim: a) rationale, b) methods, c) expected results, d) alternatives. Theory aims should follow a similar structure where possible.}
@@ -704,7 +706,7 @@ The NSAIDs selected by us for this study (\Cref{figure:hsa-compounds}) are comme
 \end{figure} 
 
 \subsubsection*{Subaim 3.1: Extend semi-grand canonical ensemble alchemical free energy calculation tools to simulate multiple ligand binding.}
-Since current alchemical free energy calculation frameworks focus mostly on 1:1 association, we will need to extend this framework to incorporate multiple ligand binding. 
+Since current alchemical free energy calculation frameworks focus mostly on 1:1 association, we will need to extend available frameworks to incorporate multiple ligand binding. 
 %
 We will build upon the existing Yank framework~\autocite{Chodera2015a} for alchemical free energy calculations to include the potential for multiple (possibly weak) binding events using a semi-grand canonical ensemble formalism. 
 %
@@ -825,9 +827,13 @@ Higher order binding terms in the polynomial will have increased uncertainty, wh
 In order to improve the information gain, we can explore various ways of performing Bayesian experimental design.
 %
 This should allow us to decrease the uncertainty in the estimates.
+%
+We can also explore the use of alternative model systems, such as host guest systems. 
+%
+Some hosts with larger cavities can bind multiple ligands, with their tractability making them attractive model systems.
 
 \section*{Conclusion}
-The aims of this proposal contribute to the limited set of tools available to deal with protein-ligand interactions in special, but not rare, cases where conventional tools provide no theoretical framework. Using Bayesian methodology will provide reliable uncertainty estimates on experimental data, which in turn will enable the distinction between theoretical model errors and experimental errors.
+The aims of this proposal contribute to the limited set of tools available to deal with protein-ligand interactions in special, but not rare, cases where conventional tools provide no implementation of existing theoretical frameworks. Using Bayesian methodology will provide reliable uncertainty estimates on experimental data, which in turn will enable the distinction between theoretical model errors and experimental errors.
 
 % refs
 \setlength{\emergencystretch}{1em}
