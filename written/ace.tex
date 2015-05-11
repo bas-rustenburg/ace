@@ -245,26 +245,33 @@ If experimental results are to be used to validate theoretical models, it is ess
 
 The ABRF-MIRG'2 study revealed the disturbing fact that the uncertainty of ITC experiments is underestimated by several orders of magnitude by conventional analysis methods~\autocite{Myszka2003a}.
 %
-Panel D of \Cref{figure:abrf-mirg2} indicates a statistical uncertainty of at least 10\% in the estimation of extinction coefficients between all participants of the study, which correlates linearly with errors in the concentrations of the solutions prepared by each lab. 
+Panel D of \Cref{figure:abrf-mirg2} indicates a statistical uncertainty of at least 10\% in the estimation of extinction coefficients between all participants of the study, which is directly proportional to the concentration of reagents prepared by each lab. 
 %
-This error is propagated into the estimates of binding stoichiometry, affinity and enthalpy  (Panels A, B and C of \Cref{figure:abrf-mirg2}).
+The error in reagent concentrations is not correctly propagated into the estimates of binding stoichiometry, affinity and enthalpy  (Panels A, B and C of \Cref{figure:abrf-mirg2}), leading to inaccurate estimates of the uncertainty of these observables.
 
-By only performing technical replicates  and no repeat experiments, the true uncertainty can not be quantified, hence no hypothesis can be supported from any single experiment~\autocite{Vaux2012a}.
+The underestimation of the error could have been prevented by performing adequate replicate experiments.
 %
-That said, one can get an estimate of the uncertainty by performing Bayesian inference on experiments.
+By only performing technical replicates and no repeat experiments, the true uncertainty can not be quantified.
 %
-For this reason, we propose the useage of Bayesian statistics as a means of uncertainty estimation as opposed to errors from model fit based on single or replicate experiments.
+A hypothesis can not be supported by a single experiment, and in essence one is performing only a single experiment multiple times~\autocite{Vaux2012a}.
+
+Alternatively, one can get an estimate of the uncertainty by performing Bayesian inference on their experiments.
 %
-Bayesian ITC can contribute to get more value out of single experiments by allowing for uncertainty quantification in concentrations of solutions. 
+We propose the usage of Bayesian statistics as a means of uncertainty estimation as opposed to errors from model fit based on single or replicate experiments.
+%
+Bayesian inference allows prior knowledge about the errors of instrumentation to be propagated into the uncertainty final estimates of model parameters such as binding affinity, enthalpy and stoichiometry. 
+%
+It provides better uncertainty estimates from single experiments than standard analysis approaches.
+%
+Therefore Bayesian ITC analysis can contribute to get more value out of single experiments, reducing resource costs. 
 
 \thisfloatsetup{capposition=beside,
 capbesideposition={center,right}}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.49\textwidth]{figures/cbs_ca_II.PNG}
-	\caption{Binding measurements from the ABRF-MIRG'2 study that considered binding of CBS to carbonic anhydrase using \textbf{ITC as performed by 14 labs shows individual error estimates that are orders of magnitude under the actual error.} A: Predicted stoichiometry of binding. B: Association constant $K_\mathrm{A}$. C: enthalpic contribution to binding. D: Measured extinction coefficient of ligand CBS, as reported by the 14 participants.~\autocite{Myszka2003a}}
-	\label{figure:abrf-mirg2}
-	\todo[inline,color=purple!40]{need more detail here on what this data shows. can describe that same sample was distributed to 14 laboratories to measure affinity by ITC and that reported errors were orders of magnitude smaller than actual experimental variation. Also helpful to boldface first sentence of caption that succinctly summarizes figure. like ``Current ITC data analysis approaches drastically underestimate true experimental error.''}
+	\caption{Binding measurements from the ABRF-MIRG'2 study that considered binding of CBS to carbonic anhydrase using \textbf{ITC as performed by 14 labs shows individual error estimates that are orders of magnitude under the actual error.} A: Predicted stoichiometry of binding. B: Association constant $K_\mathrm{A}$. C: enthalpic contribution to binding. D: Measured extinction coefficient of ligand CBS, as reported by the 14 participants~\autocite{Myszka2003a}. Error bars indicate the error as reported by the individual labs that were part of the study. The gray region indicates the uncertainty when taking into account all of the measurements. As can be seen, some labs underestimate the overall error by over 2 orders of magnitude. The extinction coefficient, as displayed in panel D is directly proportional to the concentration, revealing that concentration errors of around 10 percent are likely not propagated correctly into the analysis.}
+	\label{figure:abrf-mirg2}	
 \end{figure}
 
 \subsubsection*{Assessing proposed charge corrections in alchemical free energy calculations of charged ligands.}
