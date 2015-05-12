@@ -30,6 +30,7 @@
 		style=numeric-comp,
 		sorting=none,
 		url=false,
+		isbn=false,
 		autopunct]{biblatex}
 
 \addbibresource{ace.bib}
@@ -131,7 +132,7 @@ Access to information such as free energies can be of great utility in the desig
 %
 Alchemical free energy calculations are a powerful computational tool for computing binding free energies, as they allow for efficient sampling of the relevant states of protein-ligand complexes~\autocite{Shirts2007a}.
 %
-While these methods hold considerable promise in the accurate prediction of small molecule biding free energies~\autocite{Fujitani2005a,Deng2006a,Wang2015a}, their domain of applicability is currently highly restricted; and the broad application of free energy calculations to numerous pharmacologically relevant targets requires a number of additional challenges to be overcome~\autocite{Chodera2011a,Hansen2014a,Gapsys2015a}. 
+While these methods hold considerable promise in the accurate prediction of small molecule binding free energies~\autocite{Fujitani2005a,Deng2006a,Wang2015a}, their domain of applicability is currently highly restricted; and the broad application of free energy calculations to numerous pharmacologically relevant targets requires a number of additional challenges to be overcome~\autocite{Chodera2011a,Hansen2014a,Gapsys2015a}. 
 %
 \textbf{In particular, the neglect of corrections required for the treatment of charged ligands~\autocite{Rocklin2013b,Muddana2014a},
 dynamic protonation state effects~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b},
@@ -143,7 +144,7 @@ There is a great need for validation and extension of available methods for trea
 \subsubsection*{Alchemical free energy calculations involving charged ligands in explicit solvent require charge corrections.}
 In order to apply alchemical free energy calculations to charged ligands, one needs to eliminate artifacts introduced into the calculation arising from the modeling of bulk solvent behavior using a small periodic system.
 %
-In a physical system, when a ligand dissociates, the interaction never actually disappears completely, though the interaction between a ligand and protein is weakened to the extent that it there is no measurable correlation between the interacting molecules.
+In a physical system, when a ligand dissociates the interaction never actually disappears completely, though the interaction between a ligand and protein is weakened to the extent that it there is no measurable correlation between the interacting molecules.
 %
 The elimination of a charge from a system is therefore not a physical process, and is merely an artifact of using artificial infinite systems to approximate a macroscopic system of bulk liquid.
 %
@@ -151,7 +152,7 @@ Bulk liquids are approximated in simulation, either by using periodic boundary c
 %
 Often, to further reduce computation cost, we introduce truncated potentials and non-Coulombic electrostatics (such as particle mesh Ewald [PME]~\autocite{Essmann1995a} and reaction field [RF]~\autocite{Tironi1995a} potentials). 
 %
-These unphysical treatments bring with them several electrostatic interaction terms that are added on top of the physical binding free energy.
+These unphysical treatments bring with them several electrostatic interaction terms that are added on top of the physical binding free energy (\Cref{figure:chargecorrections}).
 %
 These terms do not perturb the weights in a normal simulation, but cause substantial artifacts in alchemical simulations once charged species are eliminated or introduced as part of an alchemical perturbation.
 %
@@ -199,9 +200,9 @@ We expect there are two separate effects that could be relevant:
 %
 Modeling the system with a single protonation state can in either case lead to large errors.
 %
-As some kinase inhibitors bind with picomolar affinity to their target (corresponding to 28 $k_BT$), a 500-fold affinity loss (6 $k_BT$, equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency (\Cref{figure:pka-kinase}).
+As some kinase inhibitors bind with picomolar affinity to their target (corresponding to 28 $k_BT$)~\autocite{Knight2005a}, a 500-fold affinity loss (6 $k_BT$, equivalent to 2.6 log unit change in the equilibrium constant) would still maintain sub-nanomolar potency.
 %
-This suggests that a majority of these compounds could access multiple protonation states while still retaining a high binding affinity.
+This suggests that a majority of these compounds could access multiple protonation states while still retaining a high binding affinity (\Cref{figure:pka-kinase}).
 %
 Neglecting the potential of sampling alternate protonation states would thus lead to large errors in predicted binding affinities.
 %
@@ -228,7 +229,7 @@ Therefore, it is essential to know whether these effects need to be incorporated
 The intracellular \pH of most tumors is around 7.2~\autocite{Griffiths1991a,Stubbs2000a}.
 Colors indicate accessibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accessible region, up until 6 $k_BT$.
 Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}.
-(b) Top: The individual sites of protonation of imatinib accessible with a penalty of 6 $k_BT$ under physiological conditions, highlighted in red~\autocite{Szakacs2005a}. Bottom: fraction of species of imatinib (Gleevec) measured by titration and NMR~\autocite{Szakacs2005a}, with the red region denoting states accessible with a penalty of 6 $k_BT$ under physiological conditions.}
+(b) Top: The individual sites of protonation of imatinib (Gleevec) accessible with a penalty of 6 $k_BT$ under physiological conditions, highlighted in red~\autocite{Szakacs2005a}. Bottom: fraction of species of imatinib measured by titration and NMR~\autocite{Szakacs2005a}, with the red region denoting states accessible with a penalty of 6 $k_BT$ under physiological conditions.}
 \label{figure:kinase-pKa}
 \end{figure}
 
@@ -267,19 +268,19 @@ The error in reagent concentrations is not correctly propagated into the estimat
 
 The underestimation of the error could have been prevented by performing adequate replicate experiments.
 %
-By only performing technical replicates and no repeat experiments, the true uncertainty can not be quantified.
+By only performing technical replicates and no repeat experiments with newly prepared reagent solutions, the true uncertainty cannot be quantified.
 %
-A hypothesis can not be supported by a single experiment, and in essence one is performing only a single experiment multiple times~\autocite{Vaux2012a}.
+A hypothesis cannot be supported by a single experiment, and technical replicates perform but a single experiment, where only the measurement is carried out multiple times~\autocite{Vaux2012a}.
 
-Alternatively, one can get an estimate of the uncertainty by performing Bayesian inference on their experiments.
+Alternatively, one can get an accurate estimate of the uncertainty by performing Bayesian inference on their experiments.
 %
 We propose the usage of Bayesian statistics as a means of uncertainty estimation as opposed to errors from model fit based on single or replicate experiments.
 %
-Bayesian inference allows prior knowledge about the errors of instrumentation to be propagated into the uncertainty final estimates of model parameters such as binding affinity, enthalpy and stoichiometry. 
+A Bayesian analysis of ITC experiments allows one to get more value out of single experiments, reducing resource costs. 
 %
-It provides better uncertainty estimates from single experiments than standard analysis approaches.
+This is because Bayesian inference allows prior knowledge about possible errors of reagent concentrations to be propagated into the uncertainty estimates of model parameters such as binding affinity, enthalpy and stoichiometry. 
 %
-Therefore Bayesian ITC analysis can contribute to get more value out of single experiments, reducing resource costs. 
+It thereby provides better uncertainty estimates from single experiments than standard analysis approaches, which do not propagate prior information on errors.
 
 \thisfloatsetup{capposition=beside,
 capbesideposition={center,right}}
@@ -297,7 +298,7 @@ Several means of correcting for these artifacts have been suggested~\autocite{Re
 %
 \textbf{A quantitative comparison of these methodologies to each other and to experiment has not yet been performed, and the correctness of any of these available charge correction methods has not been established.}
 %
-Our work will contribute substantially to the understanding of these charge corrections by providing an experimental dataset with small and unquantified uncertainty, against which models can be validated.
+Our work will contribute substantially to the understanding of these charge corrections by providing an experimental dataset with small and quantified uncertainty, against which models can be validated.
 %
 For the first time these models will be compared to each other by simulating the same system.
 %
@@ -312,7 +313,7 @@ The magnitude of these contributions still remains to be elucidated, and prelimi
 %
 Some well studied model systems have shown that protonation state changes can contribute significantly to ligand binding affinity ~\autocite{Dullweber2001a,Aleksandrov2007a,Czodrowski2007a,Steuber2007a,Czodrowski2007b}, yet contribution of protonation state effects to binding affinities in protein-ligand association in general is completely unknown. 
 %
-Providing the evidence that this is important for kinase inhibitors may lead to further studies into how this contributes to inhibitor selectivity, a poorly understood characteristic of many kinase inhibitors~\autocite{Karaman2008a}.
+Providing the evidence that this is important for kinase inhibitors may lead to further studies into how this contributes to inhibitor selectivity, a poorly understood characteristic of many kinase inhibitors~\autocite{Knight2005a,Karaman2008a}.
 %
 It may also warrant the investigation of these effects in other classes of proteins, while at the same time this proposal provides the tools to perform these investigations.
 
@@ -349,7 +350,7 @@ A number of approaches for explicitly solvated PME free energy calculations with
 
 We propose using the association of small-molecule guests with high-affinity supramolecular hosts as a way to test, validate, and refine both theory and algorithms applicable to charged ligands.
 %
-We will use cucurbit[7]uril~\autocite{Lagona2005a} (CB7) as a host, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude~\autocite{Cao2013a} (\Cref{figure:host-guest}).
+We will use cucurbit[7]uril (CB7) as a host~\autocite{Lagona2005a}, which is known to bind a series of cations within a range of affinities spanning several orders of magnitude (\Cref{figure:host-guest})~\autocite{Cao2013a}.
 %
 In order to provide an experimental dataset with accurately quantified uncertainty, we will perform isothermal titration calorimetry (ITC) experiments of various guests binding to CB7.
 %
@@ -358,13 +359,13 @@ We will then perform alchemical free energy calculations to evaluate the availab
 %
 ITC experiments will benefit from the high solubility of CB7.
 %
-CB7 is more soluble than a lot of proteins, \SIrange[scientific-notation=false]{20}{30}{millimolar}~\autocite{Lagona2005a} in water versus \textless \SI{1.0}{millimolar} for a small ``soluble'' protein such as RNAase Sa~\autocite{Pace2004a}.
+CB7 is more soluble than many proteins, \SIrange[scientific-notation=false]{20}{30}{millimolar}~\autocite{Lagona2005a} in water versus \textless~\SI{1.0}{millimolar} for a small soluble protein such as RNAase Sa~\autocite{Pace2004a}.
 %
 This will allow us to reach higher concentrations, which will make for more tractable experiments.
 
-The small system size provides an advantage for molecular dynamics simulation, since the limited degrees of freedom will make sampling more efficient and reduces computational cost.
+The small system size provides an additional advantage for molecular dynamics simulation, since the limited degrees of freedom will make sampling more efficient and reduces computational cost.
 %
-Unlike biomolecules, CB7 does not undergo large-scale conformational changes and has small correlation times.
+Unlike biomolecules, CB7 does not undergo large-scale conformational changes and has small correlation times~\autocite{Mock1989a,Tang2011a}.
 
 \begin{figure}[H]
 \centering
@@ -386,12 +387,14 @@ Unlike biomolecules, CB7 does not undergo large-scale conformational changes and
 \label{figure:host-guest}
 \end{figure}
 
-ITC has been shown to lead to serious underestimation of measurement error due to failure to propagate errors in the concentration of reactants\autocite{Myszka2003a,Tellinghuisen2011a}. To provide an accurate assessment of error from single experiments, we will develop a novel analysis method using Bayesian inference.
+ITC has been shown to lead to serious underestimation of measurement error due to failure to propagate errors in the concentration of reactants~\autocite{Myszka2003a,Tellinghuisen2011a}.
+%
+To provide an accurate assessment of error from single experiments, we will develop a novel analysis method using Bayesian inference.
 %
 The framework of Bayesian inference allows for the propagation of errors throughout the experimental procedure, allowing us to accurately quantify the experimental uncertainty, thereby enabling us to clearly refute or support the various approaches to dealing with charged ligands.
-
+%
 We will consider the approaches of \textcite{Reif2013a}, \textcite{Rocklin2013a}, and \textcite{Lin2014a} for eliminating the contribution of net charge.  Each scheme mostly agrees on the source of error, but has a different way of solving the problem, as described in Subaim 1.2. 
-
+%
 We will also consider the elimination of neutral salt pairs, in lieu of corrections, to evaluate the necessity of these complex schemes.
 
 
@@ -421,10 +424,10 @@ which are drawn from a normal distribution $\mathcal{N}$ with a variance of $\si
 
 The methodology will allow incorporation of multiple experiments, such as calibrations, to accurately separate out heat effects due to e.g. dilution of the chemicals used or mechanical effects of the injections.
 
-We will collect ITC data for the series of guests used by \textcite{Cao2013a} binding to CB7. Experiments will be performed using an Auto iTC-200 instrument, available at the Rockefeller University High-Throughput and Spectroscopy Resource Center (HTSRC). The experimental setup will be designed using a python library  developed in house for the design of ITC experiments, and the setup will be carried out on our in house laboratory automation system using procedures generated by the library.
+We will collect ITC data for the series of guests used by \textcite{Cao2013a} binding to CB7. Experiments will be performed using an Auto iTC-200 instrument, available at the Rockefeller University High-Throughput and Spectroscopy Resource Center (HTSRC). The experimental setup will be designed using a Python library~\autocite{vanRossum1995a} developed in house for the design of ITC experiments, and the setup will be carried out on our in house laboratory automation system using procedures generated by the library.
 
 \subsubsubsection{Subaim 1.2: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations.}
-We will compare several methods that correct for changes in net charge of the system in alchemical free energy calculations~\autocite{Reif2013a,Rocklin2013a, Lin2014a} in order to estimate which methods can provide quantitatively correct estimates of the binding affinity.
+We will compare several methods that correct for changes in the net charge of the system in alchemical free energy calculations~\autocite{Reif2013a,Rocklin2013a, Lin2014a}, in order to estimate which methods can provide quantitatively correct estimates of the binding affinity.
 %
 To do so, we will perform alchemical binding free energy calculations on the series of guests-CB7 complexes for which binding affinities were measured as part of Subaim 1.1 and compare the methods to the experimental results.
 
@@ -444,7 +447,7 @@ We will first consider whether all methods agree with each other, and the extent
 %
 Discrepancies between the results could indicate that some of the approaches are quantitatively incorrect.
 %
-If the various approaches agree, we can compare them in terms of efficiency.
+If the various approaches agree, we can compare them in terms of computational efficiency.
 %
 Next, we will compare each of the approaches to the experimental data, to see whether any of them produce a quantitatively correct result.
 %
@@ -493,7 +496,7 @@ We can incorporate effects such as dilution heats, injection volume errors, and 
 \subsubsection*{Rationale}
 Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner.
 %
-Evidence exists that for the binding of imatinib to Abl kinase, \pH{} dependent effects may contribute to the binding affinity\cite{Szakacs2005a, Seeliger2007a, Lin2013a}. 
+Evidence exists that for the binding of imatinib to Abl kinase, \pH dependent effects may contribute to the binding affinity\cite{Szakacs2005a, Seeliger2007a, Lin2013a}. 
 %
 Our preliminary investigations suggest that the same effects will be relevant to a large number of FDA approved kinase inhibitors (\Cref{figure:pka-kinase}).
 %
@@ -501,7 +504,7 @@ Kinases are important signaling proteins, and for a long time its been known tha
 %
 They are a promising drug target, and many drugs have succesfully been developed to inhibit kinases that are disregulated in cancer ~\autocite{Baselga2006a,Garber2006a,OHare2011a}.
 %
-Kinase inhibitors typically have high potency, so protonation state effects may mostly go unnoticed in standard experimental assays.
+Kinase inhibitors typically have high potency~\autocite{Knight2005a}, so protonation state effects may mostly go unnoticed in standard experimental assays.
 %
 The usual approach in modeling ignores these effects and assumes a single protonation state for an entire system.
 %
@@ -536,7 +539,7 @@ The dynamic protonation state simulations can only capture relevant protonation 
 %
 To identify reliable tools, we will benchmark existing \pKa prediction tools using \pKa data obtained for a series of kinase inhibitors using a Sirius T3 instrument.
 %
-The Sirius T3 instrument provides a gold standard for giving macroscopic \pKas using a combination of electrochemical and UV-metric titrations.
+The Sirius T3 instrument provides a gold standard for giving macroscopic \pKas using a combination of electrochemical and UV-metric titrations~\autocite{Schoenherr2015a}.
 %
 This will help us select a tool that can adequately predict \pKa values for kinase inhibitors with similar chemical components.
 %
@@ -546,7 +549,7 @@ Among the small molecule \pKa prediction tools considered will be \textbf{MoKa}~
 %
 MoKa generates \pKas based on atomistic descriptors, defined by the surrounding atoms.
 %
-The descriptors are based on molecular interaction fields calculated using GRID~\autocite{Goodford1985a} for a library of 3D fragments, but can succesfully be applied on 2D structures.
+The descriptors are based on molecular interaction fields calculated using GRID~\autocite{Goodford1985a} for a library of 3D fragments, but can successfully be applied on 2D structures.
 %
 Schrodinger's Jaguar provides means of estimating \pKa values using quantum mechanical methods.
 %
@@ -555,7 +558,7 @@ Epik uses Hammett Taft linear free energy approaches~\autocite{Perrin1981a} for 
 \subsubsection*{Subaim 2.2: Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.}
 We will systematically explore the effects of fixed and dynamic protonation states on kinase, inhibitor, and kinase:inhibitor complexes to determine the impact of assuming protonation states are fixed or dynamic, and to dissect the effect in terms of protein-dominated, ligand-dominated, or coupled protein-ligand effects.
 %
-Preliminary data indicates that a number of FDA approved kinase inhibitors have \pKa values close to the physiological \pH{}, including imatinib~\autocite{Szakacs2005a}, (\Cref{figure:pka-kinase}).
+Preliminary data indicates that a number of FDA approved kinase inhibitors have \pKa values close to the physiological \pH, including imatinib~\autocite{Szakacs2005a}, (\Cref{figure:pka-kinase}).
 %
 We aim to quantify these contributions, in order to find out how important they are for correctly estimating the binding affinity of small molecule kinase inhibitors.
 %
@@ -578,16 +581,17 @@ The calculations will be performed using OpenMM~\autocite{Eastman2013a} and Yank
 %
 The dynamic protonation state sampling scheme, also known as constant-\pH, allows the distribution of protons in the system to change, at a constant chemical potential of protons $\mu_{H^+}$,
 \begin{align}
- \text{p}\mathrm{H} = -\log_{10}\left( a_{\mathrm{H}^+} \right) = -\log_{10}\left( \exp\left(\frac{\mu_{H^+} -\mu_{H^+}^\ominus}{RT}\right)\right) \approx -\log_{10}\left( [\mathrm{H}^+] \right) 
+ \text{p}\mathrm{H} = -\log_{10}\left( a_{\mathrm{H}^+} \right) = -\log_{10}\left( \exp\left(\frac{\mu_{\mathrm{H}^+} -\mu_{\mathrm{H}^+}^\ominus}{RT}\right)\right) \approx -\log_{10}\left( [\mathrm{H}^+] \right) \quad,
 \end{align}
-, where $a_{\mathrm{H}^+}$ is the activity coefficient of the protons, the superscript $\ominus$ indicates a thermodynamic standard state, $R$ is the molar gas constant and $T$ is the absolute temperature.
+%
+where $a_{\mathrm{H}^+}$ is the activity coefficient of the protons, the superscript $\ominus$ indicates a thermodynamic standard state, $R$ is the molar gas constant and $T$ is the absolute temperature.
 %
 Protonation and deprotonation events are sampled using a Monte Carlo (MC) method, using the free energy of proton transfer, calculated from the electrostatic interactions, as an acceptance criterion.
 %
 The free energy of proton transfer depends on the reference \pKa value, as obtained from our \pKa survey, which is why we need an accurate estimate for these reference values to quantify contributions from our simulations.
 %
 
-For systems in which the kinase can be expressed bacteria and the alchemical free energy calculations with dynamic protonation states indicate there will be a net change in charge for kinase and inhibitor upon binding, we will use ITC experiments that are able to dissect out the binding affinities of different protonation species.
+For systems in which the kinase can be expressed in bacteria and the alchemical free energy calculations with dynamic protonation states indicate there will be a net change in charge for kinase and inhibitor upon binding, we will use ITC experiments that are able to dissect out the binding affinities of different protonation species.
 %
 Changes in protonation states will lead to an enthalpic contribution/penalty to the binding affinity.
 %
@@ -640,7 +644,7 @@ Most available free energy calculation frameworks focus on 1:1 binding interacti
 %
 \textbf{We will overcome deficiencies in current frameworks with a new framework that can provide predictions for ligands binding multiple times to a single macromolecule.}
 %
-Our proposed framework will create an alchemical ladder from 0$\dots N_\mathrm{max}$ ligands, and can provide a description of binding by using a semi-grand canonical ensemble methodology~\autocite{Kofke1988a,Kofke1999a,Lynch2000a}.
+Our proposed framework will create an alchemical ladder from $0 \ldots N_\mathrm{max}$ ligands, and can provide a description of binding by using a semi-grand canonical ensemble methodology~\autocite{Kofke1988a,Kofke1999a,Lynch2000a}.
 %
 We can establish a quantitative connection between these semi-grand canonical alchemical free energy calculations and ITC experiments on these systems.
 %
@@ -691,7 +695,7 @@ We will build upon the existing Yank framework~\autocite{Chodera2015a} for alche
 %
 Our extension allows the calculation of the free energy of the different states of a protein-multiligand complex by using an alchemical ladder that allows for binding of of 0, 1, $\dots$, $N_\mathrm{max}$ ligands.
 %
-As a first application of the framework we will study the binding of NSAIDS (\Cref{figure:hsa-compounds}) to HSA.
+As a first application of the framework we will study the binding of NSAIDs (\Cref{figure:hsa-compounds}) to HSA.
 %
 The compounds we have selected are known to bind to multiple sites on HSA~\autocite{Zsila2011a}, and are soluble enough to perform ITC experiments for validation of the simulation results.
 %
@@ -705,9 +709,9 @@ The pressure, $p$, and temperature, $T$, are also fixed. The free energy of obse
  g_n = \ln \int \dif x_1 \dots \dif x_n \dif x_R \, e^{-u_n(x_1,\dots,x_n)} \quad,
 \end{align}
 %
-where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R) + \beta p V(x)$ is the \textit{reduced} potential energy, based on the coordinates of $n$ ligand molecules and the receptor, and $V(x)$ is the instantaneous volume of the simulation cell. Similarly, we can also derive the enthalpy associated with binding of $n$ ligands, $h_n$.
+where  $u_n(x_1,\ldots,x_n,x_R) \equiv \beta U_n(x_1,\ldots,x_n,x_R) + \beta p V(x)$ is the \textit{reduced} potential energy, based on the coordinates of $n$ ligand molecules and the receptor, $\beta$ is the inverse temperature, defined as $1/k_BT$, and $V(x)$ is the instantaneous volume of the simulation cell. Similarly, we can also derive the enthalpy associated with binding of $n$ ligands, $h_n$.
 
-By knowing the free energies of each occupation state, we can estimate the bound concentrations for a given concentration of receptor $[\mathrm{R}]$ and ligand $[\mathrm{L}]$.
+By knowing the free energies of each occupation state, we can estimate the bound concentrations for a given concentration of receptor $[\mathrm{R}]$ and ligand $[\mathrm{L}]$ from simulation.
 %
 The term in the logarithm can be substituted by what is known as the binding polynomial, $Q$
 %
@@ -715,11 +719,11 @@ The term in the logarithm can be substituted by what is known as the binding pol
  Q = 1 + K_1[\mathrm{L}] + K_1K_2[\mathrm{L}]^2 + \cdots + \left(\prod\limits_{i=1}^{n} K_i\right) [\mathrm{L}]^n = 1 + \sum\limits_{l=1}^n \left(\prod\limits_{i=1}^{l} K_l\right)[\mathrm{L}]^l \quad,
  \label{equation:bindingpolynomial}
 \end{align}                                                    
-which is equivalent to the partition function of the system~\autocite{Dill2010a}.
-
+which is also equivalent to the partition function of the system~\autocite{Dill2010a}.
+%
 In this equation, $K_n$ are the stoichiometric association constants, not site constants (see also \Cref{figure:semi-grand}) meaning we do not define a specific site.
 %
-They are obtainde by taking the exponent of the free energy difference between binding of consecutive numbers of ligands
+They are obtained by taking the exponent of the free energy difference between binding of consecutive numbers of ligands
 \begin{align}
 K_{n+1} = \frac{[\mathrm{RL}_{n+1}]}{[\mathrm{RL}_n][\mathrm{L}]} = e^{-(g_{n+1}-g_n)} ; g_{n+1} - g_n = \ln (K_{n+1})^{-1}
 \label{eq:K_eq}
@@ -747,7 +751,7 @@ This allows us to establish a quantitative connection with ITC experiments.
   \label{figure:semi-grand}
 \end{figure}
 
-\subsubsection*{Subaim 3.2: Validate computational predictions by applying Bayesian model selection on ITC  experiments of HSA and a series of NSAIDS.}
+\subsubsection*{Subaim 3.2: Validate computational predictions by applying Bayesian model selection on ITC  experiments of HSA and a series of NSAIDs.}
 In order to validate the results obtained from free energy calculations, we will perform complementary ITC experiments on human serum albumin (HSA). 
 %
 To design the ITC experiments, we can use the parameters obtained from the free energy calculations to simulate an ITC experiment.
@@ -770,15 +774,16 @@ Unlike a Bayesian analysis, it does not propagate errors from the experimental p
 %
 We will extend our Bayesian analysis tools with the capacity to use binding polynomials (\Cref{equation:bindingpolynomial}) to estimate the binding affinity and provide accurate uncertainty estimates.
 %
-It will be able to propagate errors in the reagent concentrations of the prepared solutions, unlike the Non-Bayesian models.
+It will be able to propagate errors in the reagent concentrations of the prepared solutions, unlike the non-Bayesian models.
 %
 Additionally, the binding polynomial will not be limited to necessarily 2, or 3 sites. 
 %
 It can be extended to incorporate as many ligands as needed.
 %
+The number of parameters necessary can be selected by using Bayesian model selection techniques such as reversible jump Markov chain Monte Carlo (RJMCMC)~\autocite{Green1995a}.
 
 \subsubsection*{Expected results}
-The newly developed free energy calculation framework will allow us to estimate the free energy of associating an arbitrary number of ligands to a protein.
+The newly developed free energy calculation framework will allow us to estimate the free energy of an arbitrary number of ligands binding to a protein.
 %
 From these free energies, we can estimate stoichiometric binding constants, which will allow us to calculate complex concentrations for a given receptor and ligand concentration.
 %
@@ -792,7 +797,9 @@ We can also use our Bayesian ITC analysis methodology to experimentally measure 
 %
 The experiments will yield credible intervals for each of the terms in the binding polynomial, with increasing uncertainty for the higher order terms.
 %
-We can estimate whether experimental results can confirm the predictions within the experimental uncertainty.
+The number of terms that we can fit will be limited by this uncertainty, and we can use Bayesian model selection to estimate the number of parameters to fit.
+%
+Using our experimental results, we can confirm whether our computational predictions fall within the experimental uncertainty.
 
 \subsubsection*{Pitfalls and alternatives}
 It is possible that our simulations will not sample many different stoichiometries, if it is unfavorable to add more ligands.
