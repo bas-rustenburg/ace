@@ -1,6 +1,7 @@
 % !TEX program = xelatex
 
 \documentclass[10pt,final]{article}
+
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{graphicx}
@@ -19,12 +20,12 @@
 \usepackage[color=purple!40,obeyFinal]{todonotes}
 \usepackage[margin=0.5in]{geometry}
 \usepackage{cleveref}
-\usepackage{microtype} %sexy kerning
-\usepackage{color} % colors
+\usepackage[final]{microtype}
 \usepackage{ulem} % strikethrough
 \usepackage{commath}
 \usepackage{ifdraft}
 \usepackage[	backend=biber,
+		language=auto,
 		firstinits=true,
 		style=numeric-comp,
 		sorting=none,
@@ -55,6 +56,7 @@
 \newcommand{\pKa}{p$K_\mathrm{a}$\ }
 \newcommand{\pH}{p$\mathrm{H}$\ }
 \newcommand{\pKas}{p$K_\mathrm{a}$s\ }
+
 
 \begin{document}
 \listoftodos[Indexed list of activities pertaining to labor that will be performed in the short-term future]\newpage
@@ -118,14 +120,11 @@ We will extend deficiencies by both developing new Bayesian ITC experimental ana
 as well as simulating ITC data directly from semi-grand canonical ensemble simulations to enable direct comparisons between experiment and theory.
 
 \subsection*{} % Add some spacing
-
 Completion of the work will provide modeling strategies for non-trivial challenges in protein-ligand association that currently have no working solution, as well as illustrate the scope of challenges that remain.
 
 \section*{Research Strategy - Significance}
 \instr{General background, significance in terms of basic science and disease relevance.}
 \subsection*{Accurate treatment of alchemical free energy calculations.}
-%Maybe you want to start with a section on why computer modeling or free energy calculations is important, to motivate the question of why we should care about making errors in these calculations due to incorrect protonation states?
-
 The binding free energy of a ligand (related to the affinity) determines to what degree it will spontaneously associate with a protein.
 %
 Access to information such as free energies can be of great utility in the design of ligands that can selectively and tightly interact with a biomolecular target.
@@ -173,7 +172,7 @@ These corrections may also prove to be necessary when performing dynamical proto
 \subsubsection*{Protonation state effects can be important in kinase inhibitor binding, but the scope of this problem is unknown.}
 Kinases are important signaling proteins, and for a long time its been known that disregulation of some kinases can lead to cancer~\autocite{Levinson1978a,Vivanco2002a}.
 %
-They are a promising drug target, and many drugs have succesfully developed to inhibit kinases that are disregulated in cancer~\autocite{Baselga2006a,Garber2006a,OHare2011a}.
+They are a promising drug target, and many drugs have successfully been developed to inhibit kinases that are disregulated in cancer~\autocite{Baselga2006a,Garber2006a,OHare2011a}.
 %
 Unfortunately, intrinsic or induced mutations can lead to resistance, meaning there is a continued need for drugs to overcome resistance~\autocite{Shah2004a,Pao2005a,Garber2006a,Zhang2009a}.
 
@@ -227,7 +226,7 @@ Therefore, it is essential to know whether these effects need to be incorporated
 \end{subfigure}
 \caption{(a) \textbf{Protonation states accessible to FDA approved kinase inhibitors.} 
 The intracellular \pH of most tumors is around 7.2~\autocite{Griffiths1991a,Stubbs2000a}.
-Colors indicate accesibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accesible region, up until 6 $k_BT$.
+Colors indicate accessibility of states at \pH 7.2 within blocks of $k_BT$ units of energy, where darker means more units of $k_BT$ away from the accessible region, up until 6 $k_BT$.
 Preliminary data obtained using Epik~\autocite{Shelley2007a,Greenwood2010a}.
 (b) Top: The individual sites of protonation of imatinib accessible with a penalty of 6 $k_BT$ under physiological conditions, highlighted in red~\autocite{Szakacs2005a}. Bottom: fraction of species of imatinib (Gleevec) measured by titration and NMR~\autocite{Szakacs2005a}, with the red region denoting states accessible with a penalty of 6 $k_BT$ under physiological conditions.}
 \label{figure:kinase-pKa}
@@ -250,8 +249,8 @@ FBDD is frequently applied and has impacted the way the pharmaceutical industry 
 The association of these fragments is hard to model computationally, because of the challenges associated with modeling weak interactions~\autocite{Gilson1997a}, and the absence of modeling frameworks for multiple association. 
 %
 Modeling deficiencies need to be addressed if free energy calculations are to be used to rationalize and predict fragment binding.
+%
 
-% Modeling of fragment association can also be useful to detect compounds that are promiscuious binders~\autocite{Giannetti2008a}.
 
 \section*{Research Strategy - Innovation}
 \instr{Explain how your proposal differs from what others have tried.}
@@ -391,7 +390,7 @@ ITC has been shown to lead to serious underestimation of measurement error due t
 %
 The framework of Bayesian inference allows for the propagation of errors throughout the experimental procedure, allowing us to accurately quantify the experimental uncertainty, thereby enabling us to clearly refute or support the various approaches to dealing with charged ligands.
 
-We will consider the approaches of \textcite{Reif2013a}, \textcite{Rocklin2013a}, and \textcite{Lin2014a} for eliminating the contribution of net charge.  Each scheme mostly agrees on the source of error, but has a different way of solving the problem, as described in subaim 1.2. 
+We will consider the approaches of \textcite{Reif2013a}, \textcite{Rocklin2013a}, and \textcite{Lin2014a} for eliminating the contribution of net charge.  Each scheme mostly agrees on the source of error, but has a different way of solving the problem, as described in Subaim 1.2. 
 
 We will also consider the elimination of neutral salt pairs, in lieu of corrections, to evaluate the necessity of these complex schemes.
 
@@ -427,7 +426,7 @@ We will collect ITC data for the series of guests used by \textcite{Cao2013a} bi
 \subsubsubsection{Subaim 1.2: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations.}
 We will compare several methods that correct for changes in net charge of the system in alchemical free energy calculations~\autocite{Reif2013a,Rocklin2013a, Lin2014a} in order to estimate which methods can provide quantitatively correct estimates of the binding affinity.
 %
-To do so, we will perform alchemical binding free energy calculations on the series of guests-CB7 complexes for which binding affinities were measured as part of subaim 1.1 and compare the methods to the experimental results.
+To do so, we will perform alchemical binding free energy calculations on the series of guests-CB7 complexes for which binding affinities were measured as part of Subaim 1.1 and compare the methods to the experimental results.
 
 We will consider a total of four schemes that account for charged ligand binding.
 %
@@ -573,8 +572,6 @@ We expect that protonation state effects contribute significantly to binding aff
 %
 To quantify the magnitude of these effects---as well as determine their origin---we will use alchemical free energy calculations, a reliable standard for calculating binding affinities~\autocite{Fujitani2005a,Deng2006a,Wang2015a}, in which we additional implement a dynamic treatment of protonation states for a constant external pH~\autocite{Mongan2004a,Stern2007a,Nilmeier2011a}.
 %
-{\color{purple}(Benoit Roux has just submitted a paper on this for explicit solvent too. ASR: what reference?)}
-%
 By allowing the dynamic protonation states for kinase, inhibitor, both, and neither, we will be able to both quantify the magnitude of dynamic protonation state effects and determine the primary origin of these effects.
 %
 The calculations will be performed using OpenMM~\autocite{Eastman2013a} and Yank~\autocite{Chodera2015a}.
@@ -585,7 +582,7 @@ The dynamic protonation state sampling scheme, also known as constant-\pH, allow
 \end{align}
 , where $a_{\mathrm{H}^+}$ is the activity coefficient of the protons, the superscript $\ominus$ indicates a thermodynamic standard state, $R$ is the molar gas constant and $T$ is the absolute temperature.
 %
-Protonation and deprotonation events are sampled using a Monte Carlo (MC) method, using the free energy of proton transfer, calculated from the electrostatic interactions, as an acceptance criterium.
+Protonation and deprotonation events are sampled using a Monte Carlo (MC) method, using the free energy of proton transfer, calculated from the electrostatic interactions, as an acceptance criterion.
 %
 The free energy of proton transfer depends on the reference \pKa value, as obtained from our \pKa survey, which is why we need an accurate estimate for these reference values to quantify contributions from our simulations.
 %
@@ -629,7 +626,7 @@ Unfortunately, we can only measure exchanges between buffer and the protein or l
 %
 In the case that there is disagreement with experiment because of force field errors, we can perform experiments and simulations on systems where protonation state changes are not expected to occur, in order to evaluate the magnitude of this error.
 %
-We may also find that the charge corrections illuminated in Aim 1 are required for accuracy of dynamic protonation state claculations, so we could evaluate this if the results seem to require it.
+We may also find that the charge corrections illuminated in Aim 1 are required for accuracy of dynamic protonation state calculations, so we could evaluate this if the results seem to require it.
 %
 Additional verification using host-guest complexes where the host or guest experience protonation state effects can be employed as needed.
 
